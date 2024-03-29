@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /** CSS DARK THEME PRIMARY COLORS */
+  --color-primary-100: #c800ff;
+  --color-primary-200: #d140ff;
+  --color-primary-300: #da5fff;
+  --color-primary-400: #e179ff;
+  --color-primary-500: #e891ff;
+  --color-primary-600: #eea8ff;
+  /** CSS DARK THEME SURFACE COLORS */
+  --color-surface-100: #121212;
+  --color-surface-200: #282828;
+  --color-surface-300: #3f3f3f;
+  --color-surface-400: #575757;
+  --color-surface-500: #717171;
+  --color-surface-600: #8b8b8b;
+  /** CSS DARK THEME MIXED SURFACE COLORS */
+  --color-surface-mixed-100: #231726;
+  --color-surface-mixed-200: #382c3a;
+  --color-surface-mixed-300: #4e4350;
+  --color-surface-mixed-400: #655b67;
+  --color-surface-mixed-500: #7d747e;
+  --color-surface-mixed-600: #958e97;
+  /** EXAMPLES */
+
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.bgMain {
+  position: relative;
+  z-index: 1;
+}
+.bgMain::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  z-index: -1;
+  background-image: url("/bgMain.jpg");
+}
+  
