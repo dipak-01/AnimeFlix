@@ -12,27 +12,28 @@ import 'swiper/css/navigation';
 import 'swiper/css';
  
 
-function Swiperr() {
-  const [banners, setBanners] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const getBanners = async () => {
-      try {
-        const response = await HomePageApi();
-        const banners = response.spotlightAnimes;
-        console.log(banners);
-        setBanners(banners);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error in fetching banners:", error);
-      }
-    };
+function Swiperr({banners}) {
+ 
+  // const [banners, setBanners] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   const getBanners = async () => {
+  //     try {
+  //       const response = await HomePageApi();
+  //       const banners = response.spotlightAnimes;
+  //       console.log(banners);
+  //       setBanners(banners);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error in fetching banners:", error);
+  //     }
+  //   };
 
-    getBanners();
-  }, []);
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  //   getBanners();
+  // }, []);
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
   return (
     <>
       <Swiper
