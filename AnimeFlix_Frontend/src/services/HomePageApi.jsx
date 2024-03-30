@@ -2,7 +2,7 @@ import axios from "axios";
 export default async () => {
     const getBanners = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/home", { crossdomain: true });
+            const response = await axios.get("https://anime-flix-api.vercel.app/anime/home", { crossdomain: true });
             const homeData = response.data;
             return homeData
         } catch (error) {

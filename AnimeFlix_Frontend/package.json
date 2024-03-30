@@ -1,7 +1,6 @@
 {
   "name": "animeflix",
   "private": true,
-  "proxy": "http://localhost:3000/home",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

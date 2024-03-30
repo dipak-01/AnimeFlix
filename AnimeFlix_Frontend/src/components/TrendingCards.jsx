@@ -62,7 +62,7 @@ export default function ({ trendingAnimes }) {
               spaceBetween: 20,
             },
             1656: {
-              slidesPerView: 8,
+              slidesPerView: 7,
               spaceBetween: 20,
             },
           }}
@@ -70,7 +70,7 @@ export default function ({ trendingAnimes }) {
           className="mySwiper"
         >
           {trendingAnimes.map((trends, index) => (
-            <SwiperSlide className="w-[80px] h-[220px]" key={index}>
+            <SwiperSlide className="  " key={index}>
               <CardsType1
                 name={trends.name}
                 rank={trends.rank}

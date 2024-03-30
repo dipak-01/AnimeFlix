@@ -1,7 +1,7 @@
 export default async function fetchData() {
-  const resp = await fetch("https://api-aniwatch.onrender.com/anime/home");
+  const resp = await fetch("https://anime-flix-api.vercel.app/anime/home");
   const data = await resp.json();
-
+  
   return data;
 }
 

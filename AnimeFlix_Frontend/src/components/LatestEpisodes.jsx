@@ -21,7 +21,7 @@ export default function ({ latestEpisodes }) {
 
   return (
     <>
-      <div className="w-full p-8 gap-8 flex flex-wrap ">
+      <div className="w-full py-8 gap-8 flex flex-wrap">
         {latestEpisodes.map((latestEpisodes, index) => (
           <CardsType2
             key={index}

@@ -1,8 +1,8 @@
 export default function ({ name, type, duration, poster }) {
     return (
         <>
-            <div className="w-44">
-                <div className="w-full h-60">
+            <div className=" w-48">
+                <div className="w-full h-68">
                     <img className="w-full h-full" src={poster} alt="" />
                 </div>
                 <div className="   text-left  ">
