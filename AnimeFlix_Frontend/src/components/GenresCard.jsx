@@ -37,7 +37,6 @@ export default function ({ genre }) {
               className={
                 (color === "red"
                   ? "text-red-400"
-                   
                   : color === "green"
                   ? "text-green-400"
                   : color === "blue"

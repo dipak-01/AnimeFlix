@@ -21,28 +21,56 @@ export default function HomePage() {
     getData();
   }, []);
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="w-full h-screen text-3xl">Loading...</div>;
   }
   return (
     <>
       <div className="lg:px-12 px-4  text-slate-50">
         {/* <Navbar /> */}
         <Swiper banners={data.spotlightAnimes} />
-        <div className="text-3xl text-start py-8">Trending</div>
+        <div className="text-3xl text-start py-8 text-lavender-web-500">
+          Trending
+        </div>
         <TrendingCards trendingAnimes={data.trendingAnimes} />
         <div className="w-full lg:flex">
           <div className="lg:w-4/5 w-full ">
-            <div className="text-3xl text-start pt-8">Latest Episodes</div>
+            <div className="text-3xl text-start pt-8 text-lavender-web-500">
+              Latest Episodes
+            </div>
             <LatestEpisodes latestEpisodes={data.latestEpisodeAnimes} />
           </div>
           <div className="lg:w-1/5 w-full">
-            <div className="text-3xl text-start py-8">Genres</div>
+            <div className="text-3xl text-start py-8 text-lavender-web-500">
+              Genres
+            </div>
             <GenresCard genre={data.genres} />
           </div>
         </div>
-        <div>
-          <div className="text-3xl text-start py-8">Top Airing</div>
-          <CardsType3 data={data.topAiringAnimes} />
+        <div className="flex ">
+          <div className="w-1/4">
+            <div className="text-3xl text-start py-8 text-lavender-web-500">
+              Top Airing
+            </div>
+            <CardsType3 a={0} b={5} data={data.topAiringAnimes} />
+          </div>
+          <div className="w-1/4">
+            <div className="text-3xl text-start py-8 text-lavender-web-500">
+              Most Popular
+            </div>
+            <CardsType3 a={4} b={9} data={data.top10Animes.month} />
+          </div>
+          <div className="w-1/4">
+            <div className="text-3xl text-start py-8 text-lavender-web-500">
+              Most Favourite
+            </div>
+            <CardsType3 a={0} b={5} data={data.trendingAnimes} />
+          </div>
+          <div className="w-1/4">
+            <div className="text-3xl text-start py-8 text-lavender-web-500">
+              Latest Completed
+            </div>
+            <CardsType3 a={0} b={5}  data={data.latestEpisodeAnimes} />
+          </div>
         </div>
         {/* <Footer /> */}
       </div>
