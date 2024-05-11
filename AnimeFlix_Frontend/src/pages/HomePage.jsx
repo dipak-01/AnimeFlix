@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import Swiper from "../components/Swiper";
 import TrendingCards from "../components/TrendingCards";
 import LatestEpisodes from "../components/LatestEpisodes";
-import GenresCard from "../components/GenresCard";
+ import GenresCard from "../components/GenresCard";
 import HomePageApi from "../services/HomePageApi";
 import CardsType3 from "../components/CardsType3";
+import TopUpcoming from "../components/TopUpcoming";
+import EstimatedSchedual from "../components/EstimatedSchedual"
 export default function HomePage() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -46,32 +48,50 @@ export default function HomePage() {
             <GenresCard genre={data.genres} />
           </div>
         </div>
-        <div className="flex ">
-          <div className="w-1/4">
+        <div className="grid lg:flex sm:grid-cols-2">
+          <div className="lg:w-1/4 sm:1/2">
             <div className="text-3xl text-start py-8 text-lavender-web-500">
               Top Airing
             </div>
             <CardsType3 a={0} b={5} data={data.topAiringAnimes} />
+            <div className="text-start text-lg">
+            <button className="py-4">View More <i className="fa-solid fa-angle-right"></i></button></div>
           </div>
-          <div className="w-1/4">
+          <div className="lg:w-1/4 sm:1/2">
             <div className="text-3xl text-start py-8 text-lavender-web-500">
               Most Popular
             </div>
             <CardsType3 a={4} b={9} data={data.top10Animes.month} />
+            <div className="text-start text-lg">
+            <button className="py-4">View More <i className="fa-solid fa-angle-right"></i></button></div>
           </div>
-          <div className="w-1/4">
+          <div className="lg:w-1/4 sm:1/2">
             <div className="text-3xl text-start py-8 text-lavender-web-500">
               Most Favourite
             </div>
             <CardsType3 a={0} b={5} data={data.trendingAnimes} />
+            <div className="text-start text-lg">
+            <button className="py-4">View More <i className="fa-solid fa-angle-right"></i></button></div>
           </div>
-          <div className="w-1/4">
+          <div className="lg:w-1/4 sm:1/2">
             <div className="text-3xl text-start py-8 text-lavender-web-500">
               Latest Completed
             </div>
             <CardsType3 a={0} b={5}  data={data.latestEpisodeAnimes} />
+            <div className="text-start text-lg">
+            <button className="py-4">View More <i className="fa-solid fa-angle-right"> </i></button></div>
           </div>
-        </div>
+          
+          </div>
+           <div className="  w-full ">
+            <div className="text-3xl text-start pt-8 text-lavender-web-500">
+              Top Upcoming 
+            </div>
+            <TopUpcoming topUpcoming={data.topUpcomingAnimes} />
+          </div>
+          <div>
+            <EstimatedSchedual/>
+          </div>
         {/* <Footer /> */}
       </div>
     </>

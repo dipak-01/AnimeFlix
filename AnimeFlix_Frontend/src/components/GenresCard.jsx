@@ -27,8 +27,8 @@ export default function ({ genre }) {
   //   if (loading == false)
   return (
     <>
-      <div className="scrollbar-hide text-start flex flex-wrap h-3/4 overflow-y-scroll  whitespace-nowrap   gap-6 px-4">
-        {genre.map((genres, index) => {
+      <div className="scrollbar-hide text-start flex flex-wrap h-3/4   whitespace-nowrap   gap-6 px-4">
+        {genre.slice().map((genres, index) => {
           const color = colors[index % colors.length];
 
           return (

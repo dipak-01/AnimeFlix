@@ -70,7 +70,7 @@ export default function ({ trendingAnimes }) {
           className="mySwiper"
         >
           {trendingAnimes.map((trends, index) => (
-            <SwiperSlide className="  " key={index}>
+            <SwiperSlide className=" gap-4 " key={index}>
               <CardsType1
                 name={trends.name}
                 rank={trends.rank}

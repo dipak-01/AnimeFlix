@@ -52,4 +52,20 @@
   z-index: -1;
   background-image: url("/bgMain.jpg");
 }
-  
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute;
+ 
+  transform: translateX(0);
+  z-index: 1000; /* Increase the z-index so the buttons are above other elements */
+  color: #000; /* Change the color of the buttons to make them more visible */
+}
+
+.swiper-button-next {
+  right: -30px;
+}
+
+.swiper-button-prev {
+  left: -30px;
+}
