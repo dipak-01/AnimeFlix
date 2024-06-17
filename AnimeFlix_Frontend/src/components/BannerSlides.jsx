@@ -15,14 +15,14 @@ export default function ({
           {/* <div className="absolute inset-0 bg-gradient-to-t from-slate-950 "></div> */}
           <div className="absolute inset-0 bg-gradient-to-l from-gunmetal-100/15  "></div>
         </div>
-        <div className="relative text-xl font-thin h-full my-auto justify-center bg-gradient-to-r from-slate-950     lg:w-1/2 w-2/3 text-left flex flex-col  pt-20 gap-8 ">
+        <div className="relative text-xl font-thin h-full my-auto justify-center bg-gradient-to-r from-slate-1000 to-slate-1000  lg:w-1/2 w-2/3 text-left flex flex-col  pt-20 gap-8 ">
           <div className="text-3xl text-hookers-green-700">
             <p>#{rank} SpotLight</p>
           </div>
           <div className="text-5xl line-clamp-2">
             <p>{name}</p>
           </div>
-          <div className="text-nowrap lg:flex grid  justify-start lg:gap-8 gap-4">
+          <div className="text-base text-nowrap lg:flex grid  justify-start lg:gap-6 gap-4">
             <div className="flex lg:gap-8 gap-4 justify-start ">
               <div>
                 <i className=" fas fa-tv"></i> {otherInfo[0]}
@@ -36,7 +36,7 @@ export default function ({
               
             </div>
 
-            <div className="flex  text-slate-900 space-x-1">
+            <div className="flex   text-slate-900 space-x-1">
             <div className="bg-powder-blue-400 rounded-lg px-1 py-0 text-slate-900">
                 {otherInfo[3]}
               </div>

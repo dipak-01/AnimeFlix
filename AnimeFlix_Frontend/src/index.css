@@ -69,3 +69,9 @@
 .swiper-button-prev {
   left: -30px;
 }
+.fa-burger, .SearchBar {
+  z-index: 1000; /* Adjust the value as needed */
+}
+.clippath{
+  clip-path: polygon(35% 0, 100% 0, 100% 100%, 0 100%, 0 25%);
+}

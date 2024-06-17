@@ -2,7 +2,8 @@
   max-width: 100vw;
   height: max-content;
   text-align: center;
-  background-color: #030717;
+  /* background-color: #030717; */
+  background-color: #0A0908;
   /* background-color: rgba(14, 18, 21); */
     /* Using RGBA format for transparency */
 }
