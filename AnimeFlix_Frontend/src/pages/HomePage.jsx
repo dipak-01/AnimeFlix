@@ -6,6 +6,7 @@ import TrendingCards from "../components/TrendingCards";
 import LatestEpisodes from "../components/LatestEpisodes";
  import GenresCard from "../components/GenresCard";
 import HomePageApi from "../services/HomePageApi";
+import Search from "../services/Search";
 import CardsType3 from "../components/CardsType3";
 import TopUpcoming from "../components/TopUpcoming";
 import EstimatedSchedual from "../components/EstimatedSchedual"
@@ -16,6 +17,7 @@ export default function HomePage() {
   useEffect(() => {
     const getData = async () => {
       const response = await HomePageApi();
+      const response2 = await Search();
       setData(response);
 
       setLoading(false);
