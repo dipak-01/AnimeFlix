@@ -1,0 +1,1 @@
+export default function AnimeInfo(second) {third}

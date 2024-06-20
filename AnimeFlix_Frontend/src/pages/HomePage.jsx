@@ -25,7 +25,7 @@ export default function HomePage() {
     getData();
   }, []);
   if (loading) {
-    return <div className="w-full h-screen text-3xl">Loading...</div>;
+    return <div className="w-full h-screen flex justify-center items-center   text-3xl"><img className=" w-40 h-24 " src="/load2.gif"></img></div>;
   }
   return (
     <>
@@ -93,6 +93,7 @@ export default function HomePage() {
           </div>
           <div>
             <EstimatedSchedual/>
+            {/* <video   className=" " loop muted src="/load2.gif"></video> */}
           </div>
         {/* <Footer /> */}
       </div>

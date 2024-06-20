@@ -23,20 +23,30 @@ const Suggestions = ({ query }) => {
       getData();
     }
   }, [query]);
+  // if (!data || data.length === 0) {
+  //   return (
+  //     <div className="text-slate-400 bg-slate-900 p-2 mt-1">
+  //       Don't Search hentai here you little c*nt.
+  //     </div>
+  //   );
+  // }
 
   return (
-    <div className="bg-slate-900  p-2">
-      {data.map((suggestion) => (
-        <div
-          className="text-slate-400 bg-slate-900 w p-1 mb-1 border-b-2 border-slate-700"
-          key={suggestion.id}
-        >
-            
-          {suggestion.name == ""
-            ? "dont search hentai you little c*nt"
-            : suggestion.name}
+    <div className="bg-slate-900 rounded-xl border border-blue-300 p-2 mt-1">
+     {data.length > 0 ? (
+        data.map((suggestion) => (
+          <div
+            className="text-slate-400 bg-slate-900 p-1 mb-1 border-b-2 border-slate-700"
+            key={suggestion.id}
+          >
+            {suggestion.name ? suggestion.name : "don't search"}
+          </div>
+        ))
+      ) : (
+        <div className="text-slate-400 bg-slate-900 p-1 mb-1   border-slate-700">
+            Don't Search hentai here you little c*nt.
         </div>
-      ))}
+      )}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Search from '..services/Search'
 export default function () {
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -8,6 +9,7 @@ export default function () {
       setIsMobileView(window.innerWidth <= 768);
     };
 
+  
     window.addEventListener("resize", handleResize);
 
     // Clean up the event listener when the component unmounts
@@ -26,7 +28,7 @@ export default function () {
               type="text"
               placeholder="Search for Anime"
             />
-            <button className="absolute  ">
+            <button onClick={handleSearchReasults} className="absolute  ">
               <i className="p-3 rounded-r-md    bg-lavender-web-400 fas fa-magnifying-glass "></i>
             </button>
           </div>
