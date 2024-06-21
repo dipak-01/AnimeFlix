@@ -8,6 +8,8 @@ import Navbar from "./components/Navbar.jsx";
 import Layout from './components/Layout';
 import SearchPage from "./pages/SearchPage.jsx";
 import AnimeInfo from "./pages/AnimeInfo.jsx";
+import Community from "./pages/Community.jsx";
+import WatchTogether from "./pages/WatchTogether.jsx";
 function App() {
   // const [count, setCount] = useState(0)
 
@@ -19,6 +21,8 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/home" element={<HomePage />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/watchtogether" element={<WatchTogether />} />
             {/* <Route path="/search?:keyword" element={<SearchPage />} /> */}
             <Route path="/search" element={<SearchPage />} />
 

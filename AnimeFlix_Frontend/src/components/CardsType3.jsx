@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
 export default function ({ data }) {
   const navigate = useNavigate();  
- 
+ const handleClick=(id)=>{
+  navigate(`/anime/info?id=${encodeURIComponent(id)}`);
+ }
 
   return (
     <>
       <div className="">
         {data.slice(0, 5).map((data2, index) => (
-          <div key={index} onClick={() => handleClick(id)}  className="py-1 pr-1">
+          <div key={index} onClick={() => handleClick(data2.id)}  className="py-1 pr-1">
             <div className="flex h-36 p-2 ">
               <div className="w-24 rounded-lg ">
                 <img

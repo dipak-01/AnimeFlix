@@ -1,8 +1,13 @@
 import CardsType2 from "./CardsType2";
-function Cards({ name, type, duration, poster }) {
+import { useNavigate } from "react-router-dom";
+function Cards({ name, type, duration, poster,id }) {
+  const navigate = useNavigate();
+  const handleClick = (id) => {
+    navigate(`/anime/info?id=${encodeURIComponent(id)}`);
+  };
   return (
     <>
-      <div className=" max-w-48 min-w-28 h-96 ">
+      <div onClick={() => handleClick(id)} className=" max-w-48 min-w-28 h-96 ">
         <div className="w-full h-72">
           <img className=" h-full w-full rounded-md" src={poster} alt="" />
         </div>
@@ -40,7 +45,7 @@ export default function ({ latestEpisodes }) {
       <div className="w-full py-8  gap-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {latestEpisodes.map((latestEpisodes, index) => (
           <Cards
-          id={latestEpisodes.id}
+            id={latestEpisodes.id}
             key={index}
             name={latestEpisodes.name}
             poster={latestEpisodes.poster}

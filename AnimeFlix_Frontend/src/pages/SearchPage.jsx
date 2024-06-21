@@ -1,7 +1,7 @@
 import CardsType2 from "../components/CardsType2";
 import Search from "../services/Search";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
 
@@ -13,6 +13,13 @@ export default function SearchPage() {
    const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const navigate = useNavigate();  
+
+  const handleClick =(id)=>{
+    navigate(`/anime/info?id=${encodeURIComponent(id)}`);
+  
+
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,6 +54,7 @@ export default function SearchPage() {
           <div className="text-slate-200 w-full py-8 gap-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {(data.animes || []).map((data, index) => (
               <CardsType2
+              id={data.id}
                 key={index}
                 name={data.name}
                 poster={data.poster}

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import TopUpcoming from "../components/TopUpcoming";
 
 import { useLocation } from "react-router-dom";
+import Loader from "../components/Loading";
 export default function AnimeInfo() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -40,12 +41,7 @@ export default function AnimeInfo() {
 
   if (loading) {
     return (
-      <div>
-        <div className="w-full h-screen flex justify-center items-center   text-3xl">
-          <img className=" w-40 h-24 " src="/load2.gif"></img>
-        </div>
-        ;
-      </div>
+    <Loader/>
     );
   }
 
@@ -66,7 +62,11 @@ export default function AnimeInfo() {
         <div className=" mx-auto space-y-6 space-x-4 py-20 my-auto h-3/4 lg:flex-row flex-col flex justify-evenly rounded-3xl items-center bg-gradient-to-r from-zinc-950 via-gray-950 to-slate-950">
           <div className="left lg:w-1/4  h-full ">
             <div className=" flex justify-center mt-1  ">
-              <img className="shadow-2xl shadow-blue-500/20 rounded-lg w-60" src={info.poster} alt="Anime Poster" />
+              <img
+                className="shadow-2xl shadow-blue-500/20 rounded-lg w-60"
+                src={info.poster}
+                alt="Anime Poster"
+              />
             </div>
           </div>
           <div className="right lg:w-2/4 h-full text-start flex flex-col space-y-8 text-slate-300">
@@ -146,7 +146,14 @@ export default function AnimeInfo() {
               </p>
               <p>
                 <span className="italic font-semibold">Genres:</span>{" "}
-                {moreinfo.genres.join(", ")}
+                {
+                  // Check if 'moreinfo.genres' is an array and has only one item
+                  Array.isArray(moreinfo.genres) && moreinfo.genres.length === 1
+                    ? moreinfo.genres[0] // If only one genre, display it without joining
+                    : Array.isArray(moreinfo.genres)
+                    ? moreinfo.genres.join(", ")  
+                    : moreinfo.genres  
+                }
               </p>
               <p>
                 <span className="italic font-semibold">Studios:</span>{" "}
@@ -154,7 +161,14 @@ export default function AnimeInfo() {
               </p>
               <p>
                 <span className="italic font-semibold">Producers:</span>{" "}
-                {moreinfo.producers.join(", ")}
+                {
+                  Array.isArray(moreinfo.producers) &&
+                  moreinfo.producers.length === 1
+                    ? moreinfo.producers[0]  
+                    : Array.isArray(moreinfo.producers)
+                    ? moreinfo.producers.join(", ")  
+                    : moreinfo.producers  
+                }
               </p>
             </div>
           </div>
@@ -162,7 +176,7 @@ export default function AnimeInfo() {
         <div className="lg:flex w-full justify-between gap-8">
           <div className="lg:w-8/12">
             {seasons && seasons.length > 0 && (
-              <div className="seasons   pt-8 overflow-auto overflow">
+              <div className="seasons   pt-8 overflow-auto  ">
                 <div>
                   <p className=" text-3xl text-start text-slate-200">Seasons</p>
                 </div>
@@ -191,7 +205,7 @@ export default function AnimeInfo() {
             )}
           </div>
           {relatedAnime && (
-            <div className="lg:w-3/12 pt-8  ">
+            <div  onClick={() => handleClick(relatedAnime[0].id)} className="lg:w-3/12 pt-8  ">
               <p className="text-3xl text-start text-slate-50">Related Anime</p>
               <div className="border flex space-x-3 border-slate-600 rounded-lg shadow h-24 p-2 mt-4">
                 <div className="  h-full">
@@ -201,7 +215,7 @@ export default function AnimeInfo() {
                     alt="relatedAnime poster"
                   />
                 </div>
-                <div className="text-slate-50">
+                <div  className="text-slate-50">
                   <p className="text-start   line-clamp-2">
                     {relatedAnime[0].name}
                   </p>

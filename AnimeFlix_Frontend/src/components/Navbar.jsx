@@ -69,15 +69,15 @@ function App() {
 
           {/* Links */}
           <div className="hidden space-x-4 text-white text-lg lg:flex">
-            <a href="/link1" className="hover:underline">
+            <a href="/home" className="hover:underline">
               Home
             </a>
             <span>/</span>
-            <a href="/link2" className="hover:underline">
+            <a href="/community" className="hover:underline">
               Community
             </a>
             <span>/</span>
-            <a href="/link3" className="hover:underline">
+            <a href="/watchtogether" className="hover:underline">
               Watch Together
             </a>
           </div>

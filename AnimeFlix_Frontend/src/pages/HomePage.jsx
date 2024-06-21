@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Swiper from "../components/Swiper";
 import TrendingCards from "../components/TrendingCards";
+import Loading from "../components/Loading"
 import LatestEpisodes from "../components/LatestEpisodes";
  import GenresCard from "../components/GenresCard";
 import HomePageApi from "../services/HomePageApi";
@@ -29,7 +30,7 @@ export default function HomePage() {
     getData();
   }, []);
   if (loading) {
-    return <div className="w-full h-screen flex justify-center items-center   text-3xl"><img className=" w-40 h-24 " src="/load2.gif"></img></div>;
+    return <Loading/>;
   }
   return (
     <>
