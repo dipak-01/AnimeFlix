@@ -72,6 +72,7 @@ export default function ({ trendingAnimes }) {
           {trendingAnimes.map((trends, index) => (
             <SwiperSlide className=" gap-4 " key={index}>
               <CardsType1
+              id={trends.id}
                 name={trends.name}
                 rank={trends.rank}
                 poster={trends.poster}

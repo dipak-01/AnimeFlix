@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Layout from './components/Layout';
 import SearchPage from "./pages/SearchPage.jsx";
+import AnimeInfo from "./pages/AnimeInfo.jsx";
 function App() {
   // const [count, setCount] = useState(0)
 
@@ -21,7 +22,7 @@ function App() {
             {/* <Route path="/search?:keyword" element={<SearchPage />} /> */}
             <Route path="/search" element={<SearchPage />} />
 
-            <Route path="/anime/info/:id" element={<SearchPage />} />
+            <Route path="/anime/info" element={<AnimeInfo />} />
             {/* Add more routes as needed */}
           </Routes>
         </Layout>

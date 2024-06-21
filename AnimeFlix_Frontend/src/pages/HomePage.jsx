@@ -14,6 +14,10 @@ export default function HomePage() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const handleClick =(id)=>{
+    navigate(`/anime/info?id=${encodeURIComponent(id)}`);
+
+  }
   useEffect(() => {
     const getData = async () => {
       const response = await HomePageApi();
@@ -35,7 +39,7 @@ export default function HomePage() {
         <div className="text-3xl text-start py-8 text-lavender-web-500">
           Trending
         </div>
-        <TrendingCards trendingAnimes={data.trendingAnimes} />
+        <TrendingCards trendingAnimes={data.trendingAnimes}  />
         <div className="w-full lg:flex">
           <div className="lg:w-4/5 w-full ">
             <div className="text-3xl text-start pt-8 text-lavender-web-500">
@@ -55,7 +59,7 @@ export default function HomePage() {
             <div className="text-3xl text-start py-8 text-lavender-web-500">
               Top Airing
             </div>
-            <CardsType3 a={0} b={5} data={data.topAiringAnimes} />
+            <CardsType3 a={0} b={5} data={data.topAiringAnimes}  />
             <div className="text-start text-lg">
             <button className="py-4">View More <i className="fa-solid fa-angle-right"></i></button></div>
           </div>

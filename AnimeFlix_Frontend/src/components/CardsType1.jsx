@@ -1,7 +1,16 @@
-export default function ({ name, poster, rank }) {
+import { useNavigate } from 'react-router-dom';  
+
+export default function ({ name, poster, rank,id }) {
+  const navigate = useNavigate();  
+
+  const handleClick =(id)=>{
+    navigate(`/anime/info?id=${encodeURIComponent(id)}`);
+    window.location.reload();
+
+  }
   return (
     <>
-      <div className="flex w-42 h-72 m-2 text-slate-900">
+      <div onClick={() => handleClick(id)} className="flex w-42 h-72 m-2  ">
         <div className="w-full rounded-md  bg-orange-400 flex flex-col ">
           <div className="  ">
             <img className="w-full h-64 rounded-t-md clippath" src={poster} alt="" />

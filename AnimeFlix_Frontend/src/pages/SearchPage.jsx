@@ -10,8 +10,7 @@ export default function SearchPage() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const keyword = searchParams.get('keyword');
-  console.log(keyword);
-  const [data, setData] = useState(null);
+   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

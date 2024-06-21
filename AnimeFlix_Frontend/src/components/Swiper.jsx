@@ -52,6 +52,7 @@ function Swiperr({ banners }) {
         {banners.map((banner, index) => (
           <SwiperSlide className="h-[600px]" key={index}>
             <BannerSlides
+            id={banner.id}
               poster={banner.poster}
               description={banner.description}
               name={banner.name}

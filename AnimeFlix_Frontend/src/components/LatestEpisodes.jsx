@@ -40,6 +40,7 @@ export default function ({ latestEpisodes }) {
       <div className="w-full py-8  gap-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {latestEpisodes.map((latestEpisodes, index) => (
           <Cards
+          id={latestEpisodes.id}
             key={index}
             name={latestEpisodes.name}
             poster={latestEpisodes.poster}

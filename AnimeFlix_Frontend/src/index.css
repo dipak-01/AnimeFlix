@@ -26,7 +26,9 @@
   --color-surface-mixed-600: #958e97;
   /** EXAMPLES */
 
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+ font-family: "Poppins", sans-serif;
+ font-weight: 400;
+  
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
@@ -74,4 +76,9 @@
 }
 .clippath{
   clip-path: polygon(35% 0, 100% 0, 100% 100%, 0 100%, 0 25%);
+}
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
