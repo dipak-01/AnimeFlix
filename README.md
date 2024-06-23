@@ -51,7 +51,7 @@ Start the server
 
 To run this project, you will need to add the following environment variables to your .env file (you can obtain the url from Ritesh Ghosh github Link mentioned below)
 
-`REACT_ANIME_URL`
+`REACT_APP_ANIME_URL`
 
  
 
