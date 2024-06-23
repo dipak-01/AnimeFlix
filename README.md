@@ -6,7 +6,18 @@ A Anime Streaming Website to stream your favourite anime series and anime movies
 
  
 ## Screenshots
+ 
+![Screenshot 2024-06-24 001303](https://github.com/dipak-01/AnimeFlix/assets/120103598/1f27a4c1-e01c-476a-9722-40a4a8657dff)
 
+ ![Screenshot 2024-06-24 001325](https://github.com/dipak-01/AnimeFlix/assets/120103598/841b4f07-618b-4857-96e6-50305c4fbcf4)
+
+
+ 
+
+ 
+
+
+ 
  
 
 
@@ -51,7 +62,7 @@ Start the server
 
 To run this project, you will need to add the following environment variables to your .env file (you can obtain the url from Ritesh Ghosh github Link mentioned below)
 
-`REACT_APP_ANIME_URL`
+`VITE_ANIME_URL`
 
  
 
