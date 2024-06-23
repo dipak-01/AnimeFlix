@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Schedual from "./Schedual"
 const Layout = ({ children }) => {
   const location = useLocation();
   if (location.pathname === "/") {
@@ -15,6 +16,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       {/* <header>Header Content</header> */}
+      <Schedual/>
       <nav>
         <Navbar />
       </nav>

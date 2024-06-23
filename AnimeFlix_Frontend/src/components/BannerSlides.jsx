@@ -15,6 +15,11 @@ export default function ({
   
 
   }
+  const handleWatchClick =(id)=>{
+    navigate(`/watch/${(id)}`);
+  
+
+  }
   return (
     <>
       <div  className="w-full h-full     text-slate-50 relative">
@@ -61,8 +66,8 @@ export default function ({
           </div>
           <div className="overflow-hidden font-light line-clamp-3">{description}</div>
           <div className="flex space-x-4">
-          <div className="text-slate-900 font-bold rounded-lg bg-hookers-green-600 w-max px-4 py-2 flex items-center">
-            <button>
+          <div onClick={()=>(handleWatchClick(id))} className="text-slate-900 font-bold rounded-lg bg-hookers-green-600 w-max px-4 py-2 flex items-center">
+            <button  >
               Watch Now{""}{" "}
               <i className="fa-solid fa-arrow-right align-middle"></i>{" "}
             </button>
