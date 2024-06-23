@@ -3,7 +3,7 @@ export default async () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        "https://aniwatch-api-euo9.onrender.com/anime/home",
+        "REACT_PUBLIC_ANIME_URL/anime/home",
         { crossdomain: true }
       );
       const homeData = response.data;

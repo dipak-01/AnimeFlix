@@ -14,7 +14,7 @@ const Suggestions = ({ query }) => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `https://aniwatch-api-euo9.onrender.com/anime/search/suggest?q=${query}`,
+          `REACT_PUBLIC_ANIME_URL/anime/search/suggest?q=${query}`,
           { crossdomain: true }
         );
         // console.log(filteredData);

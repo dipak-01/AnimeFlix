@@ -11,7 +11,7 @@ export function useFetchData(id) {
       try {
         console.log(`Attempting to fetch data for ID: ${id}`);
         const res = await axios.get(
-          `https://aniwatch-api-euo9.onrender.com/anime/info?id=${id}`
+          `REACT_PUBLIC_ANIME_URL/anime/info?id=${id}`
         );
         console.log("After axios call", res.data);
         setData(res.data);
@@ -40,7 +40,7 @@ export function useFetchStreamData(episodeid) {
       try {
         console.log(`Attempting to fetch data for ID: ${episodeid}`);
         const res = await axios.get(
-          `https://aniwatch-api-euo9.onrender.com/anime/episode-srcs?id=${episodeid}`
+          `REACT_PUBLIC_ANIME_URL/anime/episode-srcs?id=${episodeid}`
         );
         console.log("After axios call", res.data);
         setStreamData(res.data);
@@ -69,7 +69,7 @@ export function useAnimeEpisodeData(animeId) {
       try {
         console.log(`Attempting to fetch data for ID: ${animeId}`);
         const res = await axios.get(
-          `https://aniwatch-api-euo9.onrender.com/anime/episodes/${animeId}`
+          `REACT_PUBLIC_ANIME_URL/anime/episodes/${animeId}`
         );
         console.log("After axios call", res.data);
         setEpisodeData(res.data);
@@ -98,7 +98,7 @@ export function useAnimeEpisodeServerData(episodeid) {
       try {
         console.log(`Attempting to fetch server data for ID: ${episodeid}`);
         const res = await axios.get(
-          `https://aniwatch-api-euo9.onrender.com/anime/servers?episodeId=${episodeid}`
+          `REACT_PUBLIC_ANIME_URL/anime/servers?episodeId=${episodeid}`
         );
         console.log("After axios call", res.data);
         setEpisodeServerData(res.data);
