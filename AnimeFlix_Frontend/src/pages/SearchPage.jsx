@@ -47,7 +47,7 @@ export default function SearchPage() {
 
   return (
     <>
-      <div className="lg:px-12 px-4  text-slate-50">
+      <div className="lg:px-6 px-4  text-slate-50   w-full h-auto max-w-[1420px] my-4 mx-auto xl:px-0 sm:px-4">
         <div className="text-3xl text-start pt-8 text-lavender-web-500">
           <p>
             Search results for :{" "}
@@ -55,7 +55,7 @@ export default function SearchPage() {
           </p>
         </div>
         <div>
-          <div className="text-slate-200 w-full h-screen py-8 gap-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          <div className="text-slate-200 w-full   py-8 gap-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {data.animes && Object.keys(data.animes).length > 0 ? (
               data.animes.map((anime, index) => (
                 <CardsType2

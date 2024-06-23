@@ -7,8 +7,8 @@ function Cards({ name, type, duration, poster,id }) {
   };
   return (
     <>
-      <div onClick={() => handleClick(id)} className=" max-w-48 min-w-28 h-96 ">
-        <div className="w-full h-72">
+      <div onClick={() => handleClick(id)} className=" max-w-48 min-w-28   sm:h-96 h-64 ">
+        <div className="w-full h-4/5">
           <img className=" h-full w-full rounded-md" src={poster} alt="" />
         </div>
         <div className="   text-left  ">

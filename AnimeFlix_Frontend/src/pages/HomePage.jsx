@@ -34,7 +34,7 @@ export default function HomePage() {
   }
   return (
     <>
-      <div className="lg:px-12 px-4  text-slate-50">
+      <div className="lg:px-6 px-2  text-slate-50 w-full h-auto max-w-[1420px] my-4 mx-auto xl:px-0 sm:px-4  ">
         {/* <Schedual /> */}
         {/* <Navbar /> */}
         <Swiper banners={data.spotlightAnimes} />
@@ -43,18 +43,18 @@ export default function HomePage() {
         </div>
         <TrendingCards trendingAnimes={data.trendingAnimes} />
         <div className="w-full lg:flex">
-          <div className="lg:w-4/5 w-full ">
+          <div className="  w-full ">
             <div className="text-3xl text-start pt-8 text-lavender-web-500">
               Latest Episodes
             </div>
             <LatestEpisodes latestEpisodes={data.latestEpisodeAnimes} />
           </div>
-          <div className="lg:w-1/5 w-full">
+          {/* <div className="lg:w-1/5 w-full">
             <div className="text-3xl text-start py-8 text-lavender-web-500">
               Genres
             </div>
             <GenresCard genre={data.genres} />
-          </div>
+          </div> */}
         </div>
         <div className="grid lg:flex sm:grid-cols-2">
           <div className="lg:w-1/4 sm:1/2">
@@ -108,10 +108,7 @@ export default function HomePage() {
           </div>
           <TopUpcoming topUpcoming={data.topUpcomingAnimes} />
         </div>
-        <div>
-          <EstimatedSchedual />
-          {/* <video   className=" " loop muted src="/load2.gif"></video> */}
-        </div>
+       
         {/* <Footer /> */}
       </div>
     </>

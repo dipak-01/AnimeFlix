@@ -40,11 +40,11 @@ export default function AnimeInfo() {
   }, [id]);
 
   if (loading) {
-    return (
-    <Loader/>
-    );
+    return <Loader />;
   }
-
+  const handleWatchClick = (id) => {
+    navigate(`/watch/${id}`);
+  };
   const info = data.anime.info;
   const moreinfo = data.anime.moreInfo;
   const seasons = data.seasons;
@@ -58,8 +58,8 @@ export default function AnimeInfo() {
     return <div>No data found</div>;
   return (
     <>
-      <div className="h-max w-full lg:px-12 px-4  bg-gradient-to-r from-slate-950 via-gray-950 to-zinc-950">
-        <div className=" mx-auto space-y-6 space-x-4 py-20 my-auto h-3/4 lg:flex-row flex-col flex justify-evenly rounded-3xl items-center bg-gradient-to-r from-zinc-950 via-gray-950 to-slate-950">
+      <div className="lg:px-6 px-2  text-slate-50 w-full h-auto max-w-[1420px] my-4 mx-auto xl:px-0 sm:px-4  ">
+        <div className=" mx-auto space-y-6 space-x-4 py-20 my-auto h-3/4 lg:flex-row flex-col flex justify-evenly rounded-3xl items-center bg-gradient-to-r ">
           <div className="left lg:w-1/4  h-full ">
             <div className=" flex justify-center mt-1  ">
               <img
@@ -73,7 +73,7 @@ export default function AnimeInfo() {
             <p className="text-3xl text-start text-slate-300">{info.name}</p>
             <div className="text-slate-300 block">
               <div className="info lg:flex lg:space-x-4 lg:space-y-0 space-y-2  ">
-                <div className="flex text-start space-x-4  ">
+                <div className="flex text-start space-x-4 items-center ">
                   <p> {info.stats.rating}</p>
                   <p>
                     <i className="text-sm far fa-clock"></i>{" "}
@@ -84,20 +84,31 @@ export default function AnimeInfo() {
                     <i className="text-xs fas fa-tv"></i> {info.stats.type}
                   </p>
                 </div>
-                <div className="flex text-start text-slate-900  ">
+
+                <div className="flex text-start text-slate-900 items-center">
                   <div className=" text-slate-100  lg:mx-2 rounded-lg px-1 py-0  ">
                     {info.stats.quality}
                   </div>
-                  <div className="text-nowrap border-slate-100 border bg-orange-300  rounded-s-lg px-1 whitespace-normal">
-                    <i className="  far fa-closed-captioning"></i>{" "}
-                    {info.stats.episodes.sub}
-                  </div>
+                  {info.stats.episodes.sub && (
+                    <div className="text-nowrap border-slate-100 border bg-orange-300 h-fit rounded-s-lg px-1 whitespace-normal">
+                      <i className="  far fa-closed-captioning"></i>{" "}
+                      {info.stats.episodes.sub}
+                    </div>
+                  )}
                   {info.stats.episodes.dub && (
                     <div className=" border-slate-100 border bg-orange-100  rounded-e-lg  px-1">
                       <i className="  fas fa-microphone"></i>{" "}
                       {info.stats.episodes.dub}
                     </div>
                   )}
+                </div>
+                <div className="bg-orange-500 w-fit rounded-md p-2 text-slate-200 font-semibold">
+                  <button
+                    onClick={() => handleWatchClick(info.id)}
+                    className=""
+                  >
+                    Watch Now
+                  </button>
                 </div>
               </div>
             </div>
@@ -113,8 +124,8 @@ export default function AnimeInfo() {
               website.
             </div>
           </div>
-          <div className="lg:w-1/4 h-full">
-            <div className=" h-max   end  text-slate-300 text-start bg-slate-800 p-4 rounded-lg shadow-lg">
+          <div className="lg:w-1/4 h-full  ">
+            <div className=" h-max  end  text-slate-300 text-start bg-gray-900 p-4 rounded-lg shadow-lg">
               {/* <h3 className="text-lg text-slate-100 font-bold mb-2">Anime Details</h3> */}
               <p>
                 <span className="italic font-semibold">Japanese:</span>{" "}
@@ -151,8 +162,8 @@ export default function AnimeInfo() {
                   Array.isArray(moreinfo.genres) && moreinfo.genres.length === 1
                     ? moreinfo.genres[0] // If only one genre, display it without joining
                     : Array.isArray(moreinfo.genres)
-                    ? moreinfo.genres.join(", ")  
-                    : moreinfo.genres  
+                    ? moreinfo.genres.join(", ")
+                    : moreinfo.genres
                 }
               </p>
               <p>
@@ -161,14 +172,12 @@ export default function AnimeInfo() {
               </p>
               <p>
                 <span className="italic font-semibold">Producers:</span>{" "}
-                {
-                  Array.isArray(moreinfo.producers) &&
-                  moreinfo.producers.length === 1
-                    ? moreinfo.producers[0]  
-                    : Array.isArray(moreinfo.producers)
-                    ? moreinfo.producers.join(", ")  
-                    : moreinfo.producers  
-                }
+                {Array.isArray(moreinfo.producers) &&
+                moreinfo.producers.length === 1
+                  ? moreinfo.producers[0]
+                  : Array.isArray(moreinfo.producers)
+                  ? moreinfo.producers.join(", ")
+                  : moreinfo.producers}
               </p>
             </div>
           </div>
@@ -205,7 +214,10 @@ export default function AnimeInfo() {
             )}
           </div>
           {relatedAnime && (
-            <div  onClick={() => handleClick(relatedAnime[0].id)} className="lg:w-3/12 pt-8  ">
+            <div
+              onClick={() => handleClick(relatedAnime[0].id)}
+              className="lg:w-3/12 pt-8  "
+            >
               <p className="text-3xl text-start text-slate-50">Related Anime</p>
               <div className="border flex space-x-3 border-slate-600 rounded-lg shadow h-24 p-2 mt-4">
                 <div className="  h-full">
@@ -215,18 +227,18 @@ export default function AnimeInfo() {
                     alt="relatedAnime poster"
                   />
                 </div>
-                <div  className="text-slate-50">
+                <div className="text-slate-50">
                   <p className="text-start   line-clamp-2">
                     {relatedAnime[0].name}
                   </p>
                   <div className="flex gap-4">
                     <p>{relatedAnime[0].type} </p>
                     <div className="flex text-slate-900">
-                      <p className="text-nowrap border-slate-100 border bg-orange-300  rounded-s-lg px-1 whitespace-normal">
+                      <p className="text-nowrap border-slate-100 border bg-orange-300 h-fit rounded-s-lg px-1 whitespace-normal">
                         <i className="far fa-closed-captioning "> </i>{" "}
                         {relatedAnime[0].episodes.dub}{" "}
                       </p>
-                      <p className="order-slate-100 border bg-orange-100  rounded-e-lg  px-1">
+                      <p className="order-slate-100 border bg-orange-100 h-fit rounded-e-lg  px-1">
                         <i className="fas fa-microphone"></i>{" "}
                         {relatedAnime[0].episodes.sub}{" "}
                       </p>

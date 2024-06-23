@@ -25,18 +25,18 @@ export default function ({ data }) {
                     {data2.episodes && (
                       <div className="flex gap-1    w-min rounded-md px-1 text-slate-900 text-sm font-thin">
                         {" "}
-                        <p className="flex px-1 items-center bg-lavender-web-400 rounded-s-md">
+                        <p className="flex font-medium px-1 items-center bg-lavender-web-400 rounded-s-md">
                           {" "}
                           <i className=" px-1 far fa-closed-captioning"></i>
                           {data2.episodes.sub}
                         </p>
                         {data2.episodes.dub && (
-                          <p className="flex px-1 items-center bg-french-gray-600 rounded-e-md">
+                          <p className="flex px-1 items-center font-medium bg-french-gray-600 rounded-e-md">
                             <i className=" px-1 fas fa-microphone"> </i>
                             {data2.episodes.dub}
                           </p>
                         )}{data2.type && (
-                      <div className="px-2 text-slate-100 ">
+                      <div className="px-2 text-slate-100 font-medium ">
                    
                         {data2.type}{" "}
                       </div>

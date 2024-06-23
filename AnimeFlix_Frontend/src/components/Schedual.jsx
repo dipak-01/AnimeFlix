@@ -96,7 +96,7 @@ const DrawerNavigation = () => {
 
       <div
         id="drawer-navigation"
-        className={`fixed top-0 left-0 z-40 lg:w-96 w-72 h-screen p-4 overflow-y-auto transition-transform ${
+        className={`fixed top-0 left-0 z-40 lg:w-96 w-72 h-screen p-4 mostly-customized-scrollbar overflow-y-auto transition-transform ${
           drawerOpen ? "translate-x-0" : "lg:-translate-x-96 -translate-x-96"
         } dark:bg-gray-950`}
         tabIndex="-1"

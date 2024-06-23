@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
+import UserProfilePopover from "./BurgerPopover";
 
 function App() {
   const searchBarRef = useRef(null);
@@ -11,7 +12,7 @@ function App() {
   const [query, setQuery] = useState("");
 
   const [searchOpen, setSearchOpen] = useState(false);
-  const navigate = useNavigate('');  
+  const navigate = useNavigate("");
   const handleSearchOpen = () => {
     setSearchOpen(true);
   };
@@ -21,12 +22,10 @@ function App() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-     console.log(name);
-     const keyword=name
-     if (name!=="")
-      
-      navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
-      setSearchOpen(false);
+    console.log(name);
+    const keyword = name;
+    if (name !== "") navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
+    setSearchOpen(false);
   };
 
   // ...
@@ -60,13 +59,18 @@ function App() {
   }, [searchBarRef]);
   return (
     <div className="App ">
-      <nav className="bg-slate-1000/75   px-10 p-4">
+      <nav className="bg-slate-1000/75   lg:px-10 p-4">
         <div className="container mx-auto flex justify-between items-center">
-          {/* Logo */}
-          <a href="/" className="text-white text-xl font-bold">
-            <img className="w-32" src="./newLogoB.png" alt="" />
-          </a>
-
+          <div className="space-x-2">
+            {" "}
+            <UserProfilePopover />
+            <a href="/" className="text-white text-xl font-bold">
+              <span className="text-pretty text-xl lg:text-3xl">
+                Anime<span className="text-orange-600">Flix</span>{" "}
+              </span>
+              {/* <img className="w-32" src="./newLogoB.png" alt="" /> */}
+            </a>
+          </div>
           {/* Links */}
           <div className="hidden space-x-4 text-white text-lg lg:flex">
             <a href="/home" className="hover:underline">
