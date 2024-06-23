@@ -14,7 +14,7 @@ const Suggestions = ({ query }) => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `REACT_PUBLIC_ANIME_URL/anime/search/suggest?q=${query}`,
+          `${import.meta.env.VITE_ANIME_URL}/anime/search/suggest?q=${query}`,
           { crossdomain: true }
         );
         // console.log(filteredData);

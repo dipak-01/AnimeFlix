@@ -5,7 +5,7 @@ export default async function Search(query) {
 
   async function fetchAnimeData(query, page) {
     console.log(`${query} and ${page}`);
-    const url = `REACT_PUBLIC_ANIME_URL/anime/search?q=${query}&page=${page}`;
+    const url = `${import.meta.env.VITE_ANIME_URL}/anime/search?q=${query}&page=${page}`;
     const response = await axios.get(url);
     console.log(response.data);
     return response.data;
