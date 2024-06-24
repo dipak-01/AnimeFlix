@@ -9,20 +9,23 @@ export default function ({ name, poster, rank, id }) {
   };
   return (
     <>
-      <div onClick={() => handleClick(id)} className="relative flex w-42 h-72 m-2  ">
-        <div className="w-full rounded-md  bg-orange-400 flex flex-col ">
-          <div className="  ">
+      <div
+        onClick={() => handleClick(id)}
+        className="relative flex w-42 h-full m-2   rounded-md "
+      >
+        <div className="w-full rounded-md border-2 border-gray-800  bg-gray-950 flex flex-col mb-2">
+          <div className=" h-4/5 ">
             <img
-              className="w-full h-64 rounded-t-md clippath"
+              className="w-full h-full rounded-t-md clippath"
               src={poster}
               alt=""
             />
 
-            <p className="text-xl  absolute start-3 top-3   text-ellipsis  ">
+            <p className="text-md  absolute start-1 top-1   text-ellipsis  ">
               {rank < 10 ? "#0" + rank : "#" + rank}{" "}
             </p>
           </div>
-          <span className="w-11/12  truncate h-8 flex  items-center px-2      text-left ">
+          <span className="w-11/12  truncate h-1/5 flex  items-center px-2     rounded-md  text-left ">
             {name}
           </span>
         </div>

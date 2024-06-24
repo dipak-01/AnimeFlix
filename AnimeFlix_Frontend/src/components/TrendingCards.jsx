@@ -25,24 +25,29 @@ export default function ({ trendingAnimes }) {
     <>
       <div className="pb-8">
         <Swiper
+        
           slidesPerView={1}
-          spaceBetween={30}
+          spaceBetween={0}
           freeMode={true}
+          
           pagination={{
             clickable: true,
           }}
           breakpoints={{
-             
+            300: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
             400: {
               slidesPerView: 2,
               spaceBetween: 30,
             },
             492: {
-              slidesPerView: 2,
+              slidesPerView: 3,
               spaceBetween: 20,
             },
             686: {
-              slidesPerView: 3,
+              slidesPerView: 4,
               spaceBetween: 20,
             },
             880: {
@@ -70,9 +75,12 @@ export default function ({ trendingAnimes }) {
           className="mySwiper"
         >
           {trendingAnimes.map((trends, index) => (
-            <SwiperSlide className=" gap-4 " key={index}>
+            <SwiperSlide
+              className="lg:h-72  h-60 gap-0 lg:gap-4 m-0"
+              key={index}
+            >
               <CardsType1
-              id={trends.id}
+                id={trends.id}
                 name={trends.name}
                 rank={trends.rank}
                 poster={trends.poster}
