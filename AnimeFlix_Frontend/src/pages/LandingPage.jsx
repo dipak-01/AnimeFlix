@@ -12,8 +12,8 @@ export default function LandingPage() {
     <>
       <div className="lg:px-6 px-2 text-slate-50 w-full h-screen max-w-[1420px] mx-auto xl:px-0 sm:px-4 flex justify-center items-center">
         <div className="flex justify-center">
-          <div className="bg-zinc-900 w-1/2 h-2/4 rounded-md flex shadow-lg transform transition duration-300 hover:scale-105">
-            <div className="left w-1/2 text-start py-8 px-8 align-super space-y-2">
+          <div className="bg-zinc-900 lg:w-1/2 h-2/4 rounded-md lg:flex-row flex flex-col  shadow-lg transform transition duration-300 hover:scale-105">
+            <div className="left lg:w-1/2 text-start py-8 px-8 align-super space-y-2">
               <div className="h-2/5 space-y-2">
                 <p className="text-2xl font-semibold">Welcome to </p>
                 <span className="text-4xl font-extrabold">
@@ -36,7 +36,7 @@ export default function LandingPage() {
                 </button>
               </div>
             </div>
-            <div className="right w-1/2 flex justify-center items-end">
+            <div className="right lg:flex w-1/2 hidden justify-center items-end">
               <img className=" h-auto object-cover rounded-md shadow-lg" src="/landingpagehero.png" alt="AnimeFlix Hero" />
             </div>
           </div>
