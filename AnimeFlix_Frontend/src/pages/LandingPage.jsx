@@ -2,44 +2,46 @@ import { useNavigate } from "react-router-dom";
 import LandingPageInfo from "../components/LandingPageInfo";
 
 export default function LandingPage() {
-    const navigate = useNavigate('');  
+  const navigate = useNavigate("");
 
-    const handleEnterClick = () => {
-        navigate('/home');  
-    }; 
+  const handleEnterClick = () => {
+    navigate("/home");
+  };
 
-    return (
-        <>
-            <div className=" bgMain text-slate-100  w-full xl:h-screen h-auto   flex  "  >
-                <div className="  flex flex-col   justify-between items-center xl:flex-row w-11/12 xl:w-7/12 xl:h-3/4 h-full rounded-3xl bg-slate-900  m-auto backdrop-blur-md">
-                    <div className="flex overflow-y-auto flex-col   md:w-1/2 w-11/12 h-3/4 py-6 xl:pl-16 " >
-                        <div className=" flex justify-around">
-                            <a href="/home">Home</a>
-                            <a href="">Explore</a>
-                            <a href="">Most Popular</a>
-                            <a href="">Trending</a>
-                        </div>
-                        <div className="flex justify-center py-12">
-                            <img className="w-52 h-16" src="/logo.png" alt="logo" />
-                        </div>
-                        <div className="">
-                            {/* search */}
-                        </div>
-                        <div className='text-start'>
-                            <span className="text-sm "><span className=" font-semibold">Suggestion</span><span className="text-ellipse " >: Solo Leveling, Overflow (Uncensored), Mashle: Magic and Muscles Season 2, Frieren: Beyond Journey's End, Classroom of the Elite III, Black Clover, Ninja Kamui, Tsukimichi -Moonlit Fantasy- Season 2, Hokkaido Gals Are Super Adorable!, Classroom of the Elite 2nd Season</span></span>
-                        </div>
-                        <div className="pt-8">
-                            <button onClick={handleEnterClick} className='w-fit font-bold mx-auto p-4 bg-blue-500 rounded-3xl '>Enter AnimeFlix  <i className="pl-2 fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <div className="md:w-1/2 w-11/12 h-3/4  p-8 xl:py-6 xl:px-12" >
-
-                        <LandingPageInfo />
-
-                    </div>
-
-                </div>
-            </div >
-        </>
-    )
+  return (
+    <>
+      <div className="lg:px-6 px-2 text-slate-50 w-full h-screen max-w-[1420px] mx-auto xl:px-0 sm:px-4 flex justify-center items-center">
+        <div className="flex justify-center">
+          <div className="bg-zinc-900 w-1/2 h-2/4 rounded-md flex shadow-lg transform transition duration-300 hover:scale-105">
+            <div className="left w-1/2 text-start py-8 px-8 align-super space-y-2">
+              <div className="h-2/5 space-y-2">
+                <p className="text-2xl font-semibold">Welcome to </p>
+                <span className="text-4xl font-extrabold">
+                  Anime<span className="text-orange-500">Flix</span>
+                </span>
+                <p className="text-orange-200">Your one stop destination to watch anime </p>
+              </div>
+              <div className="h-2/5 flex flex-col space-y-2">
+                <p className="italic text-sm">Suggestion:</p>
+                <p className="line-clamp-4 text-sm">
+                  Solo Leveling, Overflow (Uncensored), Mashle: Magic and Muscles Season 2, Frieren: Beyond Journey's End, Classroom of the Elite III, Black Clover, Ninja Kamui, Tsukimichi -Moonlit Fantasy- Season 2, Hokkaido Gals Are Super Adorable!, Classroom of the Elite 2nd Season
+                </p>
+              </div>
+              <div className="h-1/5 flex items-center">
+                <button
+                  onClick={handleEnterClick}
+                  className="w-fit transition duration-150 focus:ring-2 ease-in-out transform bg-orange-500 text-zinc-800 font-semibold p-2 rounded-md hover:text-zinc-950 hover:border-zinc-600 focus:translate-y-1 hover:shadow-lg"
+                >
+                  Enter AnimeFlix
+                </button>
+              </div>
+            </div>
+            <div className="right w-1/2 flex justify-center items-end">
+              <img className=" h-auto object-cover rounded-md shadow-lg" src="/landingpagehero.png" alt="AnimeFlix Hero" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
