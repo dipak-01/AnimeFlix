@@ -90,19 +90,19 @@ export default function AnimeInfo() {
                     {info.stats.quality}
                   </div>
                   {info.stats.episodes.sub && (
-                    <div className="text-nowrap border-slate-100 border bg-orange-300 h-fit rounded-s-lg px-1 whitespace-normal">
+                    <div className="text-nowrap border-slate-900 border bg-orange-300 h-fit rounded-s-lg px-1 whitespace-normal">
                       <i className="  far fa-closed-captioning"></i>{" "}
                       {info.stats.episodes.sub}
                     </div>
                   )}
                   {info.stats.episodes.dub && (
-                    <div className=" border-slate-100 border bg-orange-100  rounded-e-lg  px-1">
+                    <div className=" border-slate-900 border bg-orange-100  rounded-e-lg  px-1">
                       <i className="  fas fa-microphone"></i>{" "}
                       {info.stats.episodes.dub}
                     </div>
                   )}
                 </div>
-                <div className="bg-orange-500 w-fit rounded-md p-2 text-slate-200 font-semibold">
+                <div className="bg-orange-500 w-fit rounded-md p-2 border-2 border-orange-600 text-slate-900 hover:border-orange-400 hover:bg-orange-400 transition-colors font-semibold">
                   <button
                     onClick={() => handleWatchClick(info.id)}
                     className=""
@@ -234,11 +234,11 @@ export default function AnimeInfo() {
                   <div className="flex gap-4">
                     <p>{relatedAnime[0].type} </p>
                     <div className="flex text-slate-900">
-                      <p className="text-nowrap border-slate-100 border bg-orange-300 h-fit rounded-s-lg px-1 whitespace-normal">
+                      <p className="text-nowrap border-slate-900 border bg-orange-300 h-fit rounded-s-lg px-1 whitespace-normal">
                         <i className="far fa-closed-captioning "> </i>{" "}
                         {relatedAnime[0].episodes.dub}{" "}
                       </p>
-                      <p className="order-slate-100 border bg-orange-100 h-fit rounded-e-lg  px-1">
+                      <p className="border-slate-900 border bg-orange-100 h-fit rounded-e-lg  px-1">
                         <i className="fas fa-microphone"></i>{" "}
                         {relatedAnime[0].episodes.sub}{" "}
                       </p>

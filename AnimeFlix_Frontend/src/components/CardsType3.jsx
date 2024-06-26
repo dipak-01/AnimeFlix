@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 export default function ({ data }) {
   const navigate = useNavigate();  
+  const [isLoading, setIsLoading] = useState(true); // Track loading state
+
  const handleClick=(id)=>{
   navigate(`/anime/info?id=${encodeURIComponent(id)}`);
  }
@@ -12,10 +16,16 @@ export default function ({ data }) {
           <div key={index} onClick={() => handleClick(data2.id)}  className="py-1 pr-1">
             <div className="flex h-36 p-2 ">
               <div className="w-24 rounded-lg ">
+              {isLoading && <div className="w-full h-full rounded-t-md bg-gray-900 flex items-center justify-center ">
+                {/* Placeholder or loader here */}
+                <span className="  animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-orange-500 ml-3"></span>
+              </div>}
                 <img
                   className="w-full rounded-lg h-full"
                   src={data2.poster}
                   alt={data2.name}
+                  onLoad={() => setIsLoading(false)}  
+                style={{ display: isLoading ? 'none' : 'block' }} 
                 />
               </div>
               <div className="text-start text-xl w-2/3 px-4 ">
@@ -25,13 +35,13 @@ export default function ({ data }) {
                     {data2.episodes && (
                       <div className="flex gap-1    w-min rounded-md px-1 text-slate-900 text-sm font-thin">
                         {" "}
-                        <p className="flex font-medium px-1 items-center bg-lavender-web-400 rounded-s-md">
+                        <p className="flex font-medium px-1 items-center bg-orange-300 rounded-s-md">
                           {" "}
                           <i className=" px-1 far fa-closed-captioning"></i>
                           {data2.episodes.sub}
                         </p>
                         {data2.episodes.dub && (
-                          <p className="flex px-1 items-center font-medium bg-french-gray-600 rounded-e-md">
+                          <p className="flex px-1 items-center font-medium bg-orange-100 rounded-e-md">
                             <i className=" px-1 fas fa-microphone"> </i>
                             {data2.episodes.dub}
                           </p>

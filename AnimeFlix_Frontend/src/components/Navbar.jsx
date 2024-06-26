@@ -135,7 +135,8 @@ function App() {
                   type="text"
                   id="default-search"
                   className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 focus:bg-slate-950 dark:bg-slate-900 dark:border-gray-700 dark:placeholder-gray-200 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-12"
-                  placeholder="Search Overflow, HighSchool DXD..."
+                  placeholder="Search Overflow..."
+                  
                   required
                   value={name}
                   onChange={handleSearchSuggestion}
