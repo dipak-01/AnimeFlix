@@ -9,8 +9,7 @@ export default function AnimeInfo() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
-  console.log(id);
-  const [data, setData] = useState(null);
+   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -27,8 +26,7 @@ export default function AnimeInfo() {
 
         setData(res.data);
         setLoading(false);
-        console.log(data);
-      } catch (error) {
+       } catch (error) {
         console.error("Failed to fetch data:", error);
         setLoading(false);
       }
@@ -50,8 +48,7 @@ export default function AnimeInfo() {
   const seasons = data.seasons;
   const recommendedAnime = data.recommendedAnimes;
   const relatedAnime = data.relatedAnimes;
-  console.log(relatedAnime);
-  // const thumbnail=data.anime.promotionalVideos[0].thumbnail;
+   // const thumbnail=data.anime.promotionalVideos[0].thumbnail;
   // style={{backgroundImage: `$url(/bginfo.webp)`}}
   // console.log(thumbnail);
   if (!data || !data.anime || !info || !moreinfo)

@@ -21,8 +21,7 @@ export default function SearchPage() {
     const fetchData = async () => {
       try {
         const result = await Search(keyword); // Assuming `Search` is an async function
-        console.log(result);
-        setData(result);
+         setData(result);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       } finally {

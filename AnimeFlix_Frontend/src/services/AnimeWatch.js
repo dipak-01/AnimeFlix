@@ -9,16 +9,13 @@ export function useFetchData(id) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(`Attempting to fetch data for ID: ${id}`);
-        const res = await axios.get(
+         const res = await axios.get(
           `${import.meta.env.VITE_ANIME_URL}/anime/info?id=${id}`
         );
-        console.log("After axios call", res.data);
-        setData(res.data);
+         setData(res.data);
         setLoading(false);
       } catch (error) {
-        console.error("Failed to fetch data:", error);
-        setError(error);
+         setError(error);
         setLoading(false);
       }
     };
@@ -38,16 +35,13 @@ export function useFetchStreamData(episodeid) {
   useEffect(() => {
     const getStreamData = async () => {
       try {
-        console.log(`Attempting to fetch data for ID: ${episodeid}`);
-        const res = await axios.get(
+         const res = await axios.get(
           `${import.meta.env.VITE_ANIME_URL}/anime/episode-srcs?id=${episodeid}`
         );
-        console.log("After axios call", res.data);
-        setStreamData(res.data);
+         setStreamData(res.data);
         setLoading(false);
       } catch (error) {
-        console.error("Failed to fetch data:", error);
-        setError(error);
+         setError(error);
         setLoading(false);
       }
     };
@@ -67,16 +61,13 @@ export function useAnimeEpisodeData(animeId) {
   useEffect(() => {
     const getAnimeEpisodeData = async () => {
       try {
-        console.log(`Attempting to fetch data for ID: ${animeId}`);
-        const res = await axios.get(
+         const res = await axios.get(
           `${import.meta.env.VITE_ANIME_URL}/anime/episodes/${animeId}`
         );
-        console.log("After axios call", res.data);
-        setEpisodeData(res.data);
+         setEpisodeData(res.data);
         setLoading(false);
       } catch (error) {
-        console.error("Failed to fetch data:", error);
-        setError(error);
+         setError(error);
         setLoading(false);
       }
     };
@@ -96,16 +87,13 @@ export function useAnimeEpisodeServerData(episodeid) {
   useEffect(() => {
     const getAnimeEpisodeServerData = async () => {
       try {
-        console.log(`Attempting to fetch server data for ID: ${episodeid}`);
-        const res = await axios.get(
+         const res = await axios.get(
           `${import.meta.env.VITE_ANIME_URL}/anime/servers?episodeId=${episodeid}`
         );
-        console.log("After axios call", res.data);
-        setEpisodeServerData(res.data);
+         setEpisodeServerData(res.data);
         setLoading(false);
       } catch (error) {
-        console.error("Failed to fetch data:", error);
-        setError(error);
+         setError(error);
         setLoading(false);
       }
     };
