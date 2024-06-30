@@ -1,4 +1,4 @@
-// Layout.jsx
+ 
 import { useLocation } from "react-router-dom";
 import React from "react";
 import Navbar from "./Navbar";
@@ -15,8 +15,7 @@ const Layout = ({ children }) => {
   }
   return (
     <div>
-      {/* <header>Header Content</header> */}
-      <Schedual/>
+       <Schedual/>
       <nav>
         <Navbar />
       </nav>

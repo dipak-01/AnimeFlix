@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState,useEffect } from "react";
+  
+
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +19,7 @@ const Suggestions = ({ query }) => {
           `${import.meta.env.VITE_ANIME_URL}/anime/search/suggest?q=${query}`,
           { crossdomain: true }
         );
-        // console.log(filteredData);
+ 
         const filteredData = response.data.suggestions;
         setData(filteredData);
       } catch (error) {
@@ -29,13 +31,7 @@ const Suggestions = ({ query }) => {
       getData();
     }
   }, [query]);
-  // if (!data || data.length === 0) {
-  //   return (
-  //     <div className="text-slate-400 bg-slate-900 p-2 mt-1">
-  //       Don't Search hentai here you little c*nt.
-  //     </div>
-  //   );
-  // }
+ 
 
   return (
     <div className="bg-slate-900 rounded-xl border border-blue-300 p-2 mt-1">
@@ -51,7 +47,7 @@ const Suggestions = ({ query }) => {
         ))
       ) : (
         <div className="text-slate-400 bg-slate-900 p-1 mb-1   border-slate-700">
-          Don't Search hentai here you little c*nt.
+      {  "  Don't Search hentai here you little c*nt."}
         </div>
       )}
     </div>

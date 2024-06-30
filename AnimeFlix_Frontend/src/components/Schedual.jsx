@@ -33,7 +33,7 @@ function formatDateToReadable(dateString) {
 
 const getSchedual = async (date) => {
   try {
-    const url = `https://aniwatch-api-euo9.onrender.com/anime/schedule?date=${date}`;
+    const url = `${import.meta.env.VITE_ANIME_URL}/anime/schedule?date=${date}`;
     const response = await axios.get(url);
     const results = response.data.scheduledAnimes;
     return results;

@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
-import HomePageApi from "../services/HomePageApi";
+ 
 export default function ({ genre }) {
-  //   const [genre, setGenre] = useState([]);
-  //   const [loading, setLoading] = useState(true);
+ 
 
   const colors = [
     "red",
@@ -14,17 +12,7 @@ export default function ({ genre }) {
     "pink",
     "teal",
   ];
-
-  //   useEffect(() => {
-  //     const getGenre = async () => {
-  //       const response = await HomePageApi();
-  //       setGenre(response.genres);
-  //       setLoading(false);
-  //     };
-  //     getGenre();
-  //   }, []);
-
-  //   if (loading == false)
+ 
   return (
     <>
       <div className="scrollbar-hide text-start flex flex-wrap h-3/4   whitespace-nowrap   gap-6 px-4">

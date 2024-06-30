@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function ({ data }) {
   const navigate = useNavigate();  
-  const [isLoading, setIsLoading] = useState(true); // Track loading state
+  const [isLoading, setIsLoading] = useState(true);  
 
  const handleClick=(id)=>{
   navigate(`/anime/info?id=${encodeURIComponent(id)}`);
@@ -31,7 +31,7 @@ export default function ({ data }) {
               <div className="text-start text-xl w-2/3 px-4 ">
                 <p className="w-3/4 line-clamp-1 mb-2">{data2.name}</p>
                 <span>
-                  <p>
+                  <div>
                     {data2.episodes && (
                       <div className="flex gap-1    w-min rounded-md px-1 text-slate-900 text-sm font-thin">
                         {" "}
@@ -54,7 +54,7 @@ export default function ({ data }) {
                       </div>
                     )}
                     
-                  </p>
+                  </div>
                 </span>
               </div>
             </div>

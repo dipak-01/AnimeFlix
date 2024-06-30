@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Artplayer from "artplayer";
 import Hls from "hls.js";
-import Loader from "../components/Loading";
+import {Loader} from "../components/Loading";
 import artplayerPluginHlsQuality from "artplayer-plugin-hls-quality";
 
 export default function Player({ source, data, getInstance, ...rest }) {

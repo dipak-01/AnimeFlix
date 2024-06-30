@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Artplayer from "../services/ArtPlayer";
 import {
   useFetchData,
@@ -7,10 +7,12 @@ import {
   useAnimeEpisodeServerData,
 } from "../services/AnimeWatch";
 import { useNavigate, useParams } from "react-router-dom";
-import Loader from "../components/Loading";
+import { Loader } from "../components/Loading";
 import TopUpcoming from "../components/TopUpcoming";
 
 export default function AnimeInfo() {
+  const [isLoading, setIsLoading] = useState(true);
+
   const [loadingVideo, setLoadingVideo] = useState(true);
   const [selectedEpisodeId, setSelectedEpisodeId] = useState(null);
   const { id } = useParams();
@@ -35,6 +37,7 @@ export default function AnimeInfo() {
   useEffect(() => {
     if (episodeData && episodeData.episodes.length > 0) {
       setSelectedEpisodeId(episodeData.episodes[0].episodeId);
+      setIsLoading(false);
     }
   }, [episodeData]);
 
@@ -42,43 +45,13 @@ export default function AnimeInfo() {
     navigate(`/anime/info?id=${encodeURIComponent(id)}`);
   };
   const classOfDiv = document.querySelector(".overlay");
-  // const ShowLoader = () => {
-  //   classOfDiv.style.backgroundColor = "black";
 
-  //   const img = document.createElement("img");
-  //   img.src = "/shuriken.png";
-  //   img.style.position = "absolute";
-  //   img.style.width = "100%";
-  //   img.style.height = "auto";
-  //   img.style.animation = "rotateImage 5s ";
-
-  //   classOfDiv.appendChild(img);
-
-  //   const style = document.createElement("style");
-  //   style.textContent = `
-  //     @keyframes rotateImage {
-  //       from {
-  //         transform: rotate(0deg);
-  //       }
-  //       to {
-  //         transform: rotate(360deg);
-  //       }
-  //     }
-  //   `;
-  //   document.head.appendChild(style);
-
-  //   // Set a timeout to remove the image after 5 seconds
-  //   setTimeout(() => {
-  //     classOfDiv.removeChild(img);
-  //   }, 5000);
-  // };
   const add = () => {
     const currentIndex = episodeData.episodes.findIndex(
       (epi) => epi.episodeId === selectedEpisodeId
     );
     if (currentIndex < episodeData.episodes.length - 1) {
       setSelectedEpisodeId(episodeData.episodes[currentIndex + 1].episodeId);
-      // ShowLoader();
     }
   };
 
@@ -123,9 +96,15 @@ export default function AnimeInfo() {
             <p className="border border-gray-900 pl-6 py-2 text-sm">
               List of Episodes
             </p>
+            {/* {isLoading && <div className="w-full h-full rounded-t-md bg-gray-900 flex items-center justify-center ">
+               
+               <span className="  animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-orange-500 ml-3"></span>
+             </div>}
+              */}
             {episodes &&
               episodes.map((epi, index) => (
                 <div
+                  style={{ display: isLoading ? "none" : "flex" }}
                   onClick={() => setSelectedEpisodeId(epi.episodeId)}
                   className={`w-full flex border ${
                     epi.number % 2 !== 0 ? "bg-gray-800" : "bg-gray-900"
@@ -157,8 +136,17 @@ export default function AnimeInfo() {
           </div>
           <div className="lg:w-4/5">
             <div>
+              {" "}
+              {isLoading && (
+                <div className="w-full h-full rounded-t-md bg-gray-900 flex items-center justify-center ">
+                  <span className="  animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-orange-500 ml-3"></span>
+                </div>
+              )}
               {streamData && (
-                <div className="overlay">
+                <div
+                  className="overlay"
+                  style={{ display: isLoading ? "none" : "block" }}
+                >
                   <Artplayer
                     source={streamData.sources[0]?.url}
                     data={streamData}
@@ -189,7 +177,7 @@ export default function AnimeInfo() {
               <div className="w-1/4 text-xs bg-orange-300 text-center font-semibold text-gray-800 p-1 rounded-l-md">
                 <p className="lg:line-clamp-none line-clamp-3">
                   You are streaming Episode {episodeServerData?.episodeNo}. If
-                  the current server doesn't work, please try other servers
+                  the current server doesn&apos;t work, please try other servers
                   beside.
                 </p>
               </div>

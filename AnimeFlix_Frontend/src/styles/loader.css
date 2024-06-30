@@ -1,0 +1,28 @@
+/* Loader.css */
+@keyframes scale-up4 {
+    20% {
+      background-color: #ffff;
+      transform: scaleY(1.5);
+    }
+  
+    40% {
+      transform: scaleY(1);
+    }
+  }
+  
+  .loader .bar {
+    @apply inline-block w-1 bg-white bg-opacity-50 rounded-lg;
+    height: 20px;
+    animation: scale-up4 1s linear infinite;
+  }
+  
+  .loader .bar-second {
+    height: 35px;
+    margin: 0 1.25rem;
+    animation-delay: .25s;
+  }
+  
+  .loader .bar-third {
+    animation-delay: .5s;
+  }
+  

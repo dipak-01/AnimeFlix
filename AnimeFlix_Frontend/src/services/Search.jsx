@@ -12,7 +12,7 @@ export default async function Search(query) {
      let allData = [];
     for (let page = 1; page <= 5; page++) {
       const data = await fetchAnimeData(query, page);
-      allData = { ...allData, ...data }; // Adjust based on the API response structure
+      allData = { ...allData, ...data };  
       if (!data.hasNextPage) break;
     }
      return allData;

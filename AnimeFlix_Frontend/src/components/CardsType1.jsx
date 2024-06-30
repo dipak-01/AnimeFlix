@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function ({ name, poster, rank, id }) {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true); // Track loading state
+  const [isLoading, setIsLoading] = useState(true); 
 
   const handleClick = (id) => {
     navigate(`/anime/info?id=${encodeURIComponent(id)}`);
@@ -23,9 +23,9 @@ export default function ({ name, poster, rank, id }) {
                 className="w-full h-full rounded-t-md clippath"
                 src={poster}
                 alt=""
-                onLoad={() => setIsLoading(false)} // Update loading state when image is loaded
+                onLoad={() => setIsLoading(false)}  
                
-                style={{ display: isLoading ? 'none' : 'block' }} // Hide image while loading
+                style={{ display: isLoading ? 'none' : 'block' }}  
               />
               <p className="text-md absolute start-1 top-1 text-ellipsis">
                 {rank < 10 ? "#0" + rank : "#" + rank}{" "}

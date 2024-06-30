@@ -1,6 +1,5 @@
 import Suggestions from "../services/Suggestions";
-import SearchPage from "../pages/SearchPage";
-import { useNavigate } from "react-router-dom";
+ import { useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -153,8 +152,7 @@ function App() {
               </div>
               {query && <Suggestions query={query} />}
             </form>
-            {/* <Suggestions query={query} /> */}
-            <button
+             <button
               onClick={handleSearchClose}
               className="absolute top-3 right-0 text-white"
             ></button>

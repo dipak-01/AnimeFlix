@@ -12,8 +12,7 @@ export default function () {
   
     window.addEventListener("resize", handleResize);
 
-    // Clean up the event listener when the component unmounts
-    return () => {
+     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);

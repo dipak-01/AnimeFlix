@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import TopUpcoming from "../components/TopUpcoming";
 
 import { useLocation } from "react-router-dom";
-import Loader from "../components/Loading";
+import {Loader} from "../components/Loading";
 export default function AnimeInfo() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
-   const [data, setData] = useState(null);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -21,12 +21,12 @@ export default function AnimeInfo() {
     const getData = async (id) => {
       try {
         const res = await axios.get(
-          `https://aniwatch-api-euo9.onrender.com/anime/info?id=${id}`
+          `${import.meta.env.VITE_ANIME_URL}/anime/info?id=${id}`
         );
 
         setData(res.data);
         setLoading(false);
-       } catch (error) {
+      } catch (error) {
         console.error("Failed to fetch data:", error);
         setLoading(false);
       }
@@ -48,9 +48,7 @@ export default function AnimeInfo() {
   const seasons = data.seasons;
   const recommendedAnime = data.recommendedAnimes;
   const relatedAnime = data.relatedAnimes;
-   // const thumbnail=data.anime.promotionalVideos[0].thumbnail;
-  // style={{backgroundImage: `$url(/bginfo.webp)`}}
-  // console.log(thumbnail);
+
   if (!data || !data.anime || !info || !moreinfo)
     return <div>No data found</div>;
   return (
@@ -76,7 +74,7 @@ export default function AnimeInfo() {
                     <i className="text-sm far fa-clock"></i>{" "}
                     {info.stats.duration}
                   </p>
-                  {/* <p><i className="fa-solid fa-circle"></i>{info.stats.quality}</p> */}
+
                   <p>
                     <i className="text-xs fas fa-tv"></i> {info.stats.type}
                   </p>
@@ -123,7 +121,6 @@ export default function AnimeInfo() {
           </div>
           <div className="lg:w-1/4 h-full  ">
             <div className=" h-max  end  text-slate-300 text-start bg-gray-900 p-4 rounded-lg shadow-lg">
-              {/* <h3 className="text-lg text-slate-100 font-bold mb-2">Anime Details</h3> */}
               <p>
                 <span className="italic font-semibold">Japanese:</span>{" "}
                 {moreinfo.japanese}
@@ -154,14 +151,11 @@ export default function AnimeInfo() {
               </p>
               <p>
                 <span className="italic font-semibold">Genres:</span>{" "}
-                {
-                  // Check if 'moreinfo.genres' is an array and has only one item
-                  Array.isArray(moreinfo.genres) && moreinfo.genres.length === 1
-                    ? moreinfo.genres[0] // If only one genre, display it without joining
-                    : Array.isArray(moreinfo.genres)
-                    ? moreinfo.genres.join(", ")
-                    : moreinfo.genres
-                }
+                {Array.isArray(moreinfo.genres) && moreinfo.genres.length === 1
+                  ? moreinfo.genres[0]
+                  : Array.isArray(moreinfo.genres)
+                  ? moreinfo.genres.join(", ")
+                  : moreinfo.genres}
               </p>
               <p>
                 <span className="italic font-semibold">Studios:</span>{" "}
@@ -255,35 +249,4 @@ export default function AnimeInfo() {
       </div>
     </>
   );
-}
-
-{
-  /* <div className="text-base text-nowrap lg:flex grid  justify-start lg:gap-6 gap-4">
-            <div className="flex lg:gap-8 gap-4 justify-start ">
-              <div>
-                <i className=" fas fa-tv"></i> {info.type}
-              </div>
-              <div>
-                <i className="far fa-clock"></i> {info.duration}
-              </div>
-              <div className="">
-                <i className="fas fa-calendar-alt"></i> {info.stats.rating}
-              </div>
-              
-            </div>
-
-            <div className="flex   text-slate-900 space-x-1">
-            <div className="bg-powder-blue-400 rounded-lg px-1 py-0 text-slate-900">
-                {info.stats.quality}
-              </div>
-              <div className="text-nowrap   bg-lavender-web-400 rounded-s-lg px-1 whitespace-normal">
-                <i className="  far fa-closed-captioning"></i> {info.stats.episodes.sub}
-              </div>
-              {info.stats.episodes.dub && (
-                <div className=" bg-french-gray-600 rounded-e-lg  px-1">
-                  <i className="  fas fa-microphone"></i> {info.stats.episodes.dub}
-                </div>
-              )} 
-            </div>
-          </div>*/
 }

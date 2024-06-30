@@ -22,8 +22,7 @@ export default function ({
         <div className="absolute    z-1    inset-y-0 right-0   ">
           <img className="w-auto object-cover  h-full " src={poster} alt="" />
           <div className="absolute inset-0 bg-gradient-to-r from-gunmetal-100   "></div>
-          {/* <div className="absolute inset-0 bg-gradient-to-t from-slate-950 "></div> */}
-          <div className="absolute inset-0 bg-gradient-to-l from-gunmetal-100/15  "></div>
+           <div className="absolute inset-0 bg-gradient-to-l from-gunmetal-100/15  "></div>
         </div>
         <div className="relative text-xl font-thin h-full my-auto justify-center bg-gradient-to-r from-slate-1000 to-slate-1000  lg:w-1/2 w-2/3 text-left flex flex-col  pt-20 gap-8 ">
           <div className="text-2xl lg:text3xl text-hookers-green-700">
@@ -79,9 +78,8 @@ export default function ({
             </div>
           </div>
         </div>
-        {/* <div className="bg-gradient-to-t from-slate-900 to-slate-700"></div> */}
-      </div>
+       </div>
     </>
   );
 }
-// style={{ backgroundImage: `url(${poster})`, backgroundPosition: 'right top', backgroundRepeat: "no-repeat", backgroundSize: "cover" }}
+ 

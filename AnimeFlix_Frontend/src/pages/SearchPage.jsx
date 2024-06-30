@@ -1,27 +1,23 @@
 import CardsType2 from "../components/CardsType2";
 import Search from "../services/Search";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+ import { useLocation } from "react-router-dom";
 
 export default function SearchPage() {
-  // let { keyword } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const keyword = searchParams.get("keyword");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const navigate = useNavigate();
+ 
 
-  const handleClick = (id) => {
-    navigate(`/anime/info?id=${encodeURIComponent(id)}`);
-  };
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await Search(keyword); // Assuming `Search` is an async function
-         setData(result);
+        const result = await Search(keyword);  
+        setData(result);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       } finally {
@@ -31,11 +27,7 @@ export default function SearchPage() {
 
     fetchData();
   }, [keyword]);
-  // console.log(keyword);
-  // console.log(data);
-  // const ani = data.animes;
-  // console.log(ani);
-  // console.log(ani.name);
+
   if (loading)
     return (
       <div className="w-full h-screen flex justify-center items-center   text-3xl">
@@ -69,7 +61,9 @@ export default function SearchPage() {
             ) : (
               <div className="absolute   text-slate-300 text-3xl gap-4 flex font-bold italic">
                 <div className="w-full flex">
-              <p> There are no such anime, bruh.</p>  <img className="w-60" src="/noanime.gif" alt="" /></div>
+                  <p> There are no such anime, bruh.</p>{" "}
+                  <img className="w-60" src="/noanime.gif" alt="" />
+                </div>
               </div>
             )}
           </div>

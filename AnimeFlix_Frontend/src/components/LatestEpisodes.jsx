@@ -1,5 +1,4 @@
-import CardsType2 from "./CardsType2";
-import { useState } from "react";
+ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 function Cards({ name, type, duration, poster,id }) {
   const [isLoading, setIsLoading] = useState(true); 
@@ -30,22 +29,7 @@ function Cards({ name, type, duration, poster,id }) {
   );
 }
 export default function ({ latestEpisodes }) {
-  // const [latestEpisodes, setlatestEpisodes] = useState([])
-  // const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //     const getLatestEpisodes = async () => {
-  //         const response = await HomePageApi();
-  //         setlatestEpisodes(response.latestEpisodeAnimes);
-  //         console.log(latestEpisodes);
-  //         setLoading(false)
-  //     }
-  //     getLatestEpisodes();
-
-  // }, [])
-  // if (loading) {
-  //     return <div>Loading...</div>;
-  //   }
+ 
 
   return (
     <>
