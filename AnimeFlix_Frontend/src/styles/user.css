@@ -1,0 +1,24 @@
+.inputclass input {
+    background: #7c7c7c;
+    height: 40px;
+    width: 60%;
+    padding: 6px;
+    border-radius: 8px;
+}
+.inputclass p {
+font-size: small;
+padding-bottom: 2px;
+}
+.logininp input{
+    height: 30px;
+     
+}
+
+ /* user.css */
+ .image-transition {
+    transition: opacity 2s ease-in-out;
+    opacity: 0;
+  }
+  .image-visible {
+    opacity: 1;
+  }

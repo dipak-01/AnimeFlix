@@ -1,76 +1,96 @@
 import Suggestions from "../services/Suggestions";
- import { useNavigate } from "react-router-dom";
+// import { createClient } from "@supabase/supabase-js";
+// import { Auth } from "@supabase/auth-ui-react";
+// import { ThemeSupa } from "@supabase/auth-ui-shared";
+import { register, login } from '../services/authService';
+
+import { useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
 import UserProfilePopover from "./BurgerPopover";
 
 function App() {
+  const [toggleUser, setToggleUser] = useState(false);
+  const toggleRef = useRef(null);
+  const [session, setSession] = useState(false);
   const searchBarRef = useRef(null);
   const [name, setName] = useState("");
   const [query, setQuery] = useState("");
-
   const [searchOpen, setSearchOpen] = useState(false);
   const navigate = useNavigate("");
+
   const handleSearchOpen = () => {
     setSearchOpen(true);
+  };
+
+  const handleToggleUser = () => {
+    setToggleUser(!toggleUser);
   };
 
   const handleSearchClose = () => {
     setSearchOpen(false);
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(name);
     const keyword = name;
     if (name !== "") navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
     setSearchOpen(false);
   };
-
-  // ...
 
   const handleSearchSuggestion = (event) => {
     event.preventDefault();
     let val = event.target.value;
     setName(val);
     setQuery(val);
-
-    // Call Suggestions component with the value as parameter
   };
 
+  // useEffect(() => {
+  //   supabase.auth.getSession().then(({ data: { session } }) => {
+  //     setSession(session);
+  //   });
+
+  //   const {
+  //     data: { subscription },
+  //   } = supabase.auth.onAuthStateChange((_event, session) => {
+  //     setSession(session);
+  //   });
+
+  //   return () => subscription.unsubscribe();
+  // }, []);
+
   useEffect(() => {
-    // Step 2
     const handleClickOutside = (event) => {
       if (
         searchBarRef.current &&
         !searchBarRef.current.contains(event.target)
       ) {
-        // Step 3
         handleSearchClose();
+      }
+      if (toggleRef.current && !toggleRef.current.contains(event.target)) {
+        setToggleUser(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      // Step 4
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [searchBarRef]);
+  }, [searchBarRef, toggleRef]);
+
   return (
-    <div className="App ">
-      <nav className="bg-slate-1000/75   lg:px-10 p-4">
+    <div className="App">
+      <nav className="bg-slate-1000/75 lg:px-10 p-4">
         <div className="container mx-auto flex justify-between items-center">
           <div className="space-x-2">
-            {" "}
             <UserProfilePopover />
             <a href="/" className="text-white text-xl font-bold">
               <span className="text-pretty text-xl lg:text-3xl">
-                Anime<span className="text-orange-600">Flix</span>{" "}
+                Anime<span className="text-orange-600">Flix</span>
               </span>
-              {/* <img className="w-32" src="./newLogoB.png" alt="" /> */}
             </a>
           </div>
-          {/* Links */}
           <div className="hidden space-x-4 text-white text-lg lg:flex">
             <a href="/home" className="hover:underline">
               Home
@@ -84,20 +104,75 @@ function App() {
               Watch Together
             </a>
           </div>
-
-          {/* Icons */}
-          <div className="flex space-x-8 items-center ">
+          <div className="flex space-x-8 items-center">
             <button onClick={handleSearchOpen} className="text-white">
               <FontAwesomeIcon icon={faSearch} className="h-6 w-6" />
             </button>
-            <button className="text-white">
-              <FontAwesomeIcon icon={faUser} className="h-6 w-6" />
-            </button>
+            <div className="relative" ref={toggleRef}>
+              <button
+                type="button"
+                onClick={handleToggleUser}
+                className="text-white"
+              >
+                <FontAwesomeIcon icon={faUser} className="h-6 w-6" />
+              </button>
+              {toggleUser && (
+                <div className="absolute z-50 w-72 right-0 bg-gray-900 rounded-lg p-2 py-4 text-slate-50 space-y-4 text-start">
+                  {session ? (
+                    <div className="space-y-3">
+                      <p className="text-orange-400">{}</p>
+                      <p className="border-2 rounded-2xl border-gray-700 p-2 bg-gray-800 cursor-pointer hover:text-white">
+                        { }
+                      </p>
+                      <p
+                        onClick={() => navigate("/user/profile")}
+                        className="border-2 rounded-2xl border-gray-700 p-2 bg-gray-800 cursor-pointer hover:text-white"
+                      >
+                        Profile
+                      </p>
+                      <p
+                        onClick={() => navigate("/user/watchlist")}
+                        className="border-2 rounded-2xl border-gray-700 p-2 bg-gray-800 cursor-pointer hover:text-white"
+                      >
+                        Watchlist
+                      </p>
+                      <p className="border-2 rounded-2xl border-gray-700 p-2 bg-gray-800 cursor-pointer hover:text-white">
+                        Continue Watching
+                      </p>
+                      <div className="text-end px-2 hover:text-white cursor-pointer">
+                        <button
+                          onClick={() =>
+                            logout({ returnTo: window.location.origin })
+                          }
+                        >
+                          Logout <i className="fas fa-arrow-right"></i>
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      {/* {showAuth && (
+                        <Auth
+                          supabaseClient={supabase}
+                          appearance={{ theme: ThemeSupa }}
+                        />
+                      )} */}
+                      <button
+                        className="bg-orange-200 text-gray-800 px-2 border-2 rounded-xl"
+                        id="login"
+                        onClick={() => navigate("/login")}
+                        // onClick={handleLoginClick}
+                      >
+                        Log in
+                      </button>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </nav>
-
-      {/* Search Overlay */}
       {searchOpen && (
         <div className="z-50 fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center">
           <div className="relative w-4/5 sm:w-3/5 lg:w-2/5">
@@ -135,14 +210,13 @@ function App() {
                   id="default-search"
                   className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 focus:bg-slate-950 dark:bg-slate-900 dark:border-gray-700 dark:placeholder-gray-200 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-12"
                   placeholder="Search Overflow..."
-                  
                   required
                   value={name}
                   onChange={handleSearchSuggestion}
                 />
                 <button
                   type="submit"
-                  className="h-12 absolute text-sm end-0 bottom-0    focus:outline-none   font-medium rounded-lg px-4 py-2   "
+                  className="h-12 absolute text-sm end-0 bottom-0 focus:outline-none font-medium rounded-lg px-4 py-2"
                 >
                   <FontAwesomeIcon
                     icon={faSearch}
@@ -152,10 +226,12 @@ function App() {
               </div>
               {query && <Suggestions query={query} />}
             </form>
-             <button
+            <button
               onClick={handleSearchClose}
               className="absolute top-3 right-0 text-white"
-            ></button>
+            >
+              <FontAwesomeIcon icon={faTimes} className="h-6 w-6" />
+            </button>
           </div>
         </div>
       )}
