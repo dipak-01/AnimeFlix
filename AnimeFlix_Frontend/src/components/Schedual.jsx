@@ -83,7 +83,7 @@ const DrawerNavigation = () => {
   return (
     <div className="text-center">
       <button
-        className={`text-lg text-black bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-t-lg  px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800 z-40 rotate-90 fixed -left-12 top-1/2 shadow-2xl transition-transform ${
+        className={`text-sm lg:text-lg text-black bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-t-lg  px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800 z-20 rotate-90 fixed -left-12 top-1/2 shadow-2xl transition-transform ${
           drawerOpen ? "lg:translate-x-96 translate-x-72" : "translate-x-0"
         } `}
         type="button"

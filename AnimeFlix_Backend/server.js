@@ -17,21 +17,31 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 
 app.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const user = new User({ username, email, password: hashedPassword });
-  await user.save();
-  res.status(201).send("User registered");
+  try {
+    const { username, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ username, email, password: hashedPassword });
+    await user.save();
+    return res.status(201).send("User registered");
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Error registering user");
+  }
 });
 
 app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (user && (await bcrypt.compare(password, user.password))) {
-    const token = jwt.sign({ userId: user._id }, "jwt_secret");
-    res.send({ token });
-  } else {
-    res.send(401).send("Invalid credentials");
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (user && (await bcrypt.compare(password, user.password))) {
+      const token = jwt.sign({ userId: user._id }, "jwt_secret");
+      return res.send({ token });
+    } else {
+      return res.status(401).send("Invalid credentials");
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Error logging in");
   }
 });
 
@@ -48,9 +58,10 @@ app.get("/user", async (req, res) => {
     if (!user) {
       return res.status(404).send("User not found");
     }
-    res.json(user);
+    return res.json(user);
   } catch (error) {
-    res.status(401).send("Invalid or expired token");
+    console.error(error);
+    return res.status(401).send("Invalid or expired token");
   }
 });
 
@@ -62,20 +73,22 @@ const authMiddleware = (req, res, next) => {
       req.user = payload;
       next();
     } catch (error) {
-      res.status(401).send("Unauthorize");
+      return res.status(401).send("Unauthorized");
     }
   } else {
-    res.status(401).send("Unauthorize");
+    return res.status(401).send("Unauthorized");
   }
 };
 
 app.get("/protected", authMiddleware, (req, res) => {
-  res.send("This is a protected route");
+  return res.send("This is a protected route");
 });
-app.listen(3000, () => {
-  console.log("server is running on http://localhost:3000");
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 app.get("/", (req, res) => {
-  res.send("Server is up and running!");
+  return res.send("Server is up and running!");
 });

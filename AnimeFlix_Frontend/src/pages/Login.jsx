@@ -69,8 +69,9 @@ const Auth = () => {
     setToken(data.token);
     setAlertMessage("Logged In");
     setShowAlert(true);
+    localStorage.setItem("token", data.token);
     setTimeout(() => setShowAlert(false), 5000);
-    navigate('/home');
+    navigate("/home");
   };
   const toggleLoginHandle = () => {
     setToggleLogin(!toggleLogin);

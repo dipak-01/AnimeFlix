@@ -2,7 +2,7 @@ import Suggestions from "../services/Suggestions";
 // import { createClient } from "@supabase/supabase-js";
 // import { Auth } from "@supabase/auth-ui-react";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { register, login } from '../services/authService';
+import { fetchUserData } from "../services/authService";
 
 import { useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
@@ -18,8 +18,18 @@ function App() {
   const [name, setName] = useState("");
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
   const navigate = useNavigate("");
-
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchUserData();
+      setUserData(data);
+    };
+    getData();
+  }, []);
+  useEffect(() => {
+    console.log(userData);
+  }, [userData]);
   const handleSearchOpen = () => {
     setSearchOpen(true);
   };
@@ -118,11 +128,11 @@ function App() {
               </button>
               {toggleUser && (
                 <div className="absolute z-50 w-72 right-0 bg-gray-900 rounded-lg p-2 py-4 text-slate-50 space-y-4 text-start">
-                  {session ? (
+                  {userData ? (
                     <div className="space-y-3">
-                      <p className="text-orange-400">{}</p>
+                      <p className="text-orange-400"> {userData.username}</p>
                       <p className="border-2 rounded-2xl border-gray-700 p-2 bg-gray-800 cursor-pointer hover:text-white">
-                        { }
+                        {userData.email}
                       </p>
                       <p
                         onClick={() => navigate("/user/profile")}
@@ -141,9 +151,11 @@ function App() {
                       </p>
                       <div className="text-end px-2 hover:text-white cursor-pointer">
                         <button
-                          onClick={() =>
-                            logout({ returnTo: window.location.origin })
-                          }
+                        className="hover:text-orange-300"
+                          onClick={() => {
+                            localStorage.removeItem("token");
+                            window.location.reload();
+                          }}
                         >
                           Logout <i className="fas fa-arrow-right"></i>
                         </button>
@@ -229,9 +241,7 @@ function App() {
             <button
               onClick={handleSearchClose}
               className="absolute top-3 right-0 text-white"
-            >
-              <FontAwesomeIcon icon={faTimes} className="h-6 w-6" />
-            </button>
+            ></button>
           </div>
         </div>
       )}
