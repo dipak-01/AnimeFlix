@@ -16,6 +16,31 @@ const userSchema = new mongoose.Schema({
 });
 const User = mongoose.model("User", userSchema);
 
+const WatchHistory = mongoose.model(
+  "WatchHistory",
+  new mongoose.Schema({
+    userId: mongoose.Schema.Types.ObjectId,
+    animeId: String,
+    episodeId: String,
+    watchedOn: { type: Date, default: Date.now },
+  })
+);
+
+const authMiddleware = (req, res, next) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (token) {
+    try {
+      const payload = jwt.verify(token, "jwt_secret");
+      req.user = payload;
+      next();
+    } catch (error) {
+      return res.status(401).send("Unauthorized");
+    }
+  } else {
+    return res.status(401).send("Unauthorized");
+  }
+};
+
 app.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -45,6 +70,32 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.post("/watchdata", authMiddleware, async (req, res) => {
+  try {
+    const { animeId, episodeId } = req.body;
+    const userId = req.user.userId;
+    console.log(userId);
+    if (!animeId || !episodeId) {
+      return res.status(400).send("Missing animeId or episodeId");
+    }
+    const existingEntry = await WatchHistory.findOne({
+      userId,
+      animeId,
+    });
+    if (existingEntry) {
+      existingEntry.episodeId = episodeId;
+      await existingEntry.save();
+      return res.status(200).send("Watch data updated");
+    }
+    const watchHistory = new WatchHistory({ userId, animeId, episodeId });
+    await watchHistory.save();
+    return res.status(201).send("Watch data recorded");
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Error recording watch data");
+  }
+});
+
 app.get("/user", async (req, res) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer")) {
@@ -65,23 +116,9 @@ app.get("/user", async (req, res) => {
   }
 });
 
-const authMiddleware = (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
-  if (token) {
-    try {
-      const payload = jwt.verify(token, "jwt_secret");
-      req.user = payload;
-      next();
-    } catch (error) {
-      return res.status(401).send("Unauthorized");
-    }
-  } else {
-    return res.status(401).send("Unauthorized");
-  }
-};
-
 app.get("/protected", authMiddleware, (req, res) => {
-  return res.send("This is a protected route");
+  const userId = req.user.userId;
+  res.send(`User ID is: ${userId}`);
 });
 
 const PORT = process.env.PORT || 3000;

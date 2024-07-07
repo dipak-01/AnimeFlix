@@ -1,14 +1,21 @@
 import { useState, useEffect } from "react";
 import Artplayer from "../services/ArtPlayer";
+// import VideoPlayer from "../services/VideoPlayer";
 import {
   useFetchData,
   useFetchStreamData,
   useAnimeEpisodeData,
   useAnimeEpisodeServerData,
 } from "../services/AnimeWatch";
+import { PlayIcon } from "@vidstack/react/icons";
+// Base styles for media player and provider (~400B).
+import "@vidstack/react/player/styles/base.css";
+import { MediaPlayer, MediaProvider } from "@vidstack/react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Loader } from "../components/Loading";
 import TopUpcoming from "../components/TopUpcoming";
+import VideoPlayer from "../services/VideoPlayer";
+import { watchData } from "../services/authService";
 
 export default function AnimeInfo() {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,18 +48,31 @@ export default function AnimeInfo() {
     }
   }, [episodeData]);
 
+  useEffect(() => {
+  const sendData = async () => {
+    const episodeId = selectedEpisodeId;
+    const animeId = id;
+    console.log(episodeId, animeId);
+    await watchData(animeId, episodeId);
+  };
+
+  sendData();
+}, [selectedEpisodeId, id]);
+
   const handleClick = () => {
     navigate(`/anime/info?id=${encodeURIComponent(id)}`);
   };
   const classOfDiv = document.querySelector(".overlay");
 
   const add = () => {
+    setIsLoading(true);
     const currentIndex = episodeData.episodes.findIndex(
       (epi) => epi.episodeId === selectedEpisodeId
     );
     if (currentIndex < episodeData.episodes.length - 1) {
       setSelectedEpisodeId(episodeData.episodes[currentIndex + 1].episodeId);
     }
+    setIsLoading(false);
   };
 
   const sub = () => {
@@ -107,7 +127,11 @@ export default function AnimeInfo() {
                   style={{ display: isLoading ? "none" : "flex" }}
                   onClick={() => setSelectedEpisodeId(epi.episodeId)}
                   className={`w-full flex border ${
-                    epi.number % 2 !== 0 ? "bg-gray-800" : "bg-gray-900"
+                    epi.episodeId === selectedEpisodeId
+                      ? "text-orange-500 font-semibold"
+                      : "" || epi.number % 2 !== 0
+                      ? "bg-gray-800"
+                      : "bg-gray-900"
                   } border-gray-900 py-3 text-xs`}
                   key={index}
                 >
@@ -138,16 +162,17 @@ export default function AnimeInfo() {
             <div>
               {" "}
               {isLoading && (
-                <div className="w-full h-full rounded-t-md bg-gray-900 flex items-center justify-center ">
+                <div className="w-full z-10 h-full rounded-t-md bg-gray-900 flex items-center justify-center ">
                   <span className="  animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-orange-500 ml-3"></span>
                 </div>
               )}
               {streamData && (
-                <div
-                  className="overlay"
-                  style={{ display: isLoading ? "none" : "block" }}
-                >
-                  <Artplayer
+                <div className="">
+                  <VideoPlayer
+                    src={streamData.sources[0]?.url}
+                    data={streamData}
+                  ></VideoPlayer>
+                  {/* <Artplayer
                     source={streamData.sources[0]?.url}
                     data={streamData}
                     style={{ width: "full", height: "100%", margin: "0" }}
@@ -155,7 +180,11 @@ export default function AnimeInfo() {
                       art.on("ready", () => setLoadingVideo(false));
                       art.on("loadedmetadata", () => setLoadingVideo(false));
                     }}
-                  />
+                  /> */}
+                  {/* <VideoPlayer
+                    style={{ width: "full", height: "100%", margin: "0" }}
+                    src={streamData.sources[0]?.url}
+                  /> */}
                 </div>
               )}
             </div>

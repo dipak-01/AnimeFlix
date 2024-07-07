@@ -12,11 +12,11 @@ import AnimeInfo from "./pages/AnimeInfo.jsx";
 import Community from "./pages/Community.jsx";
 import WatchTogether from "./pages/WatchTogether.jsx";
 import AnimeStream from "./pages/AnimeStream.jsx";
-import Login from "./pages/Login.jsx";
+ import Login from "./pages/Login.jsx";
 function App() {
   return (
     <>
-      <EarthoOneProvider clientId={import.meta.env.VITE_EARTHO_CLIENT_ID}>
+      
         <Router>
           <div>
             <Layout>
@@ -24,7 +24,8 @@ function App() {
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/home" element={<HomePage />} />
-                <Route path="/watch/:id" element={<AnimeStream />} />
+                
+                  <Route path="/watch/:id" element={<AnimeStream />} />   
                 <Route path="/community" element={<Community />} />
                 <Route path="/watchtogether" element={<WatchTogether />} />
                 <Route path="/user/profile" element={<Profile />} />
@@ -37,7 +38,7 @@ function App() {
             </Layout>
           </div>
         </Router>
-      </EarthoOneProvider>
+
     </>
   );
 }

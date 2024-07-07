@@ -11,6 +11,31 @@ export const register = async (username, email, password) => {
   console.log(response.data);
   return response.data;
 };
+export const watchData = async (animeId, episodeId, token) => {
+  console.log(animeId);
+  const tokenn = getToken();
+
+  if (!animeId || !episodeId || !tokenn) {
+    console.error("Invalid parameters: ", { animeId, episodeId, tokenn });
+    throw new Error("Invalid parameters");
+  }
+  try {
+    const response = await axios.post(
+      `${API_URL}/watchdata`,
+      { animeId, episodeId }, // Assuming the API expects animeId and episodeId in the request body
+      {
+        headers: {
+          Authorization: `Bearer ${tokenn}`, // Ensure token is correctly obtained and passed
+        },
+      }
+    );
+    console.log(response.data);
+    return response.data; // It's usually more useful to return just the data part of the response
+  } catch (error) {
+    console.error("An error occurred:", error.response || error); // Log the error or handle it appropriately
+    throw error; // Rethrowing the error might be more useful than just returning it
+  }
+};
 export const login = async (email, password) => {
   const response = await axios.post(`${API_URL}/login`, { email, password });
   console.log(response.data);
@@ -19,20 +44,17 @@ export const login = async (email, password) => {
 };
 export const fetchUserData = async () => {
   const token = getToken();
-  console.log(token);
   if (!token) {
     console.error("No token found");
     return null;
   }
   try {
-    console.log("inside");
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
     const response = await axios.get(`${API_URL}/user`, config);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     if (error.response) {

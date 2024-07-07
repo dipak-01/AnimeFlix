@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Artplayer from "artplayer";
 import Hls from "hls.js";
-import {Loader} from "../components/Loading";
+import { Loader } from "../components/Loading";
 import artplayerPluginHlsQuality from "artplayer-plugin-hls-quality";
 
 export default function Player({ source, data, getInstance, ...rest }) {
@@ -106,10 +106,24 @@ export default function Player({ source, data, getInstance, ...rest }) {
       const video = art.template.video;
       if (video) {
         playM3u8(video, source, art);
+    
+        const onCanPlayThrough = () => {
+          console.log("canplaythrough event fired"); // Diagnostic log
+          setLoading(false); // Hide loading spinner
+          video.removeEventListener("canplaythrough", onCanPlayThrough); // Cleanup
+        };
+    
+        video.addEventListener("canplaythrough", onCanPlayThrough);
+    
+        // Diagnostic: Test with 'loadeddata' event
+        video.addEventListener("loadeddata", () => {
+          console.log("loadeddata event fired"); // Diagnostic log
+          setLoading(false); // Ensure this is called to hide the spinner
+        });
+      } else {
+        // If video is not available, ensure loading is set to false
+        setLoading(false);
       }
-
-      // Video has been loaded
-      setLoading(false);
     });
 
     if (getInstance && typeof getInstance === "function") {
@@ -121,12 +135,17 @@ export default function Player({ source, data, getInstance, ...rest }) {
         art.destroy(false);
       }
     };
-  }, [source, data, getInstance]);
+  }, [source, data, getInstance,setLoading]);
 
   return (
     <div>
-       
-      <div ref={artRef} {...rest} className="video aspect-video"></div>
+      {loading ? (
+        <div className="w-full z-10 h-full rounded-t-md bg-gray-900 flex items-center justify-center ">
+          <span className="  animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-orange-500 ml-3"></span>
+        </div>
+      ) : (
+        <div ref={artRef} {...rest} className="video aspect-video"></div>
+      )}
     </div>
   );
 }
