@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TopUpcoming from "../components/TopUpcoming";
-
+import { addWatchListData } from "../services/userService";
 import { useLocation } from "react-router-dom";
 import { Loader } from "../components/Loading";
 export default function AnimeInfo() {
@@ -36,7 +36,12 @@ export default function AnimeInfo() {
       getData(id);
     }
   }, [id]);
-
+   
+   const handleWatchlist= async()=>{
+    const animeId = id;
+    console.log(animeId);
+    if (animeId) await addWatchListData(animeId);
+   }
   if (loading) {
     return <Loader />;
   }
@@ -103,6 +108,14 @@ export default function AnimeInfo() {
                     className=""
                   >
                     Watch Now
+                  </button>
+                </div>
+                <div className="w-fit rounded-md border-2 border-orange-300 bg-orange-300 p-2 font-semibold text-slate-900 transition-colors hover:border-orange-400 hover:bg-orange-400">
+                  <button
+                    onClick={() => handleWatchlist()}
+                    className=""
+                  >
+                    Add to Watchlist
                   </button>
                 </div>
               </div>

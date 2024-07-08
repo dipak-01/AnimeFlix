@@ -11,17 +11,20 @@ import { PlayIcon } from "@vidstack/react/icons";
 // Base styles for media player and provider (~400B).
 import "@vidstack/react/player/styles/base.css";
 import { MediaPlayer, MediaProvider } from "@vidstack/react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Loader } from "../components/Loading";
 import TopUpcoming from "../components/TopUpcoming";
 import VideoPlayer from "../services/VideoPlayer";
 import { watchData } from "../services/userService";
 
-export default function AnimeInfo() {
+export default function AnimeStream() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [loadingVideo, setLoadingVideo] = useState(true);
-  const [selectedEpisodeId, setSelectedEpisodeId] = useState(null);
+  const location = useLocation();
+  const { epiId } = location.state || {};
+  // console.log(epiId);
+  const [selectedEpisodeId, setSelectedEpisodeId] = useState(epiId || null);
   const { id } = useParams();
   const { data, loading, error } = useFetchData(id);
   const {
@@ -42,6 +45,11 @@ export default function AnimeInfo() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (epiId) {
+     
+      setSelectedEpisodeId(epiId);
+      setIsLoading(false);
+    } else
     if (episodeData && episodeData.episodes.length > 0) {
       setSelectedEpisodeId(episodeData.episodes[0].episodeId);
       setIsLoading(false);
@@ -49,15 +57,16 @@ export default function AnimeInfo() {
   }, [episodeData]);
 
   useEffect(() => {
-  const sendData = async () => {
-    const episodeId = selectedEpisodeId;
-    const animeId = id;
-    console.log(episodeId, animeId);
-    await watchData(animeId, episodeId);
-  };
+    const sendData = async () => {
+      const episodeId = selectedEpisodeId;
+      const animeId = id;
+      console.log(episodeId, animeId);
+      if(animeId && episodeId)
+      await watchData(animeId, episodeId);
+    };
 
-  sendData();
-}, [selectedEpisodeId, id]);
+    sendData();
+  }, [selectedEpisodeId, id]);
 
   const handleClick = () => {
     navigate(`/anime/info?id=${encodeURIComponent(id)}`);
@@ -67,7 +76,7 @@ export default function AnimeInfo() {
   const add = () => {
     setIsLoading(true);
     const currentIndex = episodeData.episodes.findIndex(
-      (epi) => epi.episodeId === selectedEpisodeId
+      (epi) => epi.episodeId === selectedEpisodeId,
     );
     if (currentIndex < episodeData.episodes.length - 1) {
       setSelectedEpisodeId(episodeData.episodes[currentIndex + 1].episodeId);
@@ -77,7 +86,7 @@ export default function AnimeInfo() {
 
   const sub = () => {
     const currentIndex = episodeData.episodes.findIndex(
-      (epi) => epi.episodeId === selectedEpisodeId
+      (epi) => epi.episodeId === selectedEpisodeId,
     );
     if (currentIndex > 0) {
       setSelectedEpisodeId(episodeData.episodes[currentIndex - 1].episodeId);
@@ -109,11 +118,11 @@ export default function AnimeInfo() {
   const episodes = episodeData.episodes;
 
   return (
-    <div className="text-start lg:px-6 px-4 w-full h-auto max-w-[1420px] my-4  mx-auto xl:px-0 sm:px-4">
-      <div className="w-full mx-auto space-x-6 lg:py-10 my-auto lg:flex-row flex-col flex rounded-3xl space-y-4 lg:space-y-0">
-        <div className="flex lg:w-3/4 lg:flex-row flex-col-reverse">
-          <div className="lg:w-1/4 border-pink-500 max-h-[550px] overflow-auto mostly-customized-scrollbar text-slate-100">
-            <p className="border border-gray-900 pl-6 py-2 text-sm">
+    <div className="mx-auto my-4 h-auto w-full max-w-[1420px] px-4 text-start  sm:px-4 lg:px-6 xl:px-0">
+      <div className="mx-auto my-auto flex w-full flex-col space-x-6 space-y-4 rounded-3xl lg:flex-row lg:space-y-0 lg:py-10">
+        <div className="flex flex-col-reverse lg:w-3/4 lg:flex-row">
+          <div className="mostly-customized-scrollbar max-h-[550px] overflow-auto border-pink-500 text-slate-100 lg:w-1/4">
+            <p className="border border-gray-900 py-2 pl-6 text-sm">
               List of Episodes
             </p>
             {/* {isLoading && <div className="w-full h-full rounded-t-md bg-gray-900 flex items-center justify-center ">
@@ -126,17 +135,17 @@ export default function AnimeInfo() {
                 <div
                   style={{ display: isLoading ? "none" : "flex" }}
                   onClick={() => setSelectedEpisodeId(epi.episodeId)}
-                  className={`w-full flex border ${
+                  className={`flex w-full border ${
                     epi.episodeId === selectedEpisodeId
-                      ? "text-orange-500 font-semibold"
+                      ? "font-semibold text-orange-500"
                       : "" || epi.number % 2 !== 0
-                      ? "bg-gray-800"
-                      : "bg-gray-900"
+                        ? "bg-gray-800"
+                        : "bg-gray-900"
                   } border-gray-900 py-3 text-xs`}
                   key={index}
                 >
                   <div className="w-1/6 text-center">{epi.number}</div>
-                  <div className="w-4/6 line-clamp-1 cursor-pointer">
+                  <div className="line-clamp-1 w-4/6 cursor-pointer">
                     {epi.title}
                   </div>
                   <div
@@ -162,8 +171,8 @@ export default function AnimeInfo() {
             <div>
               {" "}
               {isLoading && (
-                <div className="w-full z-10 h-full rounded-t-md bg-gray-900 flex items-center justify-center ">
-                  <span className="  animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-orange-500 ml-3"></span>
+                <div className="z-10 flex h-full w-full items-center justify-center rounded-t-md bg-gray-900 ">
+                  <span className="  ml-3 h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-orange-500 ease-linear"></span>
                 </div>
               )}
               {streamData && (
@@ -188,58 +197,58 @@ export default function AnimeInfo() {
                 </div>
               )}
             </div>
-            <div className="w-full font-semibold py-1 bg-gray-900 text-xs text-end">
+            <div className="w-full bg-gray-900 py-1 text-end text-xs font-semibold">
               <button
                 onClick={() => sub()}
-                className="bg-orange-200 p-1 m-1 rounded-sm"
+                className="m-1 rounded-sm bg-orange-200 p-1"
               >
                 Previous
               </button>
               <button
                 onClick={() => add()}
-                className="bg-orange-200 p-1 m-1 rounded-sm"
+                className="m-1 rounded-sm bg-orange-200 p-1"
               >
                 Next
               </button>
             </div>
             <div className="flex">
-              <div className="w-1/4 text-xs bg-orange-300 text-center font-semibold text-gray-800 p-1 rounded-l-md">
-                <p className="lg:line-clamp-none line-clamp-3">
+              <div className="w-1/4 rounded-l-md bg-orange-300 p-1 text-center text-xs font-semibold text-gray-800">
+                <p className="line-clamp-3 lg:line-clamp-none">
                   You are streaming Episode {episodeServerData?.episodeNo}. If
                   the current server doesn&apos;t work, please try other servers
                   beside.
                 </p>
               </div>
-              <div className="w-3/4 text-xs font-bold bg-gray-600 text-gray-950 p-1 rounded-r-md">
-                <div className="h-1/2 border-b-2 flex justify-start items-center border-gray-900 space-x-4">
+              <div className="w-3/4 rounded-r-md bg-gray-600 p-1 text-xs font-bold text-gray-950">
+                <div className="flex h-1/2 items-center justify-start space-x-4 border-b-2 border-gray-900">
                   <span>
                     <i className="fas fa-closed-captioning"></i> SUB:
                   </span>
-                  <span className="uppercase space-x-2">
+                  <span className="space-x-2 uppercase">
                     {episodeServerData?.sub[0]?.serverName && (
-                      <span className="bg-orange-200 rounded-sm px-1">
+                      <span className="rounded-sm bg-orange-200 px-1">
                         {episodeServerData.sub[0].serverName}
                       </span>
                     )}
                     {episodeServerData?.sub[1]?.serverName && (
-                      <span className="bg-orange-200 rounded-sm px-1">
+                      <span className="rounded-sm bg-orange-200 px-1">
                         {episodeServerData.sub[1].serverName}
                       </span>
                     )}
                   </span>
                 </div>
-                <div className="h-1/2 flex justify-start items-center space-x-5">
+                <div className="flex h-1/2 items-center justify-start space-x-5">
                   <span>
                     <i className="fas fa-microphone"></i> DUB:
                   </span>
-                  <span className="uppercase space-x-2">
+                  <span className="space-x-2 uppercase">
                     {episodeServerData?.dub[0]?.serverName && (
-                      <span className="bg-orange-200 rounded-sm px-1">
+                      <span className="rounded-sm bg-orange-200 px-1">
                         {episodeServerData.dub[0]?.serverName}
                       </span>
                     )}
                     {episodeServerData?.dub[1]?.serverName && (
-                      <span className="bg-orange-200 rounded-sm px-1">
+                      <span className="rounded-sm bg-orange-200 px-1">
                         {episodeServerData.dub[1].serverName}
                       </span>
                     )}
@@ -249,41 +258,41 @@ export default function AnimeInfo() {
             </div>
           </div>
         </div>
-        <div className="lg:w-1/5 p-0">
+        <div className="p-0 lg:w-1/5">
           <div className="left pb-2">
             <img
-              className="shadow-2xl shadow-blue-500/20 rounded-sm w-32"
+              className="w-32 rounded-sm shadow-2xl shadow-blue-500/20"
               src={info.poster}
               alt="Anime Poster"
             />
           </div>
-          <p className="text-3xl line-clamp-2 my-2 text-start text-slate-300">
+          <p className="my-2 line-clamp-2 text-start text-3xl text-slate-300">
             {info.name}
           </p>
           <div>
-            <div className="text-slate-900 block">
-              <div className="info lg:flex text-xs font-semibold py-2">
+            <div className="block text-slate-900">
+              <div className="info py-2 text-xs font-semibold lg:flex">
                 <div className="flex text-start">
-                  <p className="border-slate-900 border bg-orange-300 rounded-s-sm px-1">
+                  <p className="rounded-s-sm border border-slate-900 bg-orange-300 px-1">
                     {info.stats.rating}
                   </p>
-                  <p className="border-slate-900 border bg-orange-100 px-1">
+                  <p className="border border-slate-900 bg-orange-100 px-1">
                     <i className="far fa-clock"></i> {info.stats.duration}
                   </p>
-                  <p className="border-slate-900 border bg-orange-300 px-1">
+                  <p className="border border-slate-900 bg-orange-300 px-1">
                     <i className="fas fa-tv"></i> {info.stats.type}
                   </p>
-                  <p className="border-slate-900 border bg-orange-100 rounded-e-sm px-1">
+                  <p className="rounded-e-sm border border-slate-900 bg-orange-100 px-1">
                     {info.stats.quality}
                   </p>
                 </div>
-                <div className="flex text-start text-slate-900 px-2">
-                  <div className="text-nowrap border-slate-900 border bg-orange-300 rounded-s-sm px-1 whitespace-normal">
+                <div className="flex px-2 text-start text-slate-900">
+                  <div className="whitespace-normal text-nowrap rounded-s-sm border border-slate-900 bg-orange-300 px-1">
                     <i className="far fa-closed-captioning"></i>{" "}
                     {info.stats.episodes.sub}
                   </div>
                   {info.stats.episodes.dub && (
-                    <div className="border-slate-900 border bg-orange-100 rounded-e-sm px-1">
+                    <div className="rounded-e-sm border border-slate-900 bg-orange-100 px-1">
                       <i className="fas fa-microphone"></i>{" "}
                       {info.stats.episodes.dub}
                     </div>
@@ -292,7 +301,7 @@ export default function AnimeInfo() {
               </div>
             </div>
           </div>
-          <div className="right text-start flex flex-col py-2 text-xs text-slate-300 gap-4">
+          <div className="right flex flex-col gap-4 py-2 text-start text-xs text-slate-300">
             <div>
               <p className="italic">Overview:</p>
               <p className="line-clamp-3">{info.description}</p>
@@ -305,7 +314,7 @@ export default function AnimeInfo() {
               website.
             </div>
           </div>
-          <div className="border my-2 border-orange-300 bg-orange-100 w-fit text-xs p-1 rounded-sm">
+          <div className="my-2 w-fit rounded-sm border border-orange-300 bg-orange-100 p-1 text-xs">
             <button onClick={() => handleClick()}>View Detail</button>
           </div>
         </div>
@@ -313,29 +322,29 @@ export default function AnimeInfo() {
       {relatedAnime && (
         <div
           onClick={() => handleClick(relatedAnime[0].id)}
-          className="lg:w-3/12 pt-8  "
+          className="pt-8 lg:w-3/12  "
         >
-          <p className="text-3xl text-start text-slate-50">Related Anime</p>
-          <div className="border flex space-x-3 border-slate-600 rounded-lg shadow h-24 p-2 mt-4">
-            <div className=" w-fit h-full">
+          <p className="text-start text-3xl text-slate-50">Related Anime</p>
+          <div className="mt-4 flex h-24 space-x-3 rounded-lg border border-slate-600 p-2 shadow">
+            <div className=" h-full w-fit">
               <img
-                className=" rounded h-full "
+                className=" h-full rounded "
                 src={relatedAnime[0].poster}
                 alt="relatedAnime poster"
               />
             </div>
             <div className="text-slate-50">
-              <p className="text-start   line-clamp-2">
+              <p className="line-clamp-2   text-start">
                 {relatedAnime[0].name}
               </p>
               <div className="flex gap-4">
                 <p>{relatedAnime[0].type} </p>
                 <div className="flex text-slate-900">
-                  <p className="text-nowrap border-slate-100 border bg-orange-300  rounded-s-lg px-1 whitespace-normal">
+                  <p className="whitespace-normal text-nowrap rounded-s-lg border  border-slate-100 bg-orange-300 px-1">
                     <i className="far fa-closed-captioning "> </i>{" "}
                     {relatedAnime[0].episodes.dub}{" "}
                   </p>
-                  <p className="order-slate-100 border bg-orange-100  rounded-e-lg  px-1">
+                  <p className="order-slate-100 rounded-e-lg border  bg-orange-100  px-1">
                     <i className="fas fa-microphone"></i>{" "}
                     {relatedAnime[0].episodes.sub}{" "}
                   </p>
@@ -346,7 +355,7 @@ export default function AnimeInfo() {
         </div>
       )}
       <div className="  w-full ">
-        <div className="text-3xl text-start pt-8 text-lavender-web-500">
+        <div className="pt-8 text-start text-3xl text-lavender-web-500">
           Recommended Anime
         </div>
         <TopUpcoming topUpcoming={recommendedAnime} />

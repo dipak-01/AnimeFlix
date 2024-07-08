@@ -9,17 +9,17 @@ export default function () {
       console.log(watchHistoryData);
     });
   }, []);
-
+const identifier="watchhistory"
   return (
     <>
-      <main className="mx-auto my-4  h-auto w-full max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0  ">
-        <div className="my-4 text-start text-3xl text-lavender-web-500">
+      <main className="lg:px-6 px-2  text-slate-50 w-full h-auto max-w-[1420px] my-4 mx-auto xl:px-0 sm:px-4  ">
+        <div className="text-3xl text-start my-4 text-lavender-web-500">
           Continue Watching
         </div>
-        <div className="    grid w-full grid-cols-2 gap-8 py-8 text-slate-50 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <div className="    w-full text-slate-50 py-8 gap-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {watchHistoryData &&
             watchHistoryData.map((data) => (
-              <CardsType4 animeId={data.animeId} />
+              <CardsType4 animeId={data.animeId} epiId={data.episodeId}  identifier={identifier} />
             ))}
         </div>
       </main>
