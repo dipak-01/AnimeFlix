@@ -19,11 +19,10 @@ export default function ({ src, data }) {
         crossOrigin
         playsInline
         autoPlay
-       
       >
         <MediaProvider>
           {/* <Poster className="vds-poster" /> */}
-          {data.tracks.map((track,index) => (
+          {data.tracks.map((track, index) => (
             <Track
               src={track.file}
               kind={track.kind}

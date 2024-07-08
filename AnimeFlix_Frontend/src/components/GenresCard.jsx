@@ -1,7 +1,4 @@
- 
 export default function ({ genre }) {
- 
-
   const colors = [
     "red",
     "yellow",
@@ -12,10 +9,10 @@ export default function ({ genre }) {
     "pink",
     "teal",
   ];
- 
+
   return (
     <>
-      <div className="scrollbar-hide text-start flex flex-wrap h-3/4   whitespace-nowrap   gap-6 px-4">
+      <div className="scrollbar-hide flex h-3/4 flex-wrap gap-6   whitespace-nowrap   px-4 text-start">
         {genre.slice().map((genres, index) => {
           const color = colors[index % colors.length];
 
@@ -26,18 +23,19 @@ export default function ({ genre }) {
                 (color === "red"
                   ? "text-red-400"
                   : color === "green"
-                  ? "text-green-400"
-                  : color === "blue"
-                  ? "text-blue-400"
-                  : color === "indigo"
-                  ? "text-indigo-400"
-                  : color === "purple"
-                  ? "text-purple-400"
-                  : color === "pink"
-                  ? "text-pink-400"
-                  : color === "teal"
-                  ? "text-teal-400"
-                  : "") + " p-1 bg-gunmetal-300 border w-min rounded-md"
+                    ? "text-green-400"
+                    : color === "blue"
+                      ? "text-blue-400"
+                      : color === "indigo"
+                        ? "text-indigo-400"
+                        : color === "purple"
+                          ? "text-purple-400"
+                          : color === "pink"
+                            ? "text-pink-400"
+                            : color === "teal"
+                              ? "text-teal-400"
+                              : "") +
+                " w-min rounded-md border bg-gunmetal-300 p-1"
               }
             >
               {genres}

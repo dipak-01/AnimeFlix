@@ -18,21 +18,21 @@ export default function ({
   };
   return (
     <>
-      <div className="w-full h-full     text-slate-50 relative">
-        <div className="absolute    z-1    inset-y-0 right-0   ">
-          <img className="w-auto object-cover  h-full " src={poster} alt="" />
+      <div className="relative h-full     w-full text-slate-50">
+        <div className="z-1    absolute    inset-y-0 right-0   ">
+          <img className="h-full w-auto  object-cover " src={poster} alt="" />
           <div className="absolute inset-0 bg-gradient-to-r from-gunmetal-100   "></div>
-           <div className="absolute inset-0 bg-gradient-to-l from-gunmetal-100/15  "></div>
+          <div className="absolute inset-0 bg-gradient-to-l from-gunmetal-100/15  "></div>
         </div>
-        <div className="relative text-xl font-thin h-full my-auto justify-center bg-gradient-to-r from-slate-1000 to-slate-1000  lg:w-1/2 w-2/3 text-left flex flex-col  pt-20 gap-8 ">
-          <div className="text-2xl lg:text3xl text-hookers-green-700">
+        <div className="from-slate-1000 to-slate-1000 relative my-auto flex h-full w-2/3 flex-col justify-center  gap-8 bg-gradient-to-r pt-20 text-left text-xl  font-thin lg:w-1/2 ">
+          <div className="lg:text3xl text-2xl text-hookers-green-700">
             <p className="font-medium">#{rank} SpotLight</p>
           </div>
-          <div className="text-3xl lg:text-5xl line-clamp-2">
+          <div className="my-1 line-clamp-2 text-3xl lg:text-5xl">
             <p className="font-semibold">{name}</p>
           </div>
-          <div className="text-base text-nowrap lg:flex grid  justify-start lg:gap-6 gap-4">
-            <div className="flex lg:gap-8 gap-4 justify-start font-medium">
+          <div className="grid justify-start gap-4 text-nowrap  text-base lg:flex lg:gap-6">
+            <div className="flex justify-start gap-4 font-medium lg:gap-8">
               <div>
                 <i className=" fas fa-tv"></i> {otherInfo[0]}
               </div>
@@ -44,42 +44,41 @@ export default function ({
               </div>
             </div>
 
-            <div className="flex font-bold  text-sm lg:text-lg text-slate-900 space-x-1">
-              <div className="bg-orange-400 rounded-lg px-1 py-0 text-slate-900">
+            <div className="flex space-x-1  text-sm font-bold text-slate-900 lg:text-lg">
+              <div className="rounded-lg bg-orange-400 px-1 py-0 text-slate-900">
                 {otherInfo[3]}
               </div>
-              <div className="text-nowrap   bg-orange-300 rounded-s-lg px-1 whitespace-normal">
+              <div className="whitespace-normal   text-nowrap rounded-s-lg bg-orange-300 px-1">
                 <i className="  far fa-closed-captioning"></i> {episodes.sub}
               </div>
               {episodes.dub && (
-                <div className=" bg-orange-100 rounded-e-lg  px-1">
+                <div className=" rounded-e-lg bg-orange-100  px-1">
                   <i className="  fas fa-microphone"></i> {episodes.dub}
                 </div>
               )}
             </div>
           </div>
-          <div className="overflow-hidden text-sm lg:text-md font-light line-clamp-3">
+          <div className="lg:text-md line-clamp-3 overflow-hidden text-sm font-light">
             {description}
           </div>
-          <div className="flex space-x-4 lg:text-lg text-sm">
+          <div className="flex space-x-4 text-sm lg:text-lg">
             <div
               onClick={() => handleWatchClick(id)}
-              className="text-slate-900 font-bold rounded-lg bg-orange-300 w-max px-4 py-2 flex items-center"
+              className="flex w-max items-center rounded-lg bg-orange-300 px-4 py-2 font-bold text-slate-900"
             >
               <button>
                 Watch Now{""}{" "}
                 <i className="fa-solid fa-arrow-right align-middle"></i>{" "}
               </button>
             </div>
-            <div className="text-slate-900 font-bold rounded-lg bg-hookers-green-800 w-max px-4 py-2 flex items-center">
+            <div className="flex w-max items-center rounded-lg bg-hookers-green-800 px-4 py-2 font-bold text-slate-900">
               <button onClick={() => handleClick(id)}>
                 Details{""} <i className="fa-solid fa-arrow align-middle"></i>{" "}
               </button>
             </div>
           </div>
         </div>
-       </div>
+      </div>
     </>
   );
 }
- 

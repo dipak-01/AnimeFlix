@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Search from '..services/Search'
+import Search from "..services/Search";
 export default function () {
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -9,10 +9,9 @@ export default function () {
       setIsMobileView(window.innerWidth <= 768);
     };
 
-  
     window.addEventListener("resize", handleResize);
 
-     return () => {
+    return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
@@ -21,32 +20,32 @@ export default function () {
       <div>
         {" "}
         {isMobileView === false && (
-          <div className="px-8  self-end">
+          <div className="self-end  px-8">
             <input
-              className="p-2  rounded-l-md ps-2 outline-none  "
+              className="rounded-l-md  p-2 ps-2 outline-none  "
               type="text"
               placeholder="Search for Anime"
             />
             <button onClick={handleSearchReasults} className="absolute  ">
-              <i className="p-3 rounded-r-md    bg-lavender-web-400 fas fa-magnifying-glass "></i>
+              <i className="fas fa-magnifying-glass    rounded-r-md bg-lavender-web-400 p-3 "></i>
             </button>
           </div>
         )}
         {isMobileView == true && (
-          <div className="px-8 self-end ">
+          <div className="self-end px-8 ">
             <button onClick={() => setIsSearchOpen(!isSearchOpen)}>
-              <i className="p-3 rounded-md    bg-lavender-web-400 fas fa-magnifying-glass "></i>
+              <i className="fas fa-magnifying-glass    rounded-md bg-lavender-web-400 p-3 "></i>
             </button>
             {isSearchOpen && (
-              <div className="absolute w-full left-0 top-0">
-                <div class="relative  h-28    rounded-xl bg-hookers-green-200/80 shadow-lg ring-1 ring-black/5 pt-6 m-1">
+              <div className="absolute left-0 top-0 w-full">
+                <div class="relative  m-1    h-28 rounded-xl bg-hookers-green-200/80 pt-6 shadow-lg ring-1 ring-black/5">
                   <input
-                    className=" p-2 rounded-l-md ps-2 outline-none w-96  rounded-xl bg-hookers-green-100/90 shadow-lg ring-1 ring-black/5"
+                    className=" w-96 rounded-xl rounded-l-md bg-hookers-green-100/90 p-2  ps-2 shadow-lg outline-none ring-1 ring-black/5"
                     type="text"
                     placeholder="Search for Anime"
                   />
                   <button
-                    className="absolute text-slate-100 right-0 top-0 mt-2 mr-2  "
+                    className="absolute right-0 top-0 mr-2 mt-2 text-slate-100  "
                     onClick={() => setIsSearchOpen(false)}
                   >
                     {" "}

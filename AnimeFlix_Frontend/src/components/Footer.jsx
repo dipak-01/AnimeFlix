@@ -1,7 +1,7 @@
 export default () => {
   return (
     <>
-      <div className=" mb-0 mt-auto bottom-0   w-full flex justify-center items-center text-slate-300 p-10">
+      <div className=" bottom-0 mb-0 mt-auto   flex w-full items-center justify-center p-10 text-slate-300">
         <p>
           All right reservers to its corresponding developer <br />
           Made with ❤️ by dk

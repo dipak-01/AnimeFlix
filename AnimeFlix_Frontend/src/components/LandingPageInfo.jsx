@@ -1,7 +1,7 @@
 export default function LandingPageInfo() {
   return (
     <>
-      <div className="overflow-y-scroll  h-full text-left scrollbar-hide text-sm">
+      <div className="scrollbar-hide  h-full overflow-y-scroll text-left text-sm">
         <p>
           <strong s>Like Death Note</strong>, do you have an Anime Note filled
           with all the titles you'd love to see, but the only missing piece is a

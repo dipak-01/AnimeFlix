@@ -8,7 +8,7 @@ export default function UserProfile() {
   const [toggleChangePass, setToggleChangePass] = useState(false);
 
   const [data, setData] = useState();
-   
+
   const handleChangePass = () => {
     setToggleChangePass(!toggleChangePass);
   };
@@ -28,7 +28,7 @@ export default function UserProfile() {
   return (
     <>
       {data && (
-        <main className="  text-white lg:px-6 px-2 w-full max-w-[1420px] my-4 mx-auto xl:px-0 sm:px-4">
+        <main className="  mx-auto my-4 w-full max-w-[1420px] px-2 text-white sm:px-4 lg:px-6 xl:px-0">
           <div
             style={{
               backgroundImage: `url(${images[2]})`,
@@ -36,15 +36,15 @@ export default function UserProfile() {
               backgroundPosition: "center ",
               objectFit: "cover",
             }}
-            className="flex relative h-40 bg-french-gray-100 items-center"
+            className="relative flex h-40 items-center bg-french-gray-100"
           >
-            <div className="absolute z-10 w-full h-full bg-gray-700/75 blur-sm"></div>
-            <p className="z-20 text-4xl text-black font-bold m-auto">
+            <div className="absolute z-10 h-full w-full bg-gray-700/75 blur-sm"></div>
+            <p className="z-20 m-auto text-4xl font-bold text-black">
               Hi, {data.username}
             </p>
           </div>
 
-          <div className="flex   w-2/4 mx-auto justify-between p-4 m-4 border-b-2 border-gray-900">
+          <div className="m-4   mx-auto flex w-2/4 justify-between border-b-2 border-gray-900 p-4">
             <a href="">
               <i className="fas fa-user"></i> Profile
             </a>
@@ -55,13 +55,13 @@ export default function UserProfile() {
               <i className="fas fa-clock"></i> Continue Watching
             </a>
           </div>
-          <div className="w-2/4 h-auto mx-auto">
-            <p className="text-start text-3xl py-4">
+          <div className="mx-auto h-auto w-2/4">
+            <p className="py-4 text-start text-3xl">
               <i className="fas fa-user"></i> Edit Profile
             </p>
             <form
               onSubmit={handleSubmit}
-              className="w-full border-2 border-gray-900 p-8 text-start uppercase space-y-6 inputclass"
+              className="inputclass w-full space-y-6 border-2 border-gray-900 p-8 text-start uppercase"
             >
               <div>
                 <p>email address</p>
@@ -109,7 +109,7 @@ export default function UserProfile() {
               )}
               <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
               >
                 Update Username
               </button>

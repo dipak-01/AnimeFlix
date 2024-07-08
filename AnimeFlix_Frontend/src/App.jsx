@@ -13,6 +13,7 @@ import Community from "./pages/Community.jsx";
 import WatchTogether from "./pages/WatchTogether.jsx";
 import AnimeStream from "./pages/AnimeStream.jsx";
  import Login from "./pages/Login.jsx";
+import ContinueWatch from "./pages/ContinueWatch.jsx";
 function App() {
   return (
     <>
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/watchtogether" element={<WatchTogether />} />
                 <Route path="/user/profile" element={<Profile />} />
                 <Route path="/user/watchlist" element={<WatchList />} />
+                <Route path="/user/continuewatching" element={<ContinueWatch />} />
 
                 <Route path="/search" element={<SearchPage />} />
 

@@ -10,34 +10,44 @@ export default function LandingPage() {
 
   return (
     <>
-      <div className="lg:px-6 px-2 text-slate-50 w-full h-screen max-w-[1420px] mx-auto xl:px-0 sm:px-4 flex justify-center items-center">
+      <div className="mx-auto flex h-screen w-full max-w-[1420px] items-center justify-center px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0">
         <div className="flex justify-center">
-          <div className="bg-zinc-900 lg:w-1/2 h-2/4 rounded-md lg:flex-row flex flex-col  shadow-lg transform transition duration-300 hover:scale-105">
-            <div className="left lg:w-1/2 text-start py-8 px-8 align-super space-y-2">
+          <div className="flex h-2/4 transform flex-col rounded-md bg-zinc-900 shadow-lg  transition duration-300 hover:scale-105 lg:w-1/2 lg:flex-row">
+            <div className="left space-y-2 px-8 py-8 text-start align-super lg:w-1/2">
               <div className="h-2/5 space-y-2">
                 <p className="text-2xl font-semibold">Welcome to </p>
                 <span className="text-4xl font-extrabold">
                   Anime<span className="text-orange-500">Flix</span>
                 </span>
-                <p className="text-orange-200">Your one stop destination to watch anime </p>
-              </div>
-              <div className="h-2/5 flex flex-col space-y-2">
-                <p className="italic text-sm">Suggestion:</p>
-                <p className="line-clamp-4 text-sm">
-                  Solo Leveling, Overflow (Uncensored), Mashle: Magic and Muscles Season 2, Frieren: Beyond Journey's End, Classroom of the Elite III, Black Clover, Ninja Kamui, Tsukimichi -Moonlit Fantasy- Season 2, Hokkaido Gals Are Super Adorable!, Classroom of the Elite 2nd Season
+                <p className="text-orange-200">
+                  Your one stop destination to watch anime{" "}
                 </p>
               </div>
-              <div className="h-1/5 flex items-center">
+              <div className="flex h-2/5 flex-col space-y-2">
+                <p className="text-sm italic">Suggestion:</p>
+                <p className="line-clamp-4 text-sm">
+                  Solo Leveling, Overflow (Uncensored), Mashle: Magic and
+                  Muscles Season 2, Frieren: Beyond Journey's End, Classroom of
+                  the Elite III, Black Clover, Ninja Kamui, Tsukimichi -Moonlit
+                  Fantasy- Season 2, Hokkaido Gals Are Super Adorable!,
+                  Classroom of the Elite 2nd Season
+                </p>
+              </div>
+              <div className="flex h-1/5 items-center">
                 <button
                   onClick={handleEnterClick}
-                  className="w-fit transition duration-150 focus:ring-2 ease-in-out transform bg-orange-500 text-zinc-800 font-semibold p-2 rounded-md hover:text-zinc-950 hover:border-zinc-600 focus:translate-y-1 hover:shadow-lg"
+                  className="w-fit transform rounded-md bg-orange-500 p-2 font-semibold text-zinc-800 transition duration-150 ease-in-out hover:border-zinc-600 hover:text-zinc-950 hover:shadow-lg focus:translate-y-1 focus:ring-2"
                 >
                   Enter AnimeFlix
                 </button>
               </div>
             </div>
-            <div className="right lg:flex w-1/2 hidden justify-center items-end">
-              <img className=" h-auto object-cover rounded-md shadow-lg" src="/landingpagehero.png" alt="AnimeFlix Hero" />
+            <div className="right hidden w-1/2 items-end justify-center lg:flex">
+              <img
+                className=" h-auto rounded-md object-cover shadow-lg"
+                src="/landingpagehero.png"
+                alt="AnimeFlix Hero"
+              />
             </div>
           </div>
         </div>

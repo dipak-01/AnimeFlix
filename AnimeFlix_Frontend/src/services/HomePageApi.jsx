@@ -4,7 +4,7 @@ export default async () => {
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_ANIME_URL}/anime/home`,
-        { crossdomain: true }
+        { crossdomain: true },
       );
       const homeData = response.data;
       return homeData;
@@ -14,6 +14,6 @@ export default async () => {
     }
   };
   const data = await getData();
-   
+
   return data;
 };

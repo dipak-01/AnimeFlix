@@ -1,10 +1,10 @@
-import "../styles/loader.css"
- 
- export function Loader() {
+import "../styles/loader.css";
+
+export function Loader() {
   return (
-    <div className="w-full h-screen  flex justify-center items-center ">
+    <div className="flex h-screen  w-full items-center justify-center ">
       <img
-        className=" border-teal-950 w-60 h-32 bg-right"
+        className=" h-32 w-60 border-teal-950 bg-right"
         src="/load2.gif"
         alt="Loading..."
       />
@@ -14,11 +14,10 @@ import "../styles/loader.css"
 
 export const SecondLoader = () => {
   return (
-    <div className="flex items-center loader">
+    <div className="loader flex items-center">
       <span className="bar"></span>
       <span className="bar bar-second"></span>
       <span className="bar bar-third"></span>
     </div>
   );
 };
-

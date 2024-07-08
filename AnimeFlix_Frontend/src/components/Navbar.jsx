@@ -91,17 +91,17 @@ function App() {
 
   return (
     <div className="App">
-      <nav className="bg-slate-1000/75 lg:px-10 p-4">
-        <div className="container mx-auto flex justify-between items-center">
+      <nav className="bg-slate-1000/75 p-4 lg:px-10">
+        <div className="container mx-auto flex items-center justify-between">
           <div className="space-x-2">
             <UserProfilePopover />
-            <a href="/" className="text-white text-xl font-bold">
+            <a href="/" className="text-xl font-bold text-white">
               <span className="text-pretty text-xl lg:text-3xl">
                 Anime<span className="text-orange-600">Flix</span>
               </span>
             </a>
           </div>
-          <div className="hidden space-x-4 text-white text-lg lg:flex">
+          <div className="hidden space-x-4 text-lg text-white lg:flex">
             <a href="/home" className="hover:underline">
               Home
             </a>
@@ -114,7 +114,7 @@ function App() {
               Watch Together
             </a>
           </div>
-          <div className="flex space-x-8 items-center">
+          <div className="flex items-center space-x-8">
             <button onClick={handleSearchOpen} className="text-white">
               <FontAwesomeIcon icon={faSearch} className="h-6 w-6" />
             </button>
@@ -127,31 +127,34 @@ function App() {
                 <FontAwesomeIcon icon={faUser} className="h-6 w-6" />
               </button>
               {toggleUser && (
-                <div className="absolute z-50 w-72 right-0 bg-gray-900 rounded-lg p-2 py-4 text-slate-50 space-y-4 text-start">
+                <div className="absolute right-0 z-50 w-72 space-y-4 rounded-lg bg-gray-900 p-2 py-4 text-start text-slate-50">
                   {userData ? (
                     <div className="space-y-3">
                       <p className="text-orange-400"> {userData.username}</p>
-                      <p className="border-2 rounded-2xl border-gray-700 p-2 bg-gray-800 cursor-pointer hover:text-white">
+                      <p className="cursor-pointer rounded-2xl border-2 border-gray-700 bg-gray-800 p-2 hover:text-white">
                         {userData.email}
                       </p>
                       <p
                         onClick={() => navigate("/user/profile")}
-                        className="border-2 rounded-2xl border-gray-700 p-2 bg-gray-800 cursor-pointer hover:text-white"
+                        className="cursor-pointer rounded-2xl border-2 border-gray-700 bg-gray-800 p-2 hover:text-white"
                       >
                         Profile
                       </p>
                       <p
                         onClick={() => navigate("/user/watchlist")}
-                        className="border-2 rounded-2xl border-gray-700 p-2 bg-gray-800 cursor-pointer hover:text-white"
+                        className="cursor-pointer rounded-2xl border-2 border-gray-700 bg-gray-800 p-2 hover:text-white"
                       >
                         Watchlist
                       </p>
-                      <p className="border-2 rounded-2xl border-gray-700 p-2 bg-gray-800 cursor-pointer hover:text-white">
+                      <p
+                        onClick={() => navigate("/user/continuewatching")}
+                        className="cursor-pointer rounded-2xl border-2 border-gray-700 bg-gray-800 p-2 hover:text-white"
+                      >
                         Continue Watching
                       </p>
-                      <div className="text-end px-2 hover:text-white cursor-pointer">
+                      <div className="cursor-pointer px-2 text-end hover:text-white">
                         <button
-                        className="hover:text-orange-300"
+                          className="hover:text-orange-300"
                           onClick={() => {
                             localStorage.removeItem("token");
                             window.location.reload();
@@ -170,7 +173,7 @@ function App() {
                         />
                       )} */}
                       <button
-                        className="bg-orange-200 text-gray-800 px-2 border-2 rounded-xl"
+                        className="rounded-xl border-2 bg-orange-200 px-2 text-gray-800"
                         id="login"
                         onClick={() => navigate("/login")}
                         // onClick={handleLoginClick}
@@ -186,23 +189,23 @@ function App() {
         </div>
       </nav>
       {searchOpen && (
-        <div className="z-50 fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
           <div className="relative w-4/5 sm:w-3/5 lg:w-2/5">
             <form
               ref={searchBarRef}
               onSubmit={handleSubmit}
-              className="max-w-md mx-auto"
+              className="mx-auto max-w-md"
             >
               <label
                 htmlFor="default-search"
-                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+                className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Search
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
                   <svg
-                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                    className="h-4 w-4 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -220,7 +223,7 @@ function App() {
                 <input
                   type="text"
                   id="default-search"
-                  className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 focus:bg-slate-950 dark:bg-slate-900 dark:border-gray-700 dark:placeholder-gray-200 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-12"
+                  className="block h-12 w-full rounded-lg border border-gray-300 bg-gray-50 p-4 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:bg-slate-950 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-900 dark:text-white dark:placeholder-gray-200 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                   placeholder="Search Overflow..."
                   required
                   value={name}
@@ -228,7 +231,7 @@ function App() {
                 />
                 <button
                   type="submit"
-                  className="h-12 absolute text-sm end-0 bottom-0 focus:outline-none font-medium rounded-lg px-4 py-2"
+                  className="absolute bottom-0 end-0 h-12 rounded-lg px-4 py-2 text-sm font-medium focus:outline-none"
                 >
                   <FontAwesomeIcon
                     icon={faSearch}
@@ -240,7 +243,7 @@ function App() {
             </form>
             <button
               onClick={handleSearchClose}
-              className="absolute top-3 right-0 text-white"
+              className="absolute right-0 top-3 text-white"
             ></button>
           </div>
         </div>

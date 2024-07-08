@@ -1,11 +1,11 @@
 const FailedAlert = () => (
-  <div className="absolute top-20 left-10">
+  <div className="absolute left-10 top-20">
     <div
-      class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+      class="mb-4 flex items-center rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-800 dark:border-red-800 dark:bg-gray-800 dark:text-red-400"
       role="alert"
     >
       <svg
-        class="flex-shrink-0 inline w-4 h-4 me-3"
+        class="me-3 inline h-4 w-4 flex-shrink-0"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -22,13 +22,13 @@ const FailedAlert = () => (
   </div>
 );
 const SuccessAlert = ({ keyword }) => (
-  <div className="absolute top-20 left-10">
+  <div className="absolute left-10 top-20">
     <div
-      class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
+      class="mb-4 flex items-center rounded-lg border border-green-300 bg-green-50 p-4 text-sm text-green-800 dark:border-green-800 dark:bg-gray-800 dark:text-green-400"
       role="alert"
     >
       <svg
-        class="flex-shrink-0 inline w-4 h-4 me-3"
+        class="me-3 inline h-4 w-4 flex-shrink-0"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"

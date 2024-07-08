@@ -88,25 +88,25 @@ const Auth = () => {
   }, []);
 
   return (
-    <main className="h-screen flex items-center text-white lg:px-6 px-2 w-full max-w-[1420px] my-4 mx-auto xl:px-0 sm:px-4">
+    <main className="mx-auto my-4 flex h-screen w-full max-w-[1420px] items-center px-2 text-white sm:px-4 lg:px-6 xl:px-0">
       {showAlert && <SuccessAlert keyword={alertMessage} />}
-      <div className="h-3/4 w-full mx-auto">
+      <div className="mx-auto h-3/4 w-full">
         {toggleLogin ? (
           <>
-            <div className="w-2/4 space-x-4 max-h-none h-3/4  m-auto bg-slate-950 rounded-3xl border-2 border-teal-500 flex items-center shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)]">
-              <div className={`flex flex-col p-4 text-start logininp w-1/2  `}>
-                <div className="font-bold text-2xl">REGISTER</div>
+            <div className="m-auto flex h-3/4 max-h-none  w-2/4 items-center space-x-4 rounded-3xl border-2 border-teal-500 bg-slate-950 shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)]">
+              <div className={`logininp flex w-1/2 flex-col p-4 text-start  `}>
+                <div className="text-2xl font-bold">REGISTER</div>
                 <div className="mb-3">
                   <label
                     htmlFor="name"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Username
                   </label>
                   <input
                     type="name"
                     id="name"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     placeholder="john"
                     required
                     onChange={(e) => setUsername(e.target.value)}
@@ -115,14 +115,14 @@ const Auth = () => {
                 <div className="mb-3">
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Email address
                   </label>
                   <input
                     type="email"
                     id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     placeholder="john.doe@company.com"
                     required
                     value={email}
@@ -132,21 +132,21 @@ const Auth = () => {
                 <div className="mb-3">
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Password
                   </label>
                   <input
                     type="password"
                     id="password"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     placeholder="•••••••••"
                     required
                     value={password}
                     onChange={handlePasswordChange}
                   />
                   {validationMessage && (
-                    <div className="text-sm text-red-500 pt-2 px-2">
+                    <div className="px-2 pt-2 text-sm text-red-500">
                       {validationMessage}
                     </div>
                   )}
@@ -168,13 +168,13 @@ const Auth = () => {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </div> */}
-                <div className="flex items-start mb-3">
-                  <div className="flex items-center h-5">
+                <div className="mb-3 flex items-start">
+                  <div className="flex h-5 items-center">
                     <input
                       id="remember"
                       type="checkbox"
                       value=""
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                      className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                       required
                     />
                   </div>
@@ -193,7 +193,7 @@ const Auth = () => {
                   </label>
                 </div>
                 <button
-                  className="text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 shadow-lg shadow-orange-500/50 dark:shadow-lg dark:shadow-orange-800/80  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase font-semibold"
+                  className="mb-2 me-2 rounded-lg bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 px-5 py-2.5 text-center text-sm font-semibold uppercase text-white  shadow-lg shadow-orange-500/50 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-orange-300 dark:shadow-lg dark:shadow-orange-800/80 dark:focus:ring-orange-800"
                   onClick={handleRegister}
                 >
                   Register
@@ -210,7 +210,7 @@ const Auth = () => {
                 </div>
               </div>
 
-              <div className="w-1/2 h-full relative ">
+              <div className="relative h-full w-1/2 ">
                 <img
                   className=" absolute inset-x-0 bottom-0 "
                   src={loginImages[randomRei]}
@@ -221,20 +221,20 @@ const Auth = () => {
           </>
         ) : (
           <>
-            <div className="w-2/4 space-x-4 max-h-none h-3/4   m-auto bg-slate-950 rounded-3xl border-2 border-teal-500 flex flex-row-reverse items-center shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)]">
-              <div className={`flex flex-col text-start logininp w-1/2 p-4 `}>
-                <div className="font-bold text-2xl">LOGIN</div>
+            <div className="m-auto flex h-3/4 max-h-none   w-2/4 flex-row-reverse items-center space-x-4 rounded-3xl border-2 border-teal-500 bg-slate-950 shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)]">
+              <div className={`logininp flex w-1/2 flex-col p-4 text-start `}>
+                <div className="text-2xl font-bold">LOGIN</div>
                 <div className="mb-3">
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Email address
                   </label>
                   <input
                     type="email"
                     id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     placeholder="john.doe@company.com"
                     required
                     value={email}
@@ -244,27 +244,27 @@ const Auth = () => {
                 <div className="mb-3">
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Password
                   </label>
                   <input
                     type="password"
                     id="password"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     placeholder="•••••••••"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <div className="flex items-start mb-3">
-                  <div className="flex items-center h-5">
+                <div className="mb-3 flex items-start">
+                  <div className="flex h-5 items-center">
                     <input
                       id="remember"
                       type="checkbox"
                       value=""
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                      className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                       required
                     />
                   </div>
@@ -282,7 +282,7 @@ const Auth = () => {
                   </label>
                 </div>
                 <button
-                  className="text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 shadow-lg shadow-orange-500/50 dark:shadow-lg dark:shadow-orange-800/80  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase font-semibold"
+                  className="mb-2 me-2 rounded-lg bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 px-5 py-2.5 text-center text-sm font-semibold uppercase text-white  shadow-lg shadow-orange-500/50 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-orange-300 dark:shadow-lg dark:shadow-orange-800/80 dark:focus:ring-orange-800"
                   onClick={handleLogin}
                 >
                   Login
@@ -299,7 +299,7 @@ const Auth = () => {
                 </div>
               </div>
 
-              <div className="w-1/2 h-full relative ">
+              <div className="relative h-full w-1/2 ">
                 <img
                   className="absolute inset-x-0 bottom-0  "
                   src={loginImages[randomAsuka]}

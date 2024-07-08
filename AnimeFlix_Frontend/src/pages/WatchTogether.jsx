@@ -1,11 +1,12 @@
 export default function () {
-    return (
-      <>
-        <div className="w-full h-screen flex justify-center items-center flex-col">
-          <p className="text-3xl text-slate-50 p-4">Sorry, its not ready yet I am still cooking🧑‍🍳</p>
-          <img src="/community.gif" alt="" />
-        </div>
-      </>
-    );
-  }
-  
+  return (
+    <>
+      <div className="flex h-screen w-full flex-col items-center justify-center">
+        <p className="p-4 text-3xl text-slate-50">
+          Sorry, its not ready yet I am still cooking🧑‍🍳
+        </p>
+        <img src="/community.gif" alt="" />
+      </div>
+    </>
+  );
+}

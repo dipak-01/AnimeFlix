@@ -83,8 +83,8 @@ const DrawerNavigation = () => {
   return (
     <div className="text-center">
       <button
-        className={`text-sm lg:text-lg text-black bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-t-lg  px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800 z-20 rotate-90 fixed -left-12 top-1/2 shadow-2xl transition-transform ${
-          drawerOpen ? "lg:translate-x-96 translate-x-72" : "translate-x-0"
+        className={`fixed -left-12 top-1/2 z-20 rotate-90 rounded-t-lg bg-orange-700 px-5 py-2.5  text-sm font-medium text-black shadow-2xl transition-transform hover:bg-orange-800 focus:outline-none focus:ring-4 focus:ring-orange-300 lg:text-lg dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800 ${
+          drawerOpen ? "translate-x-72 lg:translate-x-96" : "translate-x-0"
         } `}
         type="button"
         onClick={toggleDrawer}
@@ -96,15 +96,15 @@ const DrawerNavigation = () => {
 
       <div
         id="drawer-navigation"
-        className={`fixed top-0 left-0 z-40 lg:w-96 w-72 h-screen p-4 mostly-customized-scrollbar overflow-y-auto transition-transform ${
-          drawerOpen ? "translate-x-0" : "lg:-translate-x-96 -translate-x-96"
+        className={`mostly-customized-scrollbar fixed left-0 top-0 z-40 h-screen w-72 overflow-y-auto p-4 transition-transform lg:w-96 ${
+          drawerOpen ? "translate-x-0" : "-translate-x-96 lg:-translate-x-96"
         } dark:bg-gray-950`}
         tabIndex="-1"
         aria-labelledby="drawer-navigation-label"
       >
         <h5
           id="drawer-navigation-label"
-          className="text-3xl text-start pb-4 font-semibold text-gray-500 uppercase dark:text-gray-400 whitespace-nowrap"
+          className="whitespace-nowrap pb-4 text-start text-3xl font-semibold uppercase text-gray-500 dark:text-gray-400"
         >
           Schedules{" "}
           <span className="text-xl text-gray-600">
@@ -115,11 +115,11 @@ const DrawerNavigation = () => {
           type="button"
           onClick={toggleDrawer}
           aria-controls="drawer-navigation"
-          className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+          className="absolute end-2.5 top-2.5 inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
         >
           <svg
             aria-hidden="true"
-            className="w-5 h-5"
+            className="h-5 w-5"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -134,18 +134,18 @@ const DrawerNavigation = () => {
         </button>
         <div>
           {schedules.map(({ date, schedule }, index) => (
-            <div key={index} className="text-start  text-slate-300 pb-4">
-              <div className=" font-semibold text-2xl   border-b-2 border-gray-800 py-2 font-mono text-orange-400">
+            <div key={index} className="pb-4  text-start text-slate-300">
+              <div className=" border-b-2 border-gray-800   py-2 font-mono text-2xl font-semibold text-orange-400">
                 {formatDateToReadable(date)}
               </div>
               {schedule && schedule.length > 0 ? (
                 <div>
                   {schedule.map((item, itemIndex) => (
                     <div className="flex p-1" key={itemIndex}>
-                      <div className="text-gray-400 w-1/4 ">{item.time} </div>
+                      <div className="w-1/4 text-gray-400 ">{item.time} </div>
                       <div
                         onClick={() => handleClick(item.id)}
-                        className="text-gray-600 w-3/4 line-clamp-1 cursor-pointer"
+                        className="line-clamp-1 w-3/4 cursor-pointer text-gray-600"
                       >
                         {item.name}
                       </div>

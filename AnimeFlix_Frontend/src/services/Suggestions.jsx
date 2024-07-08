@@ -1,5 +1,4 @@
-import { useState,useEffect } from "react";
-  
+import { useState, useEffect } from "react";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -7,19 +6,18 @@ import { useNavigate } from "react-router-dom";
 const Suggestions = ({ query }) => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
-  const handleClick=(id)=>{
+  const handleClick = (id) => {
     navigate(`/anime/info?id=${encodeURIComponent(id)}`);
     window.location.reload();
-
-  }
+  };
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_ANIME_URL}/anime/search/suggest?q=${query}`,
-          { crossdomain: true }
+          { crossdomain: true },
         );
- 
+
         const filteredData = response.data.suggestions;
         setData(filteredData);
       } catch (error) {
@@ -31,23 +29,22 @@ const Suggestions = ({ query }) => {
       getData();
     }
   }, [query]);
- 
 
   return (
-    <div className="bg-slate-900 rounded-xl border border-blue-300 p-2 mt-1">
+    <div className="mt-1 rounded-xl border border-blue-300 bg-slate-900 p-2">
       {data.length > 0 ? (
         data.map((suggestion) => (
           <div
             onClick={() => handleClick(suggestion.id)}
-            className="cursor-pointer hover:text-slate-50 text-slate-400 bg-slate-900 p-1 mb-1 border-b-2 border-slate-700"
+            className="mb-1 cursor-pointer border-b-2 border-slate-700 bg-slate-900 p-1 text-slate-400 hover:text-slate-50"
             key={suggestion.id}
           >
             {suggestion.name ? suggestion.name : "don't search"}
           </div>
         ))
       ) : (
-        <div className="text-slate-400 bg-slate-900 p-1 mb-1   border-slate-700">
-      {  "  Don't Search hentai here you little c*nt."}
+        <div className="mb-1 border-slate-700 bg-slate-900 p-1   text-slate-400">
+          {"  Don't Search hentai here you little c*nt."}
         </div>
       )}
     </div>

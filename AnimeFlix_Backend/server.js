@@ -96,6 +96,25 @@ app.post("/watchdata", authMiddleware, async (req, res) => {
   }
 });
 
+app.get("/watchhistory", async (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer")) {
+    return res.status(401).send("No token provided");
+  }
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, "jwt_secret");
+    const userId = decoded.userId;
+    const watchHistory = await WatchHistory.find({ userId: userId });
+    if (!watchHistory) return res.status(404).send("WatchHistory not found");
+    return res.json(watchHistory);
+  } catch (error) {
+    console.error(error);
+    return res.status(401).send("Invalid or expired token");
+  }
+});
+
 app.get("/user", async (req, res) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer")) {

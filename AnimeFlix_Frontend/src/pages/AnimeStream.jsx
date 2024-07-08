@@ -15,7 +15,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Loader } from "../components/Loading";
 import TopUpcoming from "../components/TopUpcoming";
 import VideoPlayer from "../services/VideoPlayer";
-import { watchData } from "../services/authService";
+import { watchData } from "../services/userService";
 
 export default function AnimeInfo() {
   const [isLoading, setIsLoading] = useState(true);
@@ -317,7 +317,7 @@ export default function AnimeInfo() {
         >
           <p className="text-3xl text-start text-slate-50">Related Anime</p>
           <div className="border flex space-x-3 border-slate-600 rounded-lg shadow h-24 p-2 mt-4">
-            <div className="  h-full">
+            <div className=" w-fit h-full">
               <img
                 className=" rounded h-full "
                 src={relatedAnime[0].poster}
