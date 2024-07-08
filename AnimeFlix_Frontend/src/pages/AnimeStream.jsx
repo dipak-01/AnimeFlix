@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import Artplayer from "../services/ArtPlayer";
-// import VideoPlayer from "../services/VideoPlayer";
-import {
+ import {
   useFetchData,
   useFetchStreamData,
   useAnimeEpisodeData,
@@ -10,8 +8,7 @@ import {
 import { PlayIcon } from "@vidstack/react/icons";
 // Base styles for media player and provider (~400B).
 import "@vidstack/react/player/styles/base.css";
-import { MediaPlayer, MediaProvider } from "@vidstack/react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Loader } from "../components/Loading";
 import TopUpcoming from "../components/TopUpcoming";
 import VideoPlayer from "../services/VideoPlayer";

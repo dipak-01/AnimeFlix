@@ -8,10 +8,10 @@ import {
 import { Loader } from "./Loading";
 import { useNavigate } from "react-router-dom";
 export default function CardsType4({ animeId, epiId, identifier }) {
-  const [data, setData] = useState(null); // Initialize data as null for clarity
-  const [loading, setLoading] = useState(true); // Start with loading true
+  const [data, setData] = useState(null);  
+  const [loading, setLoading] = useState(true);  
   const [isLoading, setIsLoading] = useState(true);
-  const [isVisible, setIsVisible] = useState(true); // State to control visibility
+  const [isVisible, setIsVisible] = useState(true);  
 
   const navigate = useNavigate();
 
