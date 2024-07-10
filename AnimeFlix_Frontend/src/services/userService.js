@@ -1,10 +1,10 @@
 import axios from "axios";
 const getToken = () => localStorage.getItem("token");
 
-const API_URL = "http://localhost:3000";
+const API_URL = `${import.meta.env.VITE_BACKEND_SERVER_PORT}`;
 
 export const watchData = async (animeId, episodeId) => {
-  console.log(episodeId);
+ 
   const tokenn = getToken();
 
   if (!animeId || !episodeId || !tokenn) {

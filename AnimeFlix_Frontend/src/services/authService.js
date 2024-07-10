@@ -1,7 +1,7 @@
 import axios from "axios";
 const getToken = () => localStorage.getItem("token");
 
-const API_URL = "http://localhost:3000";
+const API_URL = `${import.meta.env.VITE_BACKEND_SERVER_PORT}`;
 export const register = async (username, email, password) => {
   const response = await axios.post(`${API_URL}/register`, {
     username,
@@ -19,6 +19,7 @@ export const login = async (email, password) => {
 };
 export const fetchUserData = async () => {
   const token = getToken();
+  console.log(token);
   if (!token) {
     console.error("No token found");
     return null;

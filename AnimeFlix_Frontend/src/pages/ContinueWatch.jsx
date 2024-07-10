@@ -1,28 +1,50 @@
 import { useState, useEffect } from "react";
 import CardsType4 from "../components/CardsType4";
 import { fetchWatchHistory } from "../services/userService";
-export default function () {
+import { Loader } from "../components/Loading";
+
+export function ContinueWatch() {
+  return (
+    <>
+      <main className="mx-auto my-4  h-screen w-full max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0  ">
+        <div className="    grid w-full grid-cols-2 gap-8 py-8 text-slate-50 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          <WatchData />
+        </div>
+      </main>
+    </>
+  );
+}
+
+export function WatchData() {
   const [watchHistoryData, setWatchHistoryData] = useState(null);
   useEffect(() => {
     fetchWatchHistory().then((data) => {
       setWatchHistoryData(data);
-      console.log(watchHistoryData);
     });
   }, []);
-const identifier="watchhistory"
+  const identifier = "watchhistory";
   return (
     <>
-      <main className="lg:px-6 px-2  text-slate-50 w-full h-auto max-w-[1420px] my-4 mx-auto xl:px-0 sm:px-4  ">
-        <div className="text-3xl text-start my-4 text-lavender-web-500">
-          Continue Watching
-        </div>
-        <div className="    w-full text-slate-50 py-8 gap-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {watchHistoryData &&
-            watchHistoryData.map((data) => (
-              <CardsType4 animeId={data.animeId} epiId={data.episodeId}  identifier={identifier} />
-            ))}
-        </div>
-      </main>
+      <div>
+        {watchHistoryData ? (
+          <>
+            <div className="my-4 w-full whitespace-nowrap pb-4 text-start  text-3xl text-lavender-web-500">
+              Continue Watching
+            </div>
+            <div>
+              {watchHistoryData.map((data) => (
+                <CardsType4
+                  animeId={data.animeId}
+                  epiId={data.episodeId}
+                  identifier={identifier}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
     </>
   );
 }

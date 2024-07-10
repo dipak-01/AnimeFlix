@@ -6,17 +6,35 @@ import { fetchUserData } from "../services/authService";
 export default function UserProfile() {
   const [message, setMessage] = useState("");
   const [toggleChangePass, setToggleChangePass] = useState(false);
+  const [profileImage, setProfileImage] = useState("default-profile.png"); // Placeholder image
 
   const [data, setData] = useState();
 
   const handleChangePass = () => {
     setToggleChangePass(!toggleChangePass);
   };
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (!file) {
+      console.error("No file selected.");
+      return;
+    }
 
-  useEffect(async () => {
-    const results = await fetchUserData();
-    setData(results);
-    console.log(data);
+    // Assuming you have a function to upload the image and get back the URL
+    uploadImage(file)
+      .then((imageUrl) => {
+        setProfileImage(imageUrl);
+      })
+      .catch((error) => {
+        console.error("Error uploading image:", error);
+      });
+  };
+  useEffect(() => {
+    const getData = async () => {
+      const results = await fetchUserData();
+      setData(results);
+    };
+    getData();
   }, []);
   const handleSubmit = async () => {};
   const images = [
@@ -55,66 +73,98 @@ export default function UserProfile() {
               <i className="fas fa-clock"></i> Continue Watching
             </a>
           </div>
-          <div className="mx-auto h-auto w-2/4">
+
+          <div className="mx-auto h-auto w-2/4  ">
             <p className="py-4 text-start text-3xl">
               <i className="fas fa-user"></i> Edit Profile
             </p>
-            <form
-              onSubmit={handleSubmit}
-              className="inputclass w-full space-y-6 border-2 border-gray-900 p-8 text-start uppercase"
-            >
-              <div>
-                <p>email address</p>
-                <input
-                  className=""
-                  type="text"
-                  value={data.email}
-                  placeholder=""
-                  disabled
-                />
-              </div>
-              <div>
-                <p>name</p>
-                <input
-                  defaultValue={data.username}
-                  className=""
-                  type="text"
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-              <div>
-                <p>date joined</p>
-                <input className="" type="date" />
-              </div>
-              <div>
-                <p className="cursor-pointer" onClick={handleChangePass}>
-                  <i className="fas fa-key"></i> change password
-                </p>
-              </div>
-              {toggleChangePass && (
-                <div className="space-y-6">
-                  <div>
-                    <p>current password</p>
-                    <input className="" type="password" aria-label="password" />
+            <div className="flex">
+              <form
+                onSubmit={handleSubmit}
+                className="inputclass w-2/3 space-y-6 border-2 border-gray-900 p-8 text-start uppercase"
+              >
+                <div>
+                  <p>email address</p>
+                  <input
+                    className=""
+                    type="text"
+                    value={data.email}
+                    placeholder=""
+                    disabled
+                  />
+                </div>
+                <div>
+                  <p>name</p>
+                  <input
+                    defaultValue={data.username}
+                    className=""
+                    type="text"
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <p>date joined</p>
+                  <input className="" type="date" />
+                </div>
+                <div>
+                  <p className="cursor-pointer" onClick={handleChangePass}>
+                    <i className="fas fa-key"></i> change password
+                  </p>
+                </div>
+                {toggleChangePass && (
+                  <div className="space-y-6">
+                    <div>
+                      <p>current password</p>
+                      <input
+                        className=""
+                        type="password"
+                        aria-label="password"
+                      />
+                    </div>
+                    <div>
+                      <p>new password</p>
+                      <input className="" type="password" />
+                    </div>
+                    <div>
+                      <p>confirm new password</p>
+                      <input className="" type="password" />
+                    </div>
                   </div>
-                  <div>
-                    <p>new password</p>
-                    <input className="" type="password" />
-                  </div>
-                  <div>
-                    <p>confirm new password</p>
-                    <input className="" type="password" />
+                )}
+                <button
+                  type="submit"
+                  className="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+                >
+                  Update Username
+                </button>
+                {message && <p>{message}</p>}
+              </form>
+              <div className="flex   w-1/3  justify-center pt-16 ">
+                <div className="flex w-full  items-start justify-center ">
+                  <div className="relative">
+                    <img
+                      className="h-32 w-32 rounded-full bg-slate-200 "
+                      src={profileImage}
+                      alt="Profile"
+                    />
+                    <div className="absolute bottom-0 right-0">
+                      <label
+                        htmlFor="files"
+                        className="flex cursor-pointer items-center justify-center rounded-full bg-blue-500 p-2 text-white"
+                      >
+                        <i className="fas fa-pen"></i>
+                      </label>
+                      <input
+                        id="files"
+                        className="hidden"
+                        onChange={handleImageChange}
+                        type="file"
+                      />
+                    </div>
                   </div>
                 </div>
-              )}
-              <button
-                type="submit"
-                className="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
-              >
-                Update Username
-              </button>
-              {message && <p>{message}</p>}
-            </form>
+              </div>
+            </div>
           </div>
         </main>
       )}

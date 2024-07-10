@@ -2,19 +2,20 @@
 import { useState, useEffect } from "react";
 import CardsType4 from "../components/CardsType4";
 import { fetchWatchList } from "../services/userService";
+import { Loader } from "../components/Loading";
 export default function WatchList() {
   const [watchListData, setWatchListData] = useState(null);
   useEffect(() => {
     fetchWatchList().then((data) => {
       setWatchListData(data);
-      console.log(watchListData);
+     
     });
   }, []);
 const identifier="watchlist"
   return (
     <>
-      {watchListData &&(
-        <main className="mx-auto my-4  h-auto w-full max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0  ">
+      {watchListData? (
+        <main className="mx-auto my-4  h-screen w-full max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0">
           <div className="my-4 text-start text-3xl text-lavender-web-500">
             Your WatchList
           </div>
@@ -25,7 +26,11 @@ const identifier="watchlist"
               ))}
           </div>
         </main>
-      )}
+      ):(<>
+        <main className="mx-auto my-4  h-auto w-full max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0">
+          <Loader/>
+        </main>
+      </>)}
     </>
   );
 }

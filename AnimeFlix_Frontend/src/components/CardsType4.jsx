@@ -66,8 +66,8 @@ export default function CardsType4({ animeId, epiId, identifier }) {
   return (
     <>
       {!loading && (
-        <div className=" h-68 min-w-32 max-w-56 sm:h-96  ">
-          <div className="h-4/5 w-full   ">
+        <div className=" h-64 min-w-28   max-w-48 sm:h-96 ">
+          <div className=" h-4/5 w-full   ">
             {isLoading && (
               <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-t-md bg-gray-900 ">
                 <span className="  ml-3 h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-orange-500 ease-linear"></span>

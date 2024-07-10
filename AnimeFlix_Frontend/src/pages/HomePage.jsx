@@ -6,7 +6,7 @@ import LatestEpisodes from "../components/LatestEpisodes";
 import HomePageApi from "../services/HomePageApi";
 import CardsType3 from "../components/CardsType3";
 import TopUpcoming from "../components/TopUpcoming";
-import ContinueWatch from "./ContinueWatch";
+import { WatchData } from "./ContinueWatch";
 export default function HomePage() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,7 +31,7 @@ export default function HomePage() {
           Trending
         </div>
         <TrendingCards trendingAnimes={data.trendingAnimes} />
-        <ContinueWatch />
+        <WatchData />
         <div className="w-full lg:flex">
           <div className="  w-full ">
             <div className="pt-8 text-start text-3xl text-lavender-web-500">
