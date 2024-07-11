@@ -24,7 +24,7 @@ export default function ({
           <div className="absolute inset-0 bg-gradient-to-r from-gunmetal-100   "></div>
           <div className="absolute inset-0 bg-gradient-to-l from-gunmetal-100/15  "></div>
         </div>
-        <div className="from-slate-1000 to-slate-1000 relative my-auto flex h-full w-2/3 flex-col justify-center  gap-8 bg-gradient-to-r pt-20 text-left text-xl  font-thin lg:w-1/2 ">
+        <div className="from-black to-black/5 relative my-auto flex h-full w-2/3 flex-col justify-center  gap-8 bg-gradient-to-r pt-20 text-left text-xl  font-thin lg:w-1/2 px-4">
           <div className="lg:text3xl text-2xl text-hookers-green-700">
             <p className="font-medium">#{rank} SpotLight</p>
           </div>

@@ -26,7 +26,7 @@ export function WatchData() {
   return (
     <>
       <div>
-        {watchHistoryData ? (
+        {watchHistoryData && watchHistoryData.length > 0  ? (
           <>
             <div className="my-4 w-full whitespace-nowrap pb-4 text-start  text-3xl text-lavender-web-500">
               Continue Watching

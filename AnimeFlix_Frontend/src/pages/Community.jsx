@@ -17,7 +17,7 @@ export default function () {
   };
   return (
     <>
-      <main className="mx-auto my-4  h-auto  w-full max-w-[1420px] px-2 text-start text-slate-50 sm:px-4 lg:px-6 xl:px-0  ">
+      <main className="  mx-auto my-4  h-auto  w-full max-w-[1420px] px-2 text-start text-slate-50 sm:px-4 lg:px-6 xl:px-0  ">
         <div className="flex flex-col items-center justify-center p-4 ">
           <div className="w-full max-w-3xl text-start">
             <p className="mb-4 text-3xl text-slate-50">Threads</p>
@@ -29,7 +29,7 @@ export default function () {
                 className="mb-4 rounded-lg bg-white p-6 shadow-md"
               >
                 <h3
-                  onClick={()=>handleCLickThread(thread._id)}
+                  onClick={() => handleCLickThread(thread._id)}
                   className="cursor-pointer  text-xl font-semibold text-slate-900"
                 >
                   {thread.title}

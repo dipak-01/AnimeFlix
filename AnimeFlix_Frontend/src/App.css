@@ -3,8 +3,12 @@
   height: max-content;
   text-align: center;
   /* background-color: #030717; */
-  background-color: #0A0908;
+  /* background-color: #0a0908; */
   /* background-color: rgba(14, 18, 21); */
-    /* Using RGBA format for transparency */
+  /* Using RGBA format for transparency */
+  background-color: #000000;
+  opacity: 0.8;
+  background-image: linear-gradient(#131313 1px, transparent 1px),
+    linear-gradient(to right, #131313 1px, #000000 1px);
+  background-size: 30px 30px;
 }
- 

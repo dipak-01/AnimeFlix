@@ -92,4 +92,56 @@
   background: #000;
 }
 
- 
+ .dashed-grid-paper {
+
+  /* options */
+	--grid-size: 30px;
+	--grid-strength: 1px;
+	--grid-dash: 5px;
+  --grid-gap: 10px;
+	--grid-color: #302e2e;
+	--paper-color: #000000;
+  
+   /* styling */
+  background-color: var(--paper-color);
+  background-size: var(--grid-gap) var(--grid-gap), var(--grid-size) var(--grid-size);
+  background-image:
+    linear-gradient(to bottom, transparent var(--grid-dash), var(--paper-color) var(--grid-dash)), 
+    linear-gradient(to right, var(--grid-color) var(--grid-strength), transparent var(--grid-strength)),
+    linear-gradient(to right, transparent var(--grid-dash), var(--paper-color) var(--grid-dash)),
+    linear-gradient(to bottom, var(--grid-color) var(--grid-strength), transparent var(--grid-strength));
+}
+.bg-pattern {
+  background-color: #000000;
+  opacity: 0.8;
+  background-image: linear-gradient(#131313 1px, transparent 1px),
+    linear-gradient(to right, #131313 1px, #000000 1px);
+  background-size: 30px 30px;
+}
+.reply-container {
+  position: relative; /* Needed for absolute positioning of the pseudo-element */
+  margin-left: 0px; /* Adjust as needed to align with your design */
+  padding-left:0px; /* Provides space for the line */
+}
+
+.reply-container::before {
+  content: '';
+  position: absolute;
+  left: -40px; /* Adjust based on the padding-left of the container */
+  top: 50%; /* Center the line vertically */
+  width: 40px; /* Length of the horizontal part of the line */
+  height: 1px; /* Thickness of the line */
+  background-color: #f8f8f8; /* Color of the line */
+  border-top-right-radius: 2px; /* Smooths the corner where the line turns */
+  border-bottom-right-radius: 2px;
+}
+
+.reply-container::after {
+  content: '';
+  position: absolute;
+  left: -40px;
+  top: -50%;
+  width: 1px; /* Thickness of the line, matches height of the horizontal line */
+  height: 100%; /* This extends the line vertically towards the top or bottom */
+  background-color: #f8f8f8; /* Color of the line */
+}

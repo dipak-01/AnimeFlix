@@ -23,7 +23,7 @@ router.get("/specificthread/:threadId", authMiddleware, getSpecificThreads);
 router.post("/post", authMiddleware, createPost);
 router.get("/post/:threadId", authMiddleware, getPosts);
 router.post("/reply", authMiddleware, createReply);
-router.get("/reply", authMiddleware, getReplies);
+router.post("/getreply", authMiddleware, getReplies);
 router.post("/like", authMiddleware, doLike);
 router.get("/like", authMiddleware, getLikes);
 

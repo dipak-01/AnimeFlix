@@ -76,7 +76,7 @@ export const getPosts = async (req, res) => {
     if (!thread) {
       return res.status(404).json({ error: "Thread not found" });
     }
-    const posts = await Post.find();
+    const posts = await Post.find({ threadId: threadId });
     return res.status(200).json(posts);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -96,7 +96,13 @@ export const createReply = async (req, res) => {
 
 export const getReplies = async (req, res) => {
   try {
-    const replies = await Reply.find();
+    const { postId } = req.body;
+
+    const post = await Post.find({ _id: postId });
+    if (!post) {
+      return res.status(404).json({ error: "Thread not found" });
+    }
+    const replies = await Reply.find({ postId: postId });
     return res.status(200).json(replies);
   } catch (error) {
     return res.status(400).json({ error: error.message });
