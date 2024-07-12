@@ -55,7 +55,7 @@ export default function () {
             </h3>
             <p className="text-slate-700">{thread.body}</p>
           </div>
-          <WritePosts/>
+          <WritePosts />
           <div className="bg-grid-slate mx-auto my-4 h-auto w-full max-w-[1420px] px-2 text-start text-slate-50 sm:px-4 lg:px-6 xl:px-0">
             {posts.map((post) => (
               <div
@@ -71,7 +71,7 @@ export default function () {
                     </div>
                     <div className="py-2">
                       <div className="float-start">
-                        <button>
+                        <button onClick={() => handleClickReplies(post._id)}>
                           Reply <i className="fas fa-reply"></i>
                         </button>
                       </div>
@@ -87,26 +87,27 @@ export default function () {
                   </div>
                 </div>{" "}
                 {toggleReplies[post._id] && (
-                  <div className="flex flex-col w-full float-end justify-end items-center">
-                    <WriteComments/>
-                      {replies[post._id] && replies[post._id].length > 0 ? (
-                        replies[post._id].map((reply) => (
-                          <div className="mb-2   mt-1  place-self-end w-11/12 rounded-md bg-transparent p-0">
+                  <div className="float-end flex w-full flex-col items-center justify-end">
+                    <WriteComments postId={post._id} />
+                    {replies[post._id] && replies[post._id].length > 0 ? (
+                      replies[post._id].map((reply) => (
+                        <div className="mb-2   mt-1  w-11/12 place-self-end rounded-md bg-transparent p-0">
                           <div
                             key={reply._id}
-                            className="   text-start p-2"
-                            style={{ overflowWrap: 'break-word', wordBreak: 'break-word' }}
-
+                            className="   p-2 text-start"
+                            style={{
+                              overflowWrap: "break-word",
+                              wordBreak: "break-word",
+                            }}
                           >
                             <div className="">{reply.content}</div>
                           </div>
-                          </div>
-                        ))
-                      ) : (
-                        <div>No replies yet</div>
-                      )}
-                    </div>
-                   
+                        </div>
+                      ))
+                    ) : (
+                      <div>No replies yet</div>
+                    )}
+                  </div>
                 )}
               </div>
             ))}

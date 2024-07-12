@@ -3,6 +3,7 @@ import Suggestions from "../services/Suggestions";
 // import { Auth } from "@supabase/auth-ui-react";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { fetchUserData } from "../services/authService";
+import { useAlert } from "./AlertContext";
 
 import { useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
@@ -11,6 +12,7 @@ import { faSearch, faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
 import UserProfilePopover from "./BurgerPopover";
 
 function App() {
+  const { showAlert } = useAlert();
   const [toggleUser, setToggleUser] = useState(false);
   const toggleRef = useRef(null);
   const [session, setSession] = useState(false);
@@ -157,7 +159,10 @@ function App() {
                           className="hover:text-orange-300"
                           onClick={() => {
                             localStorage.removeItem("token");
-                            window.location.reload();
+                            showAlert("Logged Out", "success");
+                            setTimeout(() => {
+                              window.location.reload();
+                            }, 3000);
                           }}
                         >
                           Logout <i className="fas fa-arrow-right"></i>

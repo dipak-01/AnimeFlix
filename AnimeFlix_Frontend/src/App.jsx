@@ -15,34 +15,39 @@ import WatchTogether from "./pages/WatchTogether.jsx";
 import AnimeStream from "./pages/AnimeStream.jsx";
 import Login from "./pages/Login.jsx";
 import { ContinueWatch } from "./pages/ContinueWatch.jsx";
+import { AlertProvider } from "./components/AlertContext.jsx";
+import AlertComponent from "./components/Alerts.jsx";
 function App() {
   return (
     <>
-      <Router>
-        <div>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/home" element={<HomePage />} />
+      <AlertProvider>
+        <AlertComponent />
+        <Router>
+          <div>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/home" element={<HomePage />} />
 
-              <Route path="/watch/:id" element={<AnimeStream />} />
-              <Route path="/community" element={<Community />} />
-              <Route path="/watchtogether" element={<WatchTogether />} />
-              <Route path="/user/profile" element={<Profile />} />
-              <Route path="/user/watchlist" element={<WatchList />} />
-              <Route
-                path="/user/continuewatching"
-                element={<ContinueWatch />}
-              />
-              <Route path="/community/thread/:id" element={<Thread/>}/>
-              <Route path="/search" element={<SearchPage />} />
+                <Route path="/watch/:id" element={<AnimeStream />} />
+                <Route path="/community" element={<Community />} />
+                <Route path="/watchtogether" element={<WatchTogether />} />
+                <Route path="/user/profile" element={<Profile />} />
+                <Route path="/user/watchlist" element={<WatchList />} />
+                <Route
+                  path="/user/continuewatching"
+                  element={<ContinueWatch />}
+                />
+                <Route path="/community/thread/:id" element={<Thread />} />
+                <Route path="/search" element={<SearchPage />} />
 
-              <Route path="/anime/info" element={<AnimeInfo />} />
-            </Routes>
-          </Layout>
-        </div>
-      </Router>
+                <Route path="/anime/info" element={<AnimeInfo />} />
+              </Routes>
+            </Layout>
+          </div>
+        </Router>
+      </AlertProvider>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Swiper from "../components/Swiper";
+import { useAlert } from "../components/AlertContext";
 import TrendingCards from "../components/TrendingCards";
 import { Loader } from "../components/Loading";
 import LatestEpisodes from "../components/LatestEpisodes";
@@ -10,7 +11,7 @@ import { WatchData } from "./ContinueWatch";
 export default function HomePage() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
+ 
   useEffect(() => {
     const getData = async () => {
       const response = await HomePageApi();

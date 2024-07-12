@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useAlert } from "../components/AlertContext";
 import { register, login } from "../services/authService";
 import "../styles/user.css";
-import { SuccessAlert, FailedAlert } from "../components/Alerts";
+// import { SuccessAlert, FailedAlert } from "../components/Alerts";
 import { useNavigate } from "react-router-dom";
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -9,10 +10,11 @@ const Auth = () => {
   const [username, setUsername] = useState("");
   const [toggleLogin, setToggleLogin] = useState(true);
   const [token, setToken] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
+  // const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [validationMessage, setValidationMessage] = useState("");
   const navigate = useNavigate();
+  const { showAlert } = useAlert();
   const validatePassword = (password) => {
     const requirements = [
       {
@@ -57,21 +59,24 @@ const Auth = () => {
   ];
   const handleRegister = async () => {
     await register(username, email, password);
-    setAlertMessage("Registered");
+    // showAlert('Login successful!');
 
-    setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 5000);
+    // setShowAlert(true);
+    showAlert('Registered','success');
+    // setTimeout(() => setShowAlert(false), 5000);
     setToggleLogin(!toggleLogin);
   };
 
   const handleLogin = async () => {
     const data = await login(email, password);
     setToken(data.token);
-    setAlertMessage("Logged In");
-    setShowAlert(true);
+    // setAlertMessage("Logged In");
+    // setShowAlert(true);
+    showAlert('Logged In','success');
     localStorage.setItem("token", data.token);
-    setTimeout(() => setShowAlert(false), 5000);
+    // setTimeout(() => setShowAlert(false), 5000);
     navigate("/home");
+     
   };
   const toggleLoginHandle = () => {
     setToggleLogin(!toggleLogin);
@@ -89,7 +94,7 @@ const Auth = () => {
 
   return (
     <main className="mx-auto my-4 flex h-screen w-full max-w-[1420px] items-center px-2 text-white sm:px-4 lg:px-6 xl:px-0">
-      {showAlert && <SuccessAlert keyword={alertMessage} />}
+      {/* {showAlert && <SuccessAlert keyword={alertMessage} />} */}
       <div className="mx-auto h-3/4 w-full">
         {toggleLogin ? (
           <>
@@ -104,11 +109,12 @@ const Auth = () => {
                     Username
                   </label>
                   <input
-                    type="name"
+                    type="text"
                     id="name"
                     className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     placeholder="john"
                     required
+                    value={text}
                     onChange={(e) => setUsername(e.target.value)}
                   />
                 </div>

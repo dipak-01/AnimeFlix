@@ -1,5 +1,27 @@
+import { useAlert } from "./AlertContext";
+
+function AlertComponent() {
+  const { alert } = useAlert();
+
+  if (!alert.show) return null;
+
+  // const alertStyle = {
+  //     position: 'fixed',
+  //     top: '20px',
+  //     right: '20px',
+  //     backgroundColor: 'lightgreen',
+  //     color: 'green',
+  //     padding: '10px',
+  //     borderRadius: '5px'{alert.message},
+  //     boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+  //     zIndex: 1000, // Ensure it's above most other content.
+  // };
+
+  if (alert.type === "success") return <SuccessAlert keyword={alert.message} />;
+  if (alert.type === "failure") return <FailedAlert keyword={alert.message} />;
+}
 const FailedAlert = () => (
-  <div className="absolute left-10 top-20">
+  <div className="absolute left-10 top-20 z-50">
     <div
       class="mb-4 flex items-center rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-800 dark:border-red-800 dark:bg-gray-800 dark:text-red-400"
       role="alert"
@@ -22,7 +44,7 @@ const FailedAlert = () => (
   </div>
 );
 const SuccessAlert = ({ keyword }) => (
-  <div className="absolute left-10 top-20">
+  <div className="absolute left-10 top-20 z-50">
     <div
       class="mb-4 flex items-center rounded-lg border border-green-300 bg-green-50 p-4 text-sm text-green-800 dark:border-green-800 dark:bg-gray-800 dark:text-green-400"
       role="alert"
@@ -44,4 +66,4 @@ const SuccessAlert = ({ keyword }) => (
     </div>
   </div>
 );
-export { FailedAlert, SuccessAlert };
+export default AlertComponent;
