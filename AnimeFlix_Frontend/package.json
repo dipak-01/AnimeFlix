@@ -30,6 +30,7 @@
     "react-slick": "^0.30.2",
     "router": "^2.0.0-beta.2",
     "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.7.5",
     "swiper": "^11.0.7"
   },
   "devDependencies": {

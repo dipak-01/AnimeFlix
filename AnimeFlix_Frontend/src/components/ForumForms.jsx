@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { createPost, createReply } from "../services/forumService";
 import { useParams } from "react-router-dom";
+import io from "socket.io-client";
+const socket = io("http://localhost:3001");
+
 export function WriteComments(postId) {
   const [data, setData] = useState();
 

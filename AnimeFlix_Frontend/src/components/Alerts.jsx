@@ -19,6 +19,7 @@ function AlertComponent() {
 
   if (alert.type === "success") return <SuccessAlert keyword={alert.message} />;
   if (alert.type === "failure") return <FailedAlert keyword={alert.message} />;
+  if (alert.type === "added") return <AddNotification keyword={alert.message} />;
 }
 const FailedAlert = () => (
   <div className="absolute left-10 top-20 z-50">
@@ -66,4 +67,22 @@ const SuccessAlert = ({ keyword }) => (
     </div>
   </div>
 );
+
+const  AddNotification = ({keyword}) => {
+  return (
+    <div className="absolute left-10 top-20 z-50">
+    <div
+      class="flex items-center p-4 mb-4 text-sm font-semibold text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+      role="alert"
+    >
+       {keyword==="added" &&<i className="far fa-circle-check dark:text-blue-400"></i>}
+       {keyword==="deleted" &&<i className="fas fa-trash dark:text-blue-400"></i>}
+      <span class="sr-only">Info</span>
+      <div>
+        <span class="font-semibold">{keyword}</span>  
+      </div>
+    </div>
+    </div>
+  );
+};
 export default AlertComponent;
