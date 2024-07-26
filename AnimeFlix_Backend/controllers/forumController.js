@@ -1,5 +1,4 @@
 import { Post, Thread, Category, Reply, Like } from "../models/forum.js";
-import jwt from "jsonwebtoken";
 
 export const createCategory = async (req, res) => {
   try {
@@ -72,22 +71,29 @@ export const getPosts = async (req, res) => {
   try {
     const { threadId } = req.params;
 
-    const thread = await Thread.find({ _id: threadId });
+     
+    const thread = await Thread.findById(threadId);
     if (!thread) {
+      console.log('Thread not found');
       return res.status(404).json({ error: "Thread not found" });
     }
-    const posts = await Post.find({ threadId: threadId });
+
+    const posts = await Post.find({ threadId }).populate('userId', 'username email avatarUrl');
+ 
     return res.status(200).json(posts);
   } catch (error) {
+    console.error('Error in getPosts:', error);
     return res.status(400).json({ error: error.message });
   }
 };
+
 export const createReply = async (req, res) => {
   try {
     const { postId, content } = req.body;
     const userId = req.user.userId;
     const reply = new Reply({ postId, content, userId });
     await reply.save();
+     
     return res.status(201).json(reply);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -102,7 +108,8 @@ export const getReplies = async (req, res) => {
     if (!post) {
       return res.status(404).json({ error: "Thread not found" });
     }
-    const replies = await Reply.find({ postId: postId });
+    const replies = await Reply.find({ postId: postId }).populate('userId', 'username email avatarUrl');
+    console.log(replies);
     return res.status(200).json(replies);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -142,3 +149,16 @@ export const getLikes = async (req, res) => {
     return res.status(400).json({ error: error.message });
   }
 };
+
+const testPopulate = async () => {
+  try {
+    const posts = await Post.find();
+    // console.log("Posts before populate:", posts);
+    const populatedPosts = await Post.find().populate("userId");
+    // console.log("Posts after populate:", populatedPosts);
+  } catch (error) {
+    console.error("Populate test failed:", error.message);
+  }
+};
+
+testPopulate();

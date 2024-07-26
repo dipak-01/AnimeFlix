@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { createPost, createReply } from "../services/forumService";
 import { useParams } from "react-router-dom";
-import io from "socket.io-client";
-const socket = io("http://localhost:3001");
+ 
 
-export function WriteComments(postId) {
+export function WriteComments(postId,{onCommentSubmit}) {
   const [data, setData] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(postId.postId, data);
-    // Assuming createReply is an async operation
+      
     try {
       await createReply(postId.postId, data);
-      setData(""); // Reset data after successful reply creation
+      setData("");  
+      if (onCommentSubmit) {
+        onCommentSubmit();
+      }
     } catch (error) {
       console.error("Failed to create reply:", error);
     }
@@ -60,7 +61,7 @@ export function WriteComments(postId) {
   );
 }
 
-export function WritePosts() {
+export function WritePosts({onPostSubmit}) {
   const [data, setData] = useState();
   const { id } = useParams();
   const handleSubmit = async (e) => {
@@ -68,6 +69,9 @@ export function WritePosts() {
     try {
       await createPost(id, data);
       setData("");
+      if (onPostSubmit) {
+        onPostSubmit();
+      }
     } catch (error) {
       console.error("Failed to create post:", error);
     }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
- import {
+import {
   useFetchData,
   useFetchStreamData,
   useAnimeEpisodeData,
@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { PlayIcon } from "@vidstack/react/icons";
 // Base styles for media player and provider (~400B).
 import "@vidstack/react/player/styles/base.css";
- import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Loader } from "../components/Loading";
 import TopUpcoming from "../components/TopUpcoming";
 import VideoPlayer from "../services/VideoPlayer";
@@ -26,8 +26,8 @@ export default function AnimeStream() {
   const { data, loading, error } = useFetchData(id);
   const {
     episodeData,
-    loading: loading2,
-    error: error2,
+    loading: loadingEpisodeData,
+    error: errorFetchingEpisodeData,
   } = useAnimeEpisodeData(id);
   const {
     episodeServerData,
@@ -43,11 +43,9 @@ export default function AnimeStream() {
 
   useEffect(() => {
     if (epiId) {
-     
       setSelectedEpisodeId(epiId);
       setIsLoading(false);
-    } else
-    if (episodeData && episodeData.episodes.length > 0) {
+    } else if (episodeData && episodeData.episodes.length > 0) {
       setSelectedEpisodeId(episodeData.episodes[0].episodeId);
       setIsLoading(false);
     }
@@ -58,8 +56,7 @@ export default function AnimeStream() {
       const episodeId = selectedEpisodeId;
       const animeId = id;
       console.log(episodeId, animeId);
-      if(animeId && episodeId)
-      await watchData(animeId, episodeId);
+      if (animeId && episodeId) await watchData(animeId, episodeId);
     };
 
     sendData();
@@ -90,11 +87,11 @@ export default function AnimeStream() {
     }
   };
 
-  if (loading || loading2 || loadingServer || loadingStreamData) {
+  if (loading || loadingEpisodeData || loadingServer || loadingStreamData) {
     return <Loader />;
   }
 
-  if (error || error2 || errorServer || errorStreamData) {
+  if (error || errorFetchingEpisodeData || errorServer || errorStreamData) {
     return <div>Error: {error.message}</div>;
   }
 

@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "nodemon server.js",
-    "start:socket": "nodemon socketServer.js",
-    "start:all": "concurrently \"npm:start\" \"npm:start:socket\"",
+     
+     
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

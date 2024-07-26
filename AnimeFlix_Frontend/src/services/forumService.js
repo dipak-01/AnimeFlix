@@ -99,6 +99,7 @@ export const fetchPosts = async (threadId) => {
       },
     };
     const response = await axios.get(`${API_URL}/post/${threadId}`, config);
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error("Error fetching posts:", error.response || error);
@@ -108,8 +109,7 @@ export const fetchPosts = async (threadId) => {
 
 // Reply functions
 export const createReply = async (postId, content) => {
-  console.log(postId, content);
- 
+  
   const token = getToken();
   if (!token) throw new Error("No token found");
 

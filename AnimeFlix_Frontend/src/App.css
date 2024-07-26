@@ -7,6 +7,7 @@
   /* background-color: rgba(14, 18, 21); */
   /* Using RGBA format for transparency */
   background-color: #000000;
+  background-attachment: fixed;
   opacity: 0.8;
   background-image: linear-gradient(#131313 1px, transparent 1px),
     linear-gradient(to right, #131313 1px, #000000 1px);

@@ -13,20 +13,36 @@ export default function () {
   const [replies, setReplies] = useState({});
   const [toggleReplies, setToggleReplies] = useState({});
   const { id } = useParams();
-
-  const getData = async () => {
+  const getPost = async () => {
     const fetchedThread = await fetchSpecificThreads(id);
     setThread(fetchedThread);
     const fetchPost = await fetchPosts(id);
+
     setPosts(fetchPost);
   };
-
   useEffect(() => {
-    getData();
+    getPost();
+    // const intervalId = setInterval(getPost, 5000);
+    // return () => clearInterval(intervalId);
   }, [id]);
+  const handlePostSubmit = async () => {
+    try {
+      const fetchPost = await fetchPosts(id);
+      setPosts(fetchPost);
+    } catch (error) {
+      console.error("Failed to fetch posts:", error);
+    }
+  };
+  // const handleCommentSubmit = async () => {
+  //   try {
+  //     const fetchPost = await fetchPosts(id);
+  //     setPosts(fetchPost);
+  //   } catch (error) {
+  //     console.error("Failed to fetch posts:", error);
+  //   }
+  // };
 
-  const handleClickReplies = async (postId) => {
-    console.log(postId);
+  const handleAddReplies = async (postId) => {
     setToggleReplies((prevToggle) => ({
       ...prevToggle,
       [postId]: !prevToggle[postId],
@@ -44,6 +60,13 @@ export default function () {
       }
     }
   };
+  const handleSubmitReply = async (postId) => {
+    try {
+      handleAddReplies(postId);
+    } catch (error) {
+      console.error("Error submitting reply:", error);
+    }
+  };
 
   return (
     <main className="mx-auto my-4 h-auto w-full max-w-[1420px] px-2 text-start text-slate-50 sm:px-4 lg:px-6 xl:px-0">
@@ -55,7 +78,7 @@ export default function () {
             </h3>
             <p className="text-slate-700">{thread.body}</p>
           </div>
-          <WritePosts />
+          <WritePosts onPostSubmit={handlePostSubmit} />
           <div className="bg-grid-slate mx-auto my-4 h-auto w-full max-w-[1420px] px-2 text-start text-slate-50 sm:px-4 lg:px-6 xl:px-0">
             {posts.map((post) => (
               <div
@@ -71,12 +94,12 @@ export default function () {
                     </div>
                     <div className="py-2">
                       <div className="float-start">
-                        <button onClick={() => handleClickReplies(post._id)}>
+                        <button onClick={() => handleAddReplies(post._id)}>
                           Reply <i className="fas fa-reply"></i>
                         </button>
                       </div>
                       <div className="float-end">
-                        <button onClick={() => handleClickReplies(post._id)}>
+                        <button onClick={() => handleAddReplies(post._id)}>
                           {toggleReplies[post._id]
                             ? "Hide Replies"
                             : "Show Replies"}{" "}
@@ -88,7 +111,10 @@ export default function () {
                 </div>{" "}
                 {toggleReplies[post._id] && (
                   <div className="float-end flex w-full flex-col items-center justify-end">
-                    <WriteComments postId={post._id} />
+                    <WriteComments
+                      postId={post._id}
+                      onCommentSubmit={handleSubmitReply}
+                    />
                     {replies[post._id] && replies[post._id].length > 0 ? (
                       replies[post._id].map((reply) => (
                         <div className="mb-2   mt-1  w-11/12 place-self-end rounded-md bg-transparent p-0">
