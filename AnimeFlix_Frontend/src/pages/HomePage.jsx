@@ -43,7 +43,7 @@ export default function HomePage() {
   };
   return (
     <>
-      <div className="h-autow-full mx-auto my-4 min-h-screen max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0  ">
+      <div className="h-auto w-full mx-auto my-4 min-h-screen max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0  ">
         <Swiper banners={data.spotlightAnimes} />
         <div className="py-8 text-start text-3xl text-lavender-web-500">
           Trending
