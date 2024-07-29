@@ -9,7 +9,7 @@ export default function ({ name, poster, rank, id }) {
     navigate(`/anime/info?id=${encodeURIComponent(id)}`);
     window.location.reload();
   };
-  return (
+  return (  
     <>
       <div
         onClick={() => handleClick(id)}

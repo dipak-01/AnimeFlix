@@ -90,9 +90,9 @@ function App() {
   }, [searchBarRef, toggleRef]);
 
   return (
-    <div className="App h-20">
+    <div className="App h-20  ">
       <div className="fixed w-full z-50 bg-black">
-        <nav className="bg-slate-1000/75 p-4 lg:px-10 ">
+        <nav className="bg-slate-1000/75 p-4   lg:px-10 ">
           <div className="container mx-auto flex items-center justify-between">
             <div className="space-x-2">
               <UserProfilePopover />

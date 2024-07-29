@@ -13,6 +13,7 @@ function Swiperr({ banners }) {
   return (
     <>
       <Swiper
+        navigation
         pagination={{ dynamicBullets: true }}
         modules={[Pagination, Autoplay]}
         loop={true}

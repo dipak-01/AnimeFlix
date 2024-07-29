@@ -19,7 +19,7 @@ export default function ({ data }) {
             className="py-1 pr-1"
           >
             <div className="flex h-36 p-2 ">
-              <div className="w-24 rounded-lg ">
+              <div className=" w-1/3 rounded-lg ">
                 {isLoading && (
                   <div className="flex h-full w-full items-center justify-center rounded-t-md bg-gray-900 ">
                     {/* Placeholder or loader here */}
@@ -27,7 +27,7 @@ export default function ({ data }) {
                   </div>
                 )}
                 <img
-                  className="h-full w-full rounded-lg"
+                  className="h-full rounded-lg"
                   src={data2.poster}
                   alt={data2.name}
                   onLoad={() => setIsLoading(false)}
