@@ -10,7 +10,7 @@ export default function LandingPage() {
 
   return (
     <>
-      <div className="mx-auto flex h-screen w-full max-w-[1420px] items-center justify-center px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0">
+      <div className="mx-auto flex min-h-screen h-auto w-full max-w-[1420px] items-center justify-center px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0">
         <div className="flex justify-center">
           <div className="flex h-2/4 transform flex-col rounded-md bg-zinc-900 shadow-lg  transition duration-300 hover:scale-105 lg:w-1/2 lg:flex-row">
             <div className="left space-y-2 px-8 py-8 text-start align-super lg:w-1/2">

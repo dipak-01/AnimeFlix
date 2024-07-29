@@ -35,7 +35,7 @@ export default function SearchPage() {
 
   return (
     <>
-      <div className="mx-auto my-4  h-auto   w-full max-w-[1420px] px-4 text-slate-50 sm:px-4 lg:px-6 xl:px-0">
+      <div className="mx-auto my-4  min-h-screen h-auto   w-full max-w-[1420px] px-4 text-slate-50 sm:px-4 lg:px-6 xl:px-0">
         <div className="pt-8 text-start text-3xl text-lavender-web-500">
           <p>
             Search results for :{" "}

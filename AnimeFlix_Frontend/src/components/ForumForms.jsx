@@ -37,14 +37,14 @@ export function WriteComments(postId,{onCommentSubmit}) {
               onChange={(e) => setData(e.target.value)}
             ></textarea>
           </div>
-          <div className="dark:border-gray-60 flex items-center justify-between  bg-transparent px-3 py-2">
+          <div className="dark:border-gray-60 flex items-center justify-between  bg-transparent   px-3 py-2">
             <button
               onClick={handleSubmit}
-              className="inline-flex items-center rounded-lg bg-orange-500 px-4 py-2.5 text-center text-sm   font-semibold text-slate-800 hover:bg-orange-800 focus:ring-4 focus:ring-orange-200 dark:focus:ring-orange-900"
+              className="inline-flex items-center rounded-lg bg-orange-500 px-4  py-2.5 text-center text-sm   font-semibold text-slate-800 hover:bg-orange-800 focus:ring-4 focus:ring-orange-200 dark:focus:ring-orange-900"
             >
-              Post reply
+              Post 
             </button>
-            <p className="ms-auto text-xs text-gray-500 dark:text-gray-400">
+            <p className="ms-auto text-xs p-2 hidden lg:block  text-gray-500 dark:text-gray-400">
               Remember, contributions to this topic should follow our{" "}
               <a
                 href="#"
@@ -100,9 +100,9 @@ export function WritePosts({onPostSubmit}) {
             type="submit"
             className="inline-flex items-center rounded-lg bg-orange-500 px-4 py-2.5 text-center text-sm   font-semibold text-slate-800 hover:bg-orange-800 focus:ring-4 focus:ring-orange-200 dark:focus:ring-orange-900"
           >
-            Add your Post
+             Post
           </button>
-          <p className="ms-auto text-xs text-gray-500 dark:text-gray-400">
+          <p className="ms-auto text-xs p-2 hidden lg:block  text-gray-500 dark:text-gray-400">
             Remember, contributions to this topic should follow our{" "}
             <a
               href="#"

@@ -93,7 +93,7 @@ const Auth = () => {
   }, []);
 
   return (
-    <main className="mx-auto my-4 flex h-screen w-full max-w-[1420px] items-center px-2 text-white sm:px-4 lg:px-6 xl:px-0">
+    <main className="mx-auto my-4 flex min-h-screen h-auto w-full max-w-[1420px] items-center px-2 text-white sm:px-4 lg:px-6 xl:px-0">
       {/* {showAlert && <SuccessAlert keyword={alertMessage} />} */}
       <div className="mx-auto h-3/4 w-full">
         {toggleLogin ? (

@@ -13,7 +13,7 @@ export default function ({ trendingAnimes }) {
     <>
       <div className="pb-8">
         <Swiper
-          slidesPerView={1}
+           
           spaceBetween={0}
           freeMode={true}
           pagination={{

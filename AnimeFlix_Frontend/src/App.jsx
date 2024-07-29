@@ -17,6 +17,7 @@ import Login from "./pages/Login.jsx";
 import { ContinueWatch } from "./pages/ContinueWatch.jsx";
 import { AlertProvider } from "./components/AlertContext.jsx";
 import AlertComponent from "./components/Alerts.jsx";
+import CategoryPages from "./pages/CategoryPages.jsx";
 function App() {
   return (
     <>
@@ -35,6 +36,16 @@ function App() {
                 <Route path="/watchtogether" element={<WatchTogether />} />
                 <Route path="/user/profile" element={<Profile />} />
                 <Route path="/user/watchlist" element={<WatchList />} />
+                <Route path="/anime/mostpopular" element={<CategoryPages />} />
+                <Route path="/anime/topairing" element={<CategoryPages />} />
+                <Route
+                  path="/anime/mostfavourite"
+                  element={<CategoryPages />}
+                />
+                <Route
+                  path="/anime/latestcompleted"
+                  element={<CategoryPages />}
+                />
                 <Route
                   path="/user/continuewatching"
                   element={<ContinueWatch />}

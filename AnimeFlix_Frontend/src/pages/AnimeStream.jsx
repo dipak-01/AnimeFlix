@@ -112,7 +112,7 @@ export default function AnimeStream() {
   const episodes = episodeData.episodes;
 
   return (
-    <div className="mx-auto my-4 h-auto w-full max-w-[1420px] px-4 text-start  sm:px-4 lg:px-6 xl:px-0">
+    <div className="mx-auto my-4 min-h-screen h-auto w-full max-w-[1420px] px-4 text-start  sm:px-4 lg:px-6 xl:px-0">
       <div className="mx-auto my-auto flex w-full flex-col space-x-6 space-y-4 rounded-3xl lg:flex-row lg:space-y-0 lg:py-10">
         <div className="flex flex-col-reverse lg:w-3/4 lg:flex-row">
           <div className="mostly-customized-scrollbar max-h-[550px] overflow-auto border-pink-500 text-slate-100 lg:w-1/4">

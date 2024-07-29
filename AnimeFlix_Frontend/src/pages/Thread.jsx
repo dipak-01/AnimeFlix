@@ -67,9 +67,24 @@ export default function () {
       console.error("Error submitting reply:", error);
     }
   };
+  const timeDifference = (createdAt) => {
+    const now = new Date();
+    const postDate = new Date(createdAt);
+    const diffInMs = now - postDate;
+    const diffInMinutes = Math.floor(diffInMs / 60000);
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    const diffInDays = Math.floor(diffInHours / 24);
 
+    if (diffInDays > 0) {
+      return `${diffInDays} days ago`;
+    } else if (diffInHours > 0) {
+      return `${diffInHours} hours ago`;
+    } else {
+      return `${diffInMinutes} minutes ago`;
+    }
+  };
   return (
-    <main className="mx-auto my-4 h-auto w-full max-w-[1420px] px-2 text-start text-slate-50 sm:px-4 lg:px-6 xl:px-0">
+    <main className="mx-auto my-4 min-h-screen h-auto w-full max-w-[1420px] px-2 text-start text-slate-50 sm:px-4 lg:px-6 xl:px-0">
       <div className="flex flex-col items-center justify-center p-4">
         <div className="w-full max-w-3xl text-start">
           <div className="mb-4 rounded-lg bg-white p-6 shadow-md">
@@ -87,6 +102,22 @@ export default function () {
               >
                 <div className="w-full max-w-3xl text-start">
                   <div className="mb-4 rounded-lg bg-slate-600 p-6 shadow-md">
+                    <div className="flex items-center">
+                      {" "}
+                      <img
+                        className="h-10 w-10 rounded-full border-slate-900"
+                        src={post.userId.avatarUrl}
+                        alt={post.userId.username}
+                      />
+                      <span className="px-4 italic text-teal-100">
+                        {" "}
+                        {post.userId.username}
+                      </span>
+                      <span className="text-sm ">
+                        {" "}
+                        {timeDifference(post.createdAt)}{" "}
+                      </span>
+                    </div>
                     <div className="py-4">
                       <h3 className="text-lg font-normal text-slate-100">
                         {post.content}
@@ -126,7 +157,22 @@ export default function () {
                               wordBreak: "break-word",
                             }}
                           >
-                            <div className="">{reply.content}</div>
+                            <div className="flex items-center rounded-md border border-slate-900 bg-slate-400/40 backdrop-blur-lg shadow-lg ring-1 ring-black/5 py-3">
+                              <img
+                                className="mx-5 h-8 w-8 rounded-full "
+                                src={reply.userId.avatarUrl}
+                                alt={reply.userId.username}
+                              />
+
+                              <div className="">
+                                <p className="text-xs italic">
+                                  {reply.userId.username} 
+                                  <span className="text-orange-300">{" "}
+                                  {timeDifference(reply.createdAt)}{" "}</span>
+                                </p>
+                                <p>{reply.content}</p>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       ))

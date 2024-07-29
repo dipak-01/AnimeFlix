@@ -15,7 +15,7 @@ const identifier="watchlist"
   return (
     <>
       {watchListData? (
-        <main className="mx-auto my-4  h-screen w-full max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0">
+        <main className="mx-auto my-4  min-h-screen h-auto w-full max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0">
           <div className="my-4 text-start text-3xl text-lavender-web-500">
             Your WatchList
           </div>

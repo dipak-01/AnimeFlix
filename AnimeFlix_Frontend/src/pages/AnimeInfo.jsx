@@ -60,7 +60,7 @@ export default function AnimeInfo() {
     return <div>No data found</div>;
   return (
     <>
-      <div className="mx-auto my-4  h-auto w-full max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0  ">
+      <div className="mx-auto my-4 min-h-screen h-auto w-full max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0  ">
         <div className=" mx-auto my-auto flex h-3/4 flex-col items-center justify-evenly space-x-4 space-y-6 rounded-3xl bg-gradient-to-r py-20 lg:flex-row ">
           <div className="left h-full  lg:w-1/4 ">
             <div className=" mt-1 flex justify-center  ">

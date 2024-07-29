@@ -46,7 +46,7 @@ export default function UserProfile() {
   return (
     <>
       {data && (
-        <main className="  mx-auto my-4 w-full max-w-[1420px] px-2 text-white sm:px-4 lg:px-6 xl:px-0">
+        <main className=" min-h-screen h-auto mx-auto my-4 w-full max-w-[1420px] px-2 text-white sm:px-4 lg:px-6 xl:px-0">
           <div
             style={{
               backgroundImage: `url(${images[2]})`,
