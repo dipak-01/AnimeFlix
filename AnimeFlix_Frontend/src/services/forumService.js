@@ -40,9 +40,7 @@ export const fetchSpecificThreads = async (threadId) => {
   if (!token) throw new Error("No token found");
   try {
     const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    
       params: {
         threadId,
       },
