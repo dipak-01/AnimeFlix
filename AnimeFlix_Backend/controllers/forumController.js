@@ -150,15 +150,4 @@ export const getLikes = async (req, res) => {
   }
 };
 
-const testPopulate = async () => {
-  try {
-    const posts = await Post.find();
-    // console.log("Posts before populate:", posts);
-    const populatedPosts = await Post.find().populate("userId");
-    // console.log("Posts after populate:", populatedPosts);
-  } catch (error) {
-    console.error("Populate test failed:", error.message);
-  }
-};
-
-testPopulate();
+ 

@@ -84,9 +84,6 @@ export const fetchPosts = async (threadId) => {
 
   try {
     const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
       params: {
         threadId,
       },
@@ -124,15 +121,10 @@ export const fetchReplies = async (postId) => {
   const token = getToken();
   if (!token) throw new Error("No token found");
   try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
     const body = {
       postId: postId,
     };
-    const response = await axios.post(`${API_URL}/getreply`, body, config);
+    const response = await axios.post(`${API_URL}/getreply`, body);
     return response.data;
   } catch (error) {
     console.error("Error fetching replies:", error.response || error);
@@ -164,12 +156,7 @@ export const fetchReactions = async () => {
   const token = getToken();
   if (!token) throw new Error("No token found");
   try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const response = await axios.get(`${API_URL}/reaction`, config);
+    const response = await axios.get(`${API_URL}/reaction`);
     return response.data;
   } catch (error) {
     console.error("Error fetching reactions:", error.response || error);
