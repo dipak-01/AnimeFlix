@@ -2,24 +2,57 @@ import axios from "axios";
 const getToken = () => localStorage.getItem("token");
 
 const API_URL = `${import.meta.env.VITE_BACKEND_SERVER_PORT}`;
-export const register = async (username, email, password) => {
-  const response = await axios.post(`${API_URL}/register`, {
-    username,
-    email,
-    password,
-  });
-  console.log(response.data);
-  return response.data;
-};
-export const login = async (email, password) => {
-  const response = await axios.post(`${API_URL}/login`, { email, password });
-  console.log(response.data);
 
-  return response.data;
+export const register = async (username, email, password) => {
+  try {
+    const response = await axios.post(`${API_URL}/register`, {
+      username,
+      email,
+      password,
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      // Server responded with a status other than 2xx
+      console.error("Server Error:", error.response.data);
+      throw new Error(error.response.data.message || "Registration failed");
+    } else if (error.request) {
+      // Request was made but no response received
+      console.error("Network Error:", error.request);
+      throw new Error("Network error, please try again later");
+    } else {
+      // Something else happened
+      console.error("Error:", error.message);
+      throw new Error(error.message);
+    }
+  }
+};
+
+export const login = async (email, password) => {
+  try {
+    const response = await axios.post(`${API_URL}/login`, { email, password });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      // Server responded with a status other than 2xx
+      console.error("Server Error:", error.response.data);
+      throw new Error(error.response.data.message || "Login failed");
+    } else if (error.request) {
+      // Request was made but no response received
+      console.error("Network Error:", error.request);
+      throw new Error("Network error, please try again later");
+    } else {
+      // Something else happened
+      console.error("Error:", error.message);
+      throw new Error(error.message);
+    }
+  }
 };
 export const fetchUserData = async () => {
   const token = getToken();
-   
+
   if (!token) {
     console.error("No token found");
     return null;

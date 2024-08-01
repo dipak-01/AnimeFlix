@@ -36,11 +36,10 @@ export const fetchThreads = async () => {
   }
 };
 export const fetchSpecificThreads = async (threadId) => {
-  const token = getToken();
-  if (!token) throw new Error("No token found");
+  // const token = getToken();
+  // if (!token) throw new Error("No token found");
   try {
     const config = {
-    
       params: {
         threadId,
       },
@@ -77,9 +76,6 @@ export const createPost = async (threadId, content) => {
 };
 
 export const fetchPosts = async (threadId) => {
-  const token = getToken();
-  if (!token) throw new Error("No token found");
-
   try {
     const config = {
       params: {
@@ -87,7 +83,6 @@ export const fetchPosts = async (threadId) => {
       },
     };
     const response = await axios.get(`${API_URL}/post/${threadId}`, config);
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error("Error fetching posts:", error.response || error);
@@ -116,8 +111,6 @@ export const createReply = async (postId, content) => {
 };
 
 export const fetchReplies = async (postId) => {
-  const token = getToken();
-  if (!token) throw new Error("No token found");
   try {
     const body = {
       postId: postId,
@@ -151,8 +144,6 @@ export const addReaction = async (postId, type) => {
 };
 
 export const fetchReactions = async () => {
-  const token = getToken();
-  if (!token) throw new Error("No token found");
   try {
     const response = await axios.get(`${API_URL}/reaction`);
     return response.data;
