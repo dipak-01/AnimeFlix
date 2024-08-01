@@ -87,28 +87,29 @@ export default function ({ trendingAnimes }) {
       <div className="grid  w-full grid-cols-2 gap-4 lg:grid-cols-5 ">
         {trendingAnimes.map((trends, index) => (
           <div
-            key={index}
-            onClick={() => handleClick(trends.id)}
-            className="relative flex w-full cursor-pointer items-center gap-2  rounded-lg border-slate-800 bg-slate-600/50 p-1"
-          >
-            <div
-              className="absolute inset-0 bg-cover bg-center opacity-20"
-              style={{
-                backgroundImage: `url(${trends.poster})`,
-              }}
-            ></div>
-            <div className="relative   w-1/4 ">
-              <p className="  text-center   text-2xl font-semibold italic text-orange-400 ">
+          key={index}
+          onClick={() => handleClick(trends.id)}
+          className="relative w-full cursor-pointer items-center gap-2 rounded-lg border border-slate-800 bg-slate-600/50 p-4 shadow-lg hover:bg-slate-700 transition-transform transform hover:scale-105"
+        >
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-20 rounded-lg"
+            style={{
+              backgroundImage: `url(${trends.poster})`,
+            }}
+          ></div>
+          <div className="relative flex h-1/4 items-center ">
+            <div className="w-1/4 my-auto">
+              <p className="text-center text-2xl font-semibold italic text-orange-400">
                 #{trends.rank}
               </p>
             </div>
-
-            <div className="relative   w-3/4 ">
-              <p className="relative  line-clamp-2  text-start text-lg text-orange-50">
+            <div className="w-3/4 pl-4 my-auto">
+              <p className="relative line-clamp-2 text-start text-lg font-medium text-orange-50">
                 {trends.name}
               </p>
             </div>
           </div>
+        </div>
         ))}
       </div>
     </>

@@ -8,7 +8,7 @@ const authMiddleware = (req, res, next) => {
       req.user = payload;
       next();
     } catch (error) {
-      return res.status(401).send("Unauthorized");
+      return res.status(401).send("Unauthorized NIGH");
     }
   } else {
     return res.status(401).send("Unauthorized");

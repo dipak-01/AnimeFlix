@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const API_URL = `${import.meta.env.VITE_BACKEND_SERVER_PORT}`; // Adjust this to match your backend API URL
+const API_URL = `${import.meta.env.VITE_BACKEND_SERVER_PORT}`;
 
 const getToken = () => {
-  return localStorage.getItem("token"); // or however you store your token
+  return localStorage.getItem("token");
 };
 
 // Thread functions
@@ -27,15 +27,8 @@ export const createThread = async (title, body, categoryId) => {
 };
 
 export const fetchThreads = async () => {
-  const token = getToken();
-  if (!token) throw new Error("No token found");
   try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const response = await axios.get(`${API_URL}/thread`, config);
+    const response = await axios.get(`${API_URL}/thread`);
     return response.data;
   } catch (error) {
     console.error("Error fetching threads:", error.response || error);
@@ -109,7 +102,6 @@ export const fetchPosts = async (threadId) => {
 
 // Reply functions
 export const createReply = async (postId, content) => {
-  
   const token = getToken();
   if (!token) throw new Error("No token found");
 

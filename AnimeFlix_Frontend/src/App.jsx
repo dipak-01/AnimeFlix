@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { EarthoOneProvider } from "@eartho/one-client-react";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 import "./App.css";
 import LandingPage from "./pages/LandingPage.jsx";
@@ -22,42 +23,47 @@ function App() {
   return (
     <>
       <AlertProvider>
-        <AlertComponent />
-        <Router>
-          <div>
-            <Layout>
-              <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/home" element={<HomePage />} />
+        <Provider store={store}>
+          <AlertComponent />
+          <Router>
+            <div>
+              <Layout>
+                <Routes>
+                  <Route path="/" element={<LandingPage />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/home" element={<HomePage />} />
 
-                <Route path="/watch/:id" element={<AnimeStream />} />
-                <Route path="/community" element={<Community />} />
-                <Route path="/watchtogether" element={<WatchTogether />} />
-                <Route path="/user/profile" element={<Profile />} />
-                <Route path="/user/watchlist" element={<WatchList />} />
-                <Route path="/anime/mostpopular" element={<CategoryPages />} />
-                <Route path="/anime/topairing" element={<CategoryPages />} />
-                <Route
-                  path="/anime/mostfavourite"
-                  element={<CategoryPages />}
-                />
-                <Route
-                  path="/anime/latestcompleted"
-                  element={<CategoryPages />}
-                />
-                <Route
-                  path="/user/continuewatching"
-                  element={<ContinueWatch />}
-                />
-                <Route path="/community/thread/:id" element={<Thread />} />
-                <Route path="/search" element={<SearchPage />} />
+                  <Route path="/watch/:id" element={<AnimeStream />} />
+                  <Route path="/community" element={<Community />} />
+                  <Route path="/watchtogether" element={<WatchTogether />} />
+                  <Route path="/user/profile" element={<Profile />} />
+                  <Route path="/user/watchlist" element={<WatchList />} />
+                  <Route
+                    path="/anime/mostpopular"
+                    element={<CategoryPages />}
+                  />
+                  <Route path="/anime/topairing" element={<CategoryPages />} />
+                  <Route
+                    path="/anime/mostfavourite"
+                    element={<CategoryPages />}
+                  />
+                  <Route
+                    path="/anime/latestcompleted"
+                    element={<CategoryPages />}
+                  />
+                  <Route
+                    path="/user/continuewatching"
+                    element={<ContinueWatch />}
+                  />
+                  <Route path="/community/thread/:id" element={<Thread />} />
+                  <Route path="/search" element={<SearchPage />} />
 
-                <Route path="/anime/info" element={<AnimeInfo />} />
-              </Routes>
-            </Layout>
-          </div>
-        </Router>
+                  <Route path="/anime/info" element={<AnimeInfo />} />
+                </Routes>
+              </Layout>
+            </div>
+          </Router>
+        </Provider>
       </AlertProvider>
     </>
   );

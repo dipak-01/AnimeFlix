@@ -5,6 +5,8 @@ import {
   useAnimeEpisodeData,
   useAnimeEpisodeServerData,
 } from "../services/AnimeWatch";
+import { fetchAnimeInfo } from "../redux/slice/animeInfoSlice";
+import { useSelector, useDispatch } from "react-redux";
 import { PlayIcon } from "@vidstack/react/icons";
 // Base styles for media player and provider (~400B).
 import "@vidstack/react/player/styles/base.css";
@@ -15,12 +17,13 @@ import VideoPlayer from "../services/VideoPlayer";
 import { watchData } from "../services/userService";
 
 export default function AnimeStream() {
+  // const dispatch=useDispatch();
+  // const animeInfoData = useSelector((state) => state.animeInfo.data);
   const [isLoading, setIsLoading] = useState(true);
 
   const [loadingVideo, setLoadingVideo] = useState(true);
   const location = useLocation();
   const { epiId } = location.state || {};
-  // console.log(epiId);
   const [selectedEpisodeId, setSelectedEpisodeId] = useState(epiId || null);
   const { id } = useParams();
   const { data, loading, error } = useFetchData(id);
@@ -55,7 +58,6 @@ export default function AnimeStream() {
     const sendData = async () => {
       const episodeId = selectedEpisodeId;
       const animeId = id;
-      console.log(episodeId, animeId);
       if (animeId && episodeId) await watchData(animeId, episodeId);
     };
 
@@ -112,7 +114,7 @@ export default function AnimeStream() {
   const episodes = episodeData.episodes;
 
   return (
-    <div className="mx-auto my-4 min-h-screen h-auto w-full max-w-[1420px] px-4 text-start  sm:px-4 lg:px-6 xl:px-0">
+    <div className="mx-auto my-4 h-auto min-h-screen w-full max-w-[1420px] px-4 text-start  sm:px-4 lg:px-6 xl:px-0">
       <div className="mx-auto my-auto flex w-full flex-col space-x-6 space-y-4 rounded-3xl lg:flex-row lg:space-y-0 lg:py-10">
         <div className="flex flex-col-reverse lg:w-3/4 lg:flex-row">
           <div className="mostly-customized-scrollbar max-h-[550px] overflow-auto border-pink-500 text-slate-100 lg:w-1/4">

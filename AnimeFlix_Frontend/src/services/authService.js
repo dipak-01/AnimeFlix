@@ -19,7 +19,7 @@ export const login = async (email, password) => {
 };
 export const fetchUserData = async () => {
   const token = getToken();
-  console.log(token);
+   
   if (!token) {
     console.error("No token found");
     return null;
