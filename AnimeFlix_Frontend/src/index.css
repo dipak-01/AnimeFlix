@@ -26,10 +26,9 @@
   --color-surface-mixed-600: #958e97;
   /** EXAMPLES */
 
- font-family: "Poppins", sans-serif;
- font-weight: 400;
- background: black;
-  
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  background: black;
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
@@ -40,11 +39,11 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
- 
+
 .swiper-button-next,
 .swiper-button-prev {
   position: absolute;
- 
+
   transform: translateX(0);
   z-index: 1000; /* Increase the z-index so the buttons are above other elements */
   color: #000; /* Change the color of the buttons to make them more visible */
@@ -57,10 +56,11 @@
 .swiper-button-prev {
   left: -30px;
 }
-.fa-burger, .SearchBar {
+.fa-burger,
+.SearchBar {
   z-index: 1000; /* Adjust the value as needed */
 }
-.clippath{
+.clippath {
   clip-path: polygon(35% 0, 100% 0, 100% 100%, 0 100%, 0 25%);
 }
 .poppins-regular {
@@ -69,9 +69,8 @@
   font-style: normal;
 }
 
-
-.mirror{
-  display: inline-block; 
+.mirror {
+  display: inline-block;
   font-size: 30px;
 
   -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
@@ -79,7 +78,6 @@
   -o-transform: matrix(-1, 0, 0, 1, 0, 0);
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }
-
 
 .mostly-customized-scrollbar::-webkit-scrollbar {
   width: 5px;
@@ -92,24 +90,40 @@
   background: #000;
 }
 
- .dashed-grid-paper {
-
+.dashed-grid-paper {
   /* options */
-	--grid-size: 30px;
-	--grid-strength: 1px;
-	--grid-dash: 5px;
+  --grid-size: 30px;
+  --grid-strength: 1px;
+  --grid-dash: 5px;
   --grid-gap: 10px;
-	--grid-color: #302e2e;
-	--paper-color: #000000;
-  
-   /* styling */
+  --grid-color: #302e2e;
+  --paper-color: #000000;
+
+  /* styling */
   background-color: var(--paper-color);
-  background-size: var(--grid-gap) var(--grid-gap), var(--grid-size) var(--grid-size);
-  background-image:
-    linear-gradient(to bottom, transparent var(--grid-dash), var(--paper-color) var(--grid-dash)), 
-    linear-gradient(to right, var(--grid-color) var(--grid-strength), transparent var(--grid-strength)),
-    linear-gradient(to right, transparent var(--grid-dash), var(--paper-color) var(--grid-dash)),
-    linear-gradient(to bottom, var(--grid-color) var(--grid-strength), transparent var(--grid-strength));
+  background-size:
+    var(--grid-gap) var(--grid-gap),
+    var(--grid-size) var(--grid-size);
+  background-image: linear-gradient(
+      to bottom,
+      transparent var(--grid-dash),
+      var(--paper-color) var(--grid-dash)
+    ),
+    linear-gradient(
+      to right,
+      var(--grid-color) var(--grid-strength),
+      transparent var(--grid-strength)
+    ),
+    linear-gradient(
+      to right,
+      transparent var(--grid-dash),
+      var(--paper-color) var(--grid-dash)
+    ),
+    linear-gradient(
+      to bottom,
+      var(--grid-color) var(--grid-strength),
+      transparent var(--grid-strength)
+    );
 }
 .bg-pattern {
   background-color: #000000;
@@ -121,11 +135,11 @@
 .reply-container {
   position: relative; /* Needed for absolute positioning of the pseudo-element */
   margin-left: 0px; /* Adjust as needed to align with your design */
-  padding-left:0px; /* Provides space for the line */
+  padding-left: 0px; /* Provides space for the line */
 }
 
 .reply-container::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -40px; /* Adjust based on the padding-left of the container */
   top: 50%; /* Center the line vertically */
@@ -137,11 +151,16 @@
 }
 
 .reply-container::after {
-  content: '';
+  content: "";
   position: absolute;
   left: -40px;
   top: -50%;
   width: 1px; /* Thickness of the line, matches height of the horizontal line */
   height: 100%; /* This extends the line vertically towards the top or bottom */
   background-color: #f8f8f8; /* Color of the line */
+}
+.glow {
+  -webkit-box-shadow: 0px 0px 300px 29px rgba(45, 255, 196, 0.44);
+  -moz-box-shadow: 0px 0px 300px 29px rgba(45, 255, 196, 0.44);
+  box-shadow: 0px 0px 300px 29px rgba(45, 255, 196, 0.44);
 }

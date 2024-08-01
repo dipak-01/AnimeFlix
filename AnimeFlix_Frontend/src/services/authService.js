@@ -14,15 +14,15 @@ export const register = async (username, email, password) => {
     return response.data;
   } catch (error) {
     if (error.response) {
-      // Server responded with a status other than 2xx
+     
       console.error("Server Error:", error.response.data);
       throw new Error(error.response.data.message || "Registration failed");
     } else if (error.request) {
-      // Request was made but no response received
+       
       console.error("Network Error:", error.request);
       throw new Error("Network error, please try again later");
     } else {
-      // Something else happened
+     
       console.error("Error:", error.message);
       throw new Error(error.message);
     }
@@ -36,11 +36,11 @@ export const login = async (email, password) => {
     return response.data;
   } catch (error) {
     if (error.response) {
-      // Server responded with a status other than 2xx
+       
       console.error("Server Error:", error.response.data);
       throw new Error(error.response.data.message || "Login failed");
     } else if (error.request) {
-      // Request was made but no response received
+       
       console.error("Network Error:", error.request);
       throw new Error("Network error, please try again later");
     } else {

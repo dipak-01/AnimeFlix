@@ -56,20 +56,6 @@ function App() {
     setQuery(val);
   };
 
-  // useEffect(() => {
-  //   supabase.auth.getSession().then(({ data: { session } }) => {
-  //     setSession(session);
-  //   });
-
-  //   const {
-  //     data: { subscription },
-  //   } = supabase.auth.onAuthStateChange((_event, session) => {
-  //     setSession(session);
-  //   });
-
-  //   return () => subscription.unsubscribe();
-  // }, []);
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -91,7 +77,7 @@ function App() {
 
   return (
     <div className="App h-20  ">
-      <div className="fixed w-full z-50 bg-black">
+      <div className="fixed z-50 w-full bg-black">
         <nav className="bg-slate-1000/75 p-4   lg:px-10 ">
           <div className="container mx-auto flex items-center justify-between">
             <div className="space-x-2">

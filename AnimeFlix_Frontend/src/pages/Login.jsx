@@ -332,6 +332,8 @@ import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
+  const [alertMsg, setAlertMsg] = useState("");
+  const [alertType, setAlertType] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [toggleLogin, setToggleLogin] = useState(true);
@@ -340,6 +342,10 @@ const Auth = () => {
   const [validationMessage, setValidationMessage] = useState("");
   const navigate = useNavigate();
   const { showAlert } = useAlert();
+  const alert = (message, type) => {
+    setAlertMsg(message);
+    setAlertType(type);
+  };
   const loginImages = [
     "/loginImage/rei1.png",
     "/loginImage/rei2.png",
@@ -401,15 +407,26 @@ const Auth = () => {
   const handleLogin = async () => {
     try {
       const data = await login(email, password);
+
       setToken(data.token);
       showAlert("Logged in successfully!", "success");
       localStorage.setItem("token", data.token);
       navigate("/home");
     } catch (error) {
-      showAlert(
-        "Login failed. Please check your credentials and try again.",
-        "error",
-      );
+      alert("Check your credentials and try again.", "error");
+      console.error("Login Error:", error);
+      let errorMessage =
+        "Login failed. Please check your credentials and try again.";
+
+      if (error.response) {
+        // Server responded with a status other than 2xx
+        errorMessage = error.response.data.message || errorMessage;
+      } else if (error.request) {
+        // Request was made but no response received
+        errorMessage = "Network error, please try again later.";
+      }
+
+      showAlert(errorMessage, "error");
     }
   };
 
@@ -433,8 +450,8 @@ const Auth = () => {
       <div className="mx-auto h-3/4 w-full">
         {toggleLogin ? (
           <>
-            <div className="m-auto flex h-3/4 max-h-none w-2/4 items-center space-x-4 rounded-3xl border-2 border-teal-500 bg-slate-950 shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)]">
-              <div className="logininp flex w-1/2 flex-col p-4 text-start">
+            <div className="m-auto   flex h-3/4 max-h-none w-3/4 items-center space-x-4 rounded-3xl border-2 border-teal-500 bg-slate-950 shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)] lg:w-2/4">
+              <div className="logininp flex w-full flex-col p-4 text-start lg:w-1/2">
                 <div className="text-2xl font-bold">REGISTER</div>
                 <div className="mb-3">
                   <label
@@ -528,19 +545,15 @@ const Auth = () => {
                   </button>
                 </div>
               </div>
-              <div className="relative h-full w-1/2">
-                <img
-                  className="absolute inset-x-0 bottom-0"
-                  src={loginImages[randomRei]}
-                  alt=""
-                />
+              <div className=" hidden h-96 w-1/2 overflow-hidden lg:block">
+                <img className="  w-full" src={loginImages[randomRei]} alt="" />
               </div>
             </div>
           </>
         ) : (
           <>
-            <div className="m-auto flex h-3/4 max-h-none w-2/4 flex-row-reverse items-center space-x-4 rounded-3xl border-2 border-teal-500 bg-slate-950 shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)]">
-              <div className="logininp flex w-1/2 flex-col p-4 text-start">
+            <div className="m-auto flex h-3/4 max-h-none w-3/4 flex-row-reverse items-center space-x-4 rounded-3xl border-2 border-teal-500 bg-slate-950 shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)] lg:w-2/4">
+              <div className="logininp flex w-full flex-col p-4 text-start lg:w-1/2">
                 <div className="text-2xl font-bold">LOGIN</div>
                 <div className="mb-3">
                   <label
@@ -595,6 +608,11 @@ const Auth = () => {
                 >
                   Login
                 </button>
+                {alertMsg && (
+                  <div className={`alert text-xs text-red-600 ${alertType}`}>
+                    {alertMsg}
+                  </div>
+                )}
                 <div className="text-sm">
                   Not registered?{" "}
                   <button
@@ -605,9 +623,9 @@ const Auth = () => {
                   </button>
                 </div>
               </div>
-              <div className="relative h-full w-1/2">
+              <div className=" hidden h-80 w-1/2 overflow-hidden lg:block">
                 <img
-                  className="absolute inset-x-0 bottom-0"
+                  className="    w-full  "
                   src={loginImages[randomAsuka]}
                   alt=""
                 />
