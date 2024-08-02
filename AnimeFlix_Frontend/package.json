@@ -34,7 +34,8 @@
     "router": "^2.0.0-beta.2",
     "slick-carousel": "^1.8.1",
     "socket.io-client": "^4.7.5",
-    "swiper": "^11.0.7"
+    "swiper": "^11.0.7",
+    "unique-names-generator": "^4.7.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
@@ -48,6 +49,7 @@
     "postcss": "^8.4.38",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.4.1",
+    "sillyname": "^0.1.0",
     "tailwindcss": "^3.4.1",
     "vite": "^5.2.0",
     "vite-plugin-mkcert": "^1.17.5"

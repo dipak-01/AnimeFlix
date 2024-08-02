@@ -1,13 +1,14 @@
 import express from "express";
 import cors from "cors";
-import { createServer } from "http";  
- import { Server } from "socket.io";
+import { createServer } from "http";
+import { Server } from "socket.io";
 import connectDB from "./config/db.js"; // Assuming this is the path to your connectDB function
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import watchHistoryRoutes from "./routes/watchHistoryRoutes.js";
 import watchListRoutes from "./routes/watchListRoutes.js";
 import forumRoutes from "./routes/forumRoutes.js";
+import { connected } from "process";
 
 const app = express();
 const httpServer = createServer(app);
@@ -23,25 +24,30 @@ connectDB();
 app.use(authRoutes);
 app.use(forumRoutes);
 app.use(userRoutes);
-app.use(watchHistoryRoutes);  
-app.use(watchListRoutes);  
+app.use(watchHistoryRoutes);
+app.use(watchListRoutes);
 
 const PORT = process.env.PORT || 3000;
-
 io.on("connection", (socket) => {
-  console.log("A user connected");
+  socket.emit("logs", "Welcome to the server!");
 
-  io.emit("foo", "Welcome to the server!");
+  socket.on("user-connected", (name) => {
+    socket.broadcast.emit("logs", `${name} has connected`);
+  });
 
-   
   socket.on("create-something", (message, callback) => {
-    io.emit("foo", `Received: ${message}`);
+    io.emit("foo", message);
     callback();
   });
 
-  socket.on("disconnect", () => {
-    console.log("User disconnected");
+  socket.on("user-disconnected", (name) => {
+    socket.broadcast.emit("logs", `${name} has disconnected`);
+  });
+
+  socket.on("activity", (name) => {
+    socket.broadcast.emit("activity", name);
   });
 });
 
 httpServer.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
