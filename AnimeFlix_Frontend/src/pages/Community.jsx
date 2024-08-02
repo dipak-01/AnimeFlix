@@ -2,6 +2,7 @@ import { fetchThreads } from "../services/forumService";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { socket } from "../socket";
+import EmojiPicker from "emoji-picker-react";
 export default function () {
   const [threads, setThreads] = useState([]);
   const [message, setMessage] = useState("");
@@ -64,7 +65,7 @@ export default function () {
     <>
       <main className="  mx-auto my-4 h-auto min-h-screen  w-full max-w-[1420px] px-2 text-start text-slate-50 sm:px-4 lg:px-6 xl:px-0  ">
         <div className="flex flex-col items-center justify-center p-4">
-          <div className="w-full max-w-3xl mb-4 rounded-lg bg-gray-800 shadow-md">
+          <div className="mb-4 w-full max-w-3xl rounded-lg bg-gray-800 shadow-md">
             <header className="rounded-t-lg bg-gray-900 p-4 text-white">
               <h1 className="text-xl font-bold">Live Chat</h1>
             </header>
@@ -82,7 +83,7 @@ export default function () {
             </div>
             <form
               onSubmit={handleSubmitMessage}
-              className="flex rounded-b-lg bg-gray-900 p-4"
+              className="relative flex rounded-b-lg bg-gray-900 p-4"
             >
               <input
                 className="min-w-8 flex-grow rounded-l-lg bg-gray-700 p-2 text-white focus:outline-none"
@@ -93,6 +94,7 @@ export default function () {
                 id="message"
                 placeholder="Type your message..."
               />
+            {/* <EmojiPicker className="absolute" allowExpandReactions={true}  emojiStyle="" open={true} /> */}
               <button
                 type="submit"
                 disabled={isLoading}
@@ -100,6 +102,7 @@ export default function () {
               >
                 {isLoading ? "Sending..." : "Send"}
               </button>
+              
             </form>
           </div>
           <div className="w-full max-w-3xl text-start">

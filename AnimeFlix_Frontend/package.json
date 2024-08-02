@@ -21,6 +21,7 @@
     "@vidstack/react": "^1.11.25",
     "axios": "^1.6.8",
     "date-fns": "^3.6.0",
+    "emoji-picker-react": "^4.11.1",
     "hls.js": "^1.5.13",
     "media-icons": "^1.1.4",
     "plyr": "^3.7.8",

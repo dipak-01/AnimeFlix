@@ -1,8 +1,7 @@
 import express from "express";
 import cors from "cors";
-import { createServer } from "http"; // Import createServer from http module
-
-import { Server } from "socket.io";
+import { createServer } from "http";  
+ import { Server } from "socket.io";
 import connectDB from "./config/db.js"; // Assuming this is the path to your connectDB function
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -24,8 +23,8 @@ connectDB();
 app.use(authRoutes);
 app.use(forumRoutes);
 app.use(userRoutes);
-app.use(watchHistoryRoutes); // Changed to avoid path conflict
-app.use(watchListRoutes); // Changed to avoid path conflict
+app.use(watchHistoryRoutes);  
+app.use(watchListRoutes);  
 
 const PORT = process.env.PORT || 3000;
 
@@ -34,7 +33,7 @@ io.on("connection", (socket) => {
 
   io.emit("foo", "Welcome to the server!");
 
-  // Handle other events from the client
+   
   socket.on("create-something", (message, callback) => {
     io.emit("foo", `Received: ${message}`);
     callback();
