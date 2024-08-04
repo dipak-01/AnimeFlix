@@ -29,25 +29,54 @@ app.use(watchListRoutes);
 
 const PORT = process.env.PORT || 3000;
 io.on("connection", (socket) => {
-  socket.emit("logs", "Welcome to the server!");
+  const welcomeMessage = {
+    message: "Welcome to the server!!!",
+    identifier: "miscellaneousMessage",
+  };
+  socket.emit("chatMessages", welcomeMessage);
 
   socket.on("user-connected", (name) => {
-    socket.broadcast.emit("logs", `${name} has connected`);
+    const connectMessage = {
+      message: `${name} has connected`,
+      identifier: "miscellaneousMessage",
+    };
+    socket.broadcast.emit("chatMessages", connectMessage.message);
   });
 
   socket.on("create-something", (message, callback) => {
-    io.emit("foo", message);
-    callback();
+    try {
+      const formattedMessage = {
+        message: message.message,
+        identifier: "msg",
+        data: message.data,
+        userId: socket.id,
+      };
+      socket.broadcast.emit("chatMessages", formattedMessage);
+
+      // Optionally, also send the message back to the sender
+      socket.emit("chatMessages", formattedMessage);
+      // console.log("Emitted chatMessages:", formattedMessage);
+      callback();
+    } catch (err) {
+      console.error("Error processing message:", err);
+    }
   });
 
   socket.on("user-disconnected", (name) => {
-    socket.broadcast.emit("logs", `${name} has disconnected`);
+    const disconnectMessage = {
+      message: `${name} has disconnected`,
+      identifier: "miscellaneousMessage",
+    };
+    socket.broadcast.emit("chatMessages", disconnectMessage.message);
   });
 
   socket.on("activity", (name) => {
-    socket.broadcast.emit("activity", name);
+    const activityMessages = {
+      message: `${name}`,
+      identifier: "activityMessage",
+    };
+    socket.broadcast.emit("activity", activityMessages.message);
   });
 });
 
 httpServer.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
