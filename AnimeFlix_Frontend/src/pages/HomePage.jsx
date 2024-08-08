@@ -31,9 +31,9 @@ export default function HomePage() {
       setLoading(false);
     }
   }, [homePageData]);
-
+ 
   const handleRedirectPage = (page, animeData) => {
-   
+    console.log(animeData);
     if (page === "mostPopularAnimes") {
       navigate("/anime/mostpopular", {
         state: { data: animeData, pageName: "Most Popular" },
@@ -57,7 +57,6 @@ export default function HomePage() {
   };
   return (
     <>
-     
       {loading ? (
         <div className="mx-auto my-4 h-auto min-h-screen w-full max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-2">
           <HomePageSkeleton />
