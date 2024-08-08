@@ -9,9 +9,13 @@ export function useFetchData(id) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          `${import.meta.env.VITE_ANIME_URL}/anime/info?id=${id}`,
-        );
+        const res =
+          (await axios.get(
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/info?id=${id}`,
+          )) ||
+          (await axios.get(
+            `${import.meta.env.VITE_ANIME_URL}/anime/info?id=${id}`,
+          ));
         setData(res.data);
         setLoading(false);
       } catch (error) {
@@ -35,9 +39,13 @@ export function useFetchStreamData(episodeid) {
   useEffect(() => {
     const getStreamData = async () => {
       try {
-        const res = await axios.get(
-          `${import.meta.env.VITE_ANIME_URL}/anime/episode-srcs?id=${episodeid}`,
-        );
+        const res =
+          (await axios.get(
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/episode-srcs?id=${episodeid}`,
+          )) ||
+          (await axios.get(
+            `${import.meta.env.VITE_ANIME_URL}/anime/episode-srcs?id=${episodeid}`,
+          ));
         setStreamData(res.data);
         setLoading(false);
       } catch (error) {
@@ -61,9 +69,13 @@ export function useAnimeEpisodeData(animeId) {
   useEffect(() => {
     const getAnimeEpisodeData = async () => {
       try {
-        const res = await axios.get(
-          `${import.meta.env.VITE_ANIME_URL}/anime/episodes/${animeId}`,
-        );
+        const res =
+          (await axios.get(
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/episodes/${animeId}`,
+          )) ||
+          (await axios.get(
+            `${import.meta.env.VITE_ANIME_URL}/anime/episodes/${animeId}`,
+          ));
         setEpisodeData(res.data);
         setLoading(false);
       } catch (error) {
@@ -79,6 +91,7 @@ export function useAnimeEpisodeData(animeId) {
 
   return { episodeData, loading, error };
 }
+// for server data
 export function useAnimeEpisodeServerData(episodeid) {
   const [episodeServerData, setEpisodeServerData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -87,9 +100,13 @@ export function useAnimeEpisodeServerData(episodeid) {
   useEffect(() => {
     const getAnimeEpisodeServerData = async () => {
       try {
-        const res = await axios.get(
-          `${import.meta.env.VITE_ANIME_URL}/anime/servers?episodeId=${episodeid}`,
-        );
+        const res =
+          (await axios.get(
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/servers?episodeId=${episodeid}`,
+          )) ||
+          (await axios.get(
+            `${import.meta.env.VITE_ANIME_URL}/anime/servers?episodeId=${episodeid}`,
+          ));
         setEpisodeServerData(res.data);
         setLoading(false);
       } catch (error) {

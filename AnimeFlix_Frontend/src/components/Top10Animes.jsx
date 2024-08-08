@@ -6,21 +6,21 @@ export default function Top10Animes(top10animes) {
   return (
     <>
       <div className="flex lg:flex-row flex-col gap-4 text-start">
-        <div>
-          <div>
-            <p className="pb-2 text-2xl font-semibold">Today</p>
+        <div className="lg:w-1/3">
+          <div >
+            <p className="pb-2 lg:text-2xl font-semibold">Today</p>
             <TemplateCard animeData={data.today} />
           </div>
         </div>
-        <div>
+        <div className="lg:w-1/3">
           <div>
-            <p className="pb-2 text-2xl font-semibold">Week</p>
+            <p className="pb-2 lg:text-2xl font-semibold">Week</p>
             <TemplateCard animeData={data.week} />
           </div>
         </div>
-        <div>
+        <div className="lg:w-1/3">
           <div>
-            <p className="pb-2 text-2xl font-semibold">Month</p>
+            <p className="pb-2 lg:text-2xl font-semibold">Month</p>
             <TemplateCard animeData={data.month} />
           </div>
         </div>
@@ -50,7 +50,7 @@ function TemplateCard({ animeData }) {
             }}
           ></div>
           <div className="relative flex h-12 w-12 items-center justify-center rounded-full border bg-orange-200">
-            <p className="     text-center text-3xl font-bold  text-orange-600  ">
+            <p className="     text-center lg:text-3xl text-xl font-bold  text-orange-600  ">
               {top10anime.rank}
             </p>
           </div>
@@ -61,7 +61,7 @@ function TemplateCard({ animeData }) {
             alt={top10anime.name}
           /> */}
           <div className="relative ml-4 w-3/4   ">
-            <p className="line-clamp-1 text-lg font-semibold text-white">
+            <p className="line-clamp-1 lg:text-lg font-semibold text-white">
               {top10anime.name}
             </p>
 

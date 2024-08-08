@@ -98,13 +98,13 @@ export default function ({ trendingAnimes }) {
             }}
           ></div>
           <div className="relative flex h-1/4 items-center ">
-            <div className="w-1/4 my-auto">
-              <p className="text-center text-2xl font-semibold italic text-orange-400">
+            <div className="w-1/5 my-auto">
+              <p className="text-center lg:text-2xl text-lg font-semibold italic text-orange-400">
                 #{trends.rank}
               </p>
             </div>
-            <div className="w-3/4 pl-4 my-auto">
-              <p className="relative line-clamp-2 text-start text-lg font-medium text-orange-50">
+            <div className="w-4/5 pl-4 my-auto">
+              <p className="relative line-clamp-2 text-start text-md lg:text-lg font-medium text-orange-50">
                 {trends.name}
               </p>
             </div>

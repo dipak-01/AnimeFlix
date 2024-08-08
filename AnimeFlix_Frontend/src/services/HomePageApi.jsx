@@ -2,10 +2,16 @@ import axios from "axios";
 export default async () => {
   const getData = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_ANIME_URL}/anime/home`,
-        { crossdomain: true },
-      );
+      const response =
+        (await axios.get(
+          `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/home`,
+          {
+            crossdomain: true,
+          },
+        )) ||
+        (await axios.get(`${import.meta.env.VITE_ANIME_URL}/anime/home`, {
+          crossdomain: true,
+        }));
       const homeData = response.data;
       return homeData;
     } catch (error) {

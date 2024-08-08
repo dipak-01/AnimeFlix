@@ -19,6 +19,7 @@ import { ContinueWatch } from "./pages/ContinueWatch.jsx";
 import { AlertProvider } from "./components/AlertContext.jsx";
 import AlertComponent from "./components/Alerts.jsx";
 import CategoryPages from "./pages/CategoryPages.jsx";
+import WatchTogetherAnime from "./pages/WatchTogetherAnime.jsx";
 function App() {
   return (
     <>
@@ -35,7 +36,8 @@ function App() {
 
                   <Route path="/watch/:id" element={<AnimeStream />} />
                   <Route path="/community" element={<Community />} />
-                  <Route path="/watchtogether" element={<WatchTogether />} />
+                  <Route path="/watchtogether/create/:id" element={<WatchTogether />} />
+                  <Route path="/watchtogether/:id" element={<WatchTogetherAnime />} />
                   <Route path="/user/profile" element={<Profile />} />
                   <Route path="/user/watchlist" element={<WatchList />} />
                   <Route

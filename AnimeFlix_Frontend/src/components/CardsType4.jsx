@@ -13,7 +13,7 @@ export default function CardsType4({ animeId, epiId, identifier }) {
   const [loading, setLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
-  const {showAlert} = useAlert();
+  const { showAlert } = useAlert();
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -23,7 +23,7 @@ export default function CardsType4({ animeId, epiId, identifier }) {
     if (identifier === "watchhistory") {
       try {
         const response = await deleteWatchHistory(animeId);
-        showAlert("Deleted from your Watch History",'added')
+        showAlert("Deleted from your Watch History", "added");
         setIsVisible(false);
       } catch (error) {
         console.error("Error deleting watch history:", error);
@@ -32,7 +32,7 @@ export default function CardsType4({ animeId, epiId, identifier }) {
     if (identifier === "watchlist") {
       try {
         const response = await deleteWatchList(animeId);
-        showAlert("Deleted from your WatchList",'added')
+        showAlert("Deleted from your WatchList", "added");
         setIsVisible(false);
       } catch (error) {
         console.error("Error deleting watch history:", error);
@@ -75,6 +75,13 @@ export default function CardsType4({ animeId, epiId, identifier }) {
               </div>
             )}
             <div className="relative h-full overflow-hidden rounded-md ">
+              {" "}
+              <button
+                onClick={() => handleDelete(animeInfo.id)}
+                className="absolute right-0 top-0 z-10 rounded-bl-lg bg-red-500 p-2 hover:scale-105 hover:bg-slate-300 hover:text-red-500"
+              >
+                <i className="fas fa-trash"></i>
+              </button>
               <img
                 className="absolute h-full w-full rounded-md transition-transform duration-300 ease-in-out hover:scale-110 hover:blur-[2px] "
                 src={animeInfo.poster}
@@ -91,12 +98,7 @@ export default function CardsType4({ animeId, epiId, identifier }) {
                   onLoad={() => setIsLoading(false)}
                   style={{ display: isLoading ? "none" : "block" }}
                 />
-                <button
-                  onClick={() => handleDelete(animeInfo.id)}
-                  className="absolute right-0 top-0 z-10 rounded-bl-lg bg-red-500 p-2 hover:scale-105 hover:bg-slate-300 hover:text-red-500"
-                >
-                  <i className="fas fa-trash"></i>
-                </button>
+
                 <div className="pointer-events-none absolute inset-0 flex  items-center justify-center">
                   <i className="far fa-play-circle text-5xl text-orange-500 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"></i>
                 </div>

@@ -18,7 +18,7 @@ export default function ({ src, data }) {
         logLevel="warn"
         crossOrigin
         playsInline
-        autoPlay
+        // autoPlay
       >
         <MediaProvider>
           {/* <Poster className="vds-poster" /> */}

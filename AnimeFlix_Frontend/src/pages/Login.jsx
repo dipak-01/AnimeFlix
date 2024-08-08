@@ -450,7 +450,7 @@ const Auth = () => {
       <div className="mx-auto h-3/4 w-full">
         {toggleLogin ? (
           <>
-            <div className="m-auto   flex h-3/4 max-h-none w-3/4 items-center space-x-4 rounded-3xl border-2 border-teal-500 bg-slate-950 shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)] lg:w-2/4">
+            <div className="mx-auto my-10 flex  h-3/4 max-h-none w-3/4 items-center space-x-4 rounded-3xl border-2 border-teal-500 bg-slate-950 shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)] lg:m-auto lg:w-2/4">
               <div className="logininp flex w-full flex-col p-4 text-start lg:w-1/2">
                 <div className="text-2xl font-bold">REGISTER</div>
                 <div className="mb-3">

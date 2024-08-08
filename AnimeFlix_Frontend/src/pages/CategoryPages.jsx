@@ -1,10 +1,11 @@
 import { useLocation } from "react-router-dom";
 import { Loader } from "../components/Loading";
- 
+
 import CardsType2 from "../components/CardsType2";
 export default function CategoryPages() {
   const location = useLocation();
   const { data, pageName } = location.state || {};
+  window.scrollTo(0, 0);
 
   return (
     <>

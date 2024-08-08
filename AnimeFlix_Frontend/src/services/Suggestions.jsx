@@ -13,10 +13,15 @@ const Suggestions = ({ query }) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_ANIME_URL}/anime/search/suggest?q=${query}`,
-          { crossdomain: true },
-        );
+        const response =
+          (await axios.get(
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/search/suggest?q=${query}`,
+            { crossdomain: true },
+          )) ||
+          (await axios.get(
+            `${import.meta.env.VITE_ANIME_URL}/anime/search/suggest?q=${query}`,
+            { crossdomain: true },
+          ));
 
         const filteredData = response.data.suggestions;
         setData(filteredData);

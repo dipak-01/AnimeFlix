@@ -2,12 +2,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchHomePage = createAsyncThunk("fetchHomePage", async () => {
-  const response = await axios.get(
-    `${import.meta.env.VITE_ANIME_URL}/anime/home`,
-    {
+  const response =
+     
+    (await axios.get(`${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/home`, {
       crossdomain: true,
-    },
-  );
+    })) ||
+    (await axios.get(`${import.meta.env.VITE_ANIME_URL}/anime/home`, {
+      crossdomain: true,
+    }));
   return response;
 });
 
@@ -27,8 +29,8 @@ const homePageSlice = createSlice({
       state.data = action.payload;
     });
     builder.addCase(fetchHomePage.rejected, (state, action) => {
-        console.log("Error", action.payload);
-        state.isError = true;
+      console.log("Error", action.payload);
+      state.isError = true;
     });
   },
 });

@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchAnimeInfo = createAsyncThunk("fetchAnimeInfo", (id) => {
-  const response = axios.get(
-    `${import.meta.env.VITE_ANIME_URL}/anime/info?id=${id}`,
-  );
+export const fetchAnimeInfo = createAsyncThunk("fetchAnimeInfo", async (id) => {
+  const response =
+    (await axios.get(
+      `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/info?id=${id}`,
+    )) ||
+    (await axios.get(`${import.meta.env.VITE_ANIME_URL}/anime/info?id=${id}`));
   return response;
 });
 

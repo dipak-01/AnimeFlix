@@ -8,8 +8,7 @@ import userRoutes from "./routes/userRoutes.js";
 import watchHistoryRoutes from "./routes/watchHistoryRoutes.js";
 import watchListRoutes from "./routes/watchListRoutes.js";
 import forumRoutes from "./routes/forumRoutes.js";
-import { connected } from "process";
-
+ 
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {

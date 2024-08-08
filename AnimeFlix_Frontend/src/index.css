@@ -132,33 +132,7 @@
     linear-gradient(to right, #131313 1px, #000000 1px);
   background-size: 30px 30px;
 }
-.reply-container {
-  position: relative; /* Needed for absolute positioning of the pseudo-element */
-  margin-left: 0px; /* Adjust as needed to align with your design */
-  padding-left: 0px; /* Provides space for the line */
-}
 
-.reply-container::before {
-  content: "";
-  position: absolute;
-  left: -40px; /* Adjust based on the padding-left of the container */
-  top: 50%; /* Center the line vertically */
-  width: 40px; /* Length of the horizontal part of the line */
-  height: 1px; /* Thickness of the line */
-  background-color: #f8f8f8; /* Color of the line */
-  border-top-right-radius: 2px; /* Smooths the corner where the line turns */
-  border-bottom-right-radius: 2px;
-}
-
-.reply-container::after {
-  content: "";
-  position: absolute;
-  left: -40px;
-  top: -50%;
-  width: 1px; /* Thickness of the line, matches height of the horizontal line */
-  height: 100%; /* This extends the line vertically towards the top or bottom */
-  background-color: #f8f8f8; /* Color of the line */
-}
 .glow {
   -webkit-box-shadow: 0px 0px 300px 29px rgba(45, 255, 196, 0.44);
   -moz-box-shadow: 0px 0px 300px 29px rgba(45, 255, 196, 0.44);

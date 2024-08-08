@@ -15,6 +15,7 @@ import { Loader } from "../components/Loading";
 import TopUpcoming from "../components/TopUpcoming";
 import VideoPlayer from "../services/VideoPlayer";
 import { watchData } from "../services/userService";
+import Stream from "../components/Svg";
 
 export default function AnimeStream() {
   // const dispatch=useDispatch();
@@ -67,7 +68,7 @@ export default function AnimeStream() {
   const handleClick = () => {
     navigate(`/anime/info?id=${encodeURIComponent(id)}`);
   };
-  const classOfDiv = document.querySelector(".overlay");
+  // const classOfDiv = document.querySelector(".overlay");
 
   const add = () => {
     setIsLoading(true);
@@ -112,7 +113,18 @@ export default function AnimeStream() {
   const recommendedAnime = data.recommendedAnimes;
 
   const episodes = episodeData.episodes;
+  const handleWatchTogether = ( info) => {
+    if (!id&&info) {
+      console.error("Invalid ID provided");
+      return;
+    }
 
+    console.log(id);
+    navigate(`/watchtogether/create/${info.id}`, {
+      state: { data: info},
+    });;
+    // navigate(`/anime/info?id=${encodeURIComponent(id)}`);
+  };
   return (
     <div className="mx-auto my-4 h-auto min-h-screen w-full max-w-[1420px] px-4 text-start  sm:px-4 lg:px-6 xl:px-0">
       <div className="mx-auto my-auto flex w-full flex-col space-x-6 space-y-4 rounded-3xl lg:flex-row lg:space-y-0 lg:py-10">
@@ -193,7 +205,7 @@ export default function AnimeStream() {
                 </div>
               )}
             </div>
-            <div className="w-full bg-gray-900 py-1 text-end text-xs font-semibold">
+            <div className="flex w-full justify-end gap-2 bg-gray-900 py-1 text-end text-xs font-semibold">
               <button
                 onClick={() => sub()}
                 className="m-1 rounded-sm bg-orange-200 p-1"
@@ -205,6 +217,12 @@ export default function AnimeStream() {
                 className="m-1 rounded-sm bg-orange-200 p-1"
               >
                 Next
+              </button>
+              <button
+                onClick={() => handleWatchTogether(info)}
+                className="rounded-sm pr-4  text-center"
+              >
+                <Stream />
               </button>
             </div>
             <div className="flex">
