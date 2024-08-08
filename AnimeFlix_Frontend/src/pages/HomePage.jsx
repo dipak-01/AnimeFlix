@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Swiper from "../components/Swiper";
-import { useAlert } from "../components/AlertContext";
+ 
 import Top10Animes from "../components/Top10Animes";
 import TrendingCards from "../components/TrendingCards";
 import { Loader } from "../components/Loading";
