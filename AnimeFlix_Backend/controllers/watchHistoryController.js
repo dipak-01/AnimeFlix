@@ -1,5 +1,5 @@
 import WatchHistory from "../models/watchHistory.js";
-import jwt from "jsonwebtoken";
+import { jwt } from "jsonwebtoken";
 export const addWatchData = async (req, res) => {
   try {
     const { animeId, episodeId } = req.body;
@@ -50,8 +50,10 @@ export const deleteWatchHistory = async (req, res) => {
       return res.status(404).send({ message: "Watch history not found." });
     }
     res.send({ message: "Watch history deleted successfully." });
+    return null;
   } catch (error) {
     console.error("Error deleting watch history:", error);
     res.status(500).send({ message: "Failed to delete watch history." });
+    return null;
   }
 };

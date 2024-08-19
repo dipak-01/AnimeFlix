@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import {jwt} from "jsonwebtoken";
 
 const authMiddleware = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
@@ -10,9 +10,11 @@ const authMiddleware = (req, res, next) => {
     } catch (error) {
       return res.status(401).send("Unauthorized NIGH");
     }
+    return null
   } else {
     return res.status(401).send("Unauthorized");
   }
+  
 };
 
 export default authMiddleware;

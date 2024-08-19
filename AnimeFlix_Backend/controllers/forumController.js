@@ -74,8 +74,7 @@ export const getPosts = async (req, res) => {
      
     const thread = await Thread.findById(threadId);
     if (!thread) {
-      console.log('Thread not found');
-      return res.status(404).json({ error: "Thread not found" });
+       return res.status(404).json({ error: "Thread not found" });
     }
 
     const posts = await Post.find({ threadId }).populate('userId', 'username email avatarUrl');
@@ -108,9 +107,8 @@ export const getReplies = async (req, res) => {
     if (!post) {
       return res.status(404).json({ error: "Thread not found" });
     }
-    const replies = await Reply.find({ postId: postId }).populate('userId', 'username email avatarUrl');
-    console.log(replies);
-    return res.status(200).json(replies);
+    const replies = await Reply.find({ postId }).populate('userId', 'username email avatarUrl');
+     return res.status(200).json(replies);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }

@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
+import {dotenv} from "dotenv";
 
 dotenv.config();
 const connectDB = async () => {
-  const a=process.env.URI;
-  if (!a) {
+  const MONGODB_URI=process.env.URI;
+  if (!MONGODB_URI) {
     console.error("Error: MONGODB_URI is not defined in the environment variables.");
     process.exit(1);
   } 

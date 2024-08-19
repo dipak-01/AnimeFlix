@@ -1,5 +1,5 @@
 import User from "../models/user.js";
-import jwt from "jsonwebtoken";
+import {jwt} from "jsonwebtoken";
 
 export const getUser = async (req, res) => {
   const authHeader = req.headers.authorization;
@@ -7,7 +7,7 @@ export const getUser = async (req, res) => {
     return res.status(401).send("No token provided");
   }
   const token = authHeader.split(" ")[1];
-  console.log(token);
+   
   try {
     const decoded = jwt.verify(token, "jwt_secret");
     const userId = decoded.userId;

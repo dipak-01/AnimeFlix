@@ -1,5 +1,5 @@
 import WatchList from "../models/watchList.js";
-import jwt from "jsonwebtoken";
+import { jwt } from "jsonwebtoken";
 export const addToWatchList = async (req, res) => {
   try {
     const { animeId } = req.body;
@@ -48,8 +48,10 @@ export const deleteWatchList = async (req, res) => {
       return res.status(404).send({ message: "Watch list not found." });
     }
     res.send({ message: "Watch list deleted successfully." });
+    return null;
   } catch (error) {
     console.error("Error deleting watch list:", error);
     res.status(500).send({ message: "Failed to delete watch list." });
+    return null;
   }
 };
