@@ -1,5 +1,5 @@
 import WatchList from "../models/watchList.js";
-import { jwt } from "jsonwebtoken";
+import  jwt  from "jsonwebtoken";
 export const addToWatchList = async (req, res) => {
   try {
     const { animeId } = req.body;

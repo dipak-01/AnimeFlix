@@ -1,5 +1,5 @@
 import WatchHistory from "../models/watchHistory.js";
-import { jwt } from "jsonwebtoken";
+import  jwt  from "jsonwebtoken";
 export const addWatchData = async (req, res) => {
   try {
     const { animeId, episodeId } = req.body;
