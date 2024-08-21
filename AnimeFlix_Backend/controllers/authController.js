@@ -18,9 +18,14 @@ export const register = async (req, res) => {
       return res.status(400).send("Invalid email format.");
     }
 
+    //Check if the username is already in use
+    const existingUserName = await User.findOne({ username });
+    if (existingUserName) {
+      return res.status(400).send("Username is already in use");
+    }
     // Check if the email is already in use
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
+    const existingUserEmail = await User.findOne({ email });
+    if (existingUserEmail) {
       return res.status(400).send("Email is already in use");
     }
 

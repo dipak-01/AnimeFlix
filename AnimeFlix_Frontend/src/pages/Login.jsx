@@ -1,10 +1,9 @@
- 
-
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 // import { useAlert } from "../components/AlertContext";
 import { register, login } from "../services/authService";
 import "../styles/user.css";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -67,13 +66,14 @@ const Auth = () => {
 
   const handleRegister = async () => {
     if (validationMessage) {
-      // showAlert(validationMessage, "error");
+      toast.error({ validationMessage });
       return;
     }
 
     try {
-      await register(username, email, password);
-      // showAlert("Registration successful!", "success");
+      const response = await register(username, email, password);
+      console.log("response:", response);
+      toast.success(response);
       setToggleLogin(true);
     } catch (error) {
       // showAlert("Registration failed. Please try again.", "error");
@@ -82,13 +82,16 @@ const Auth = () => {
 
   const handleLogin = async () => {
     try {
-      const data = await login(email, password);
-
-      setToken(data.token);
+      const response = await login(email, password);
+      console.log(response);
+      toast.success(response.message || "Login successful!");
+      setToken(response.token);
       // showAlert("Logged in successfully!", "success");
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", response.token);
       navigate("/home");
     } catch (error) {
+      toast.error(error.message || "Login failed!");
+
       // alert("Check your credentials and try again.", "error");
       console.error("Login Error:", error);
       let errorMessage =
@@ -102,7 +105,7 @@ const Auth = () => {
         errorMessage = "Network error, please try again later.";
       }
 
-      showAlert(errorMessage, "error");
+      // showAlert(errorMessage, "error");
     }
   };
 
@@ -113,6 +116,7 @@ const Auth = () => {
 
   const [randomRei, setRandomRei] = useState(0);
   const [randomAsuka, setRandomAsuka] = useState(3);
+  const notify = () => toast("Here is your toast.");
 
   useEffect(() => {
     const rei = Math.floor(Math.random() * 3); // 0 to 2
@@ -129,6 +133,10 @@ const Auth = () => {
             <div className="mx-auto my-10 flex  h-3/4 max-h-none w-3/4 items-center space-x-4 rounded-3xl border-2 border-teal-500 bg-slate-950 shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)] lg:m-auto lg:w-2/4">
               <div className="logininp flex w-full flex-col p-4 text-start lg:w-1/2">
                 <div className="text-2xl font-bold">REGISTER</div>
+                <div>
+                  <button onClick={notify}>Make me a toast</button>
+                  <Toaster />
+                </div>
                 <div className="mb-3">
                   <label
                     htmlFor="name"
