@@ -20,6 +20,7 @@ import { AlertProvider } from "./components/AlertContext.jsx";
 import AlertComponent from "./components/Alerts.jsx";
 import CategoryPages from "./pages/CategoryPages.jsx";
 import WatchTogetherAnime from "./pages/WatchTogetherAnime.jsx";
+import Register from "./pages/Register.jsx";
 function App() {
   return (
     <>
@@ -32,6 +33,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<LandingPage />} />
                   <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
                   <Route path="/home" element={<HomePage />} />
 
                   <Route path="/watch/:id" element={<AnimeStream />} />
