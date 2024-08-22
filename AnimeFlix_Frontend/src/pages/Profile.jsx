@@ -230,15 +230,23 @@ export default function UserProfile() {
                   <h2 className="text-3xl font-bold">{data.username}</h2>
                   <p className="text-xl text-gray-400">{data.email}</p>
                   <p className="mt-1 text-sm text-gray-500">
-                    Joined: {new Date(data.joinedAt).toLocaleDateString()}
+                    Joined: {data.createdAt.slice(0, 10)}
                   </p>
                 </div>
               </div>
-              <div className="mt-6 flex justify-center space-x-4">
-                <a href="#" className="text-blue-400 hover:text-blue-300">
+              <div className="mt-6 flex w-full flex-col items-center  justify-center space-x-4 space-y-4 lg:flex-row lg:space-y-0">
+                <a
+                  href="#"
+                  className="rounded-2xl bg-zinc-800 p-2 text-blue-400 hover:text-blue-300"
+                >
+                  <i className="fa fa-television mx-1"></i>
                   Continue Watching
                 </a>
-                <a href="#" className="text-blue-400 hover:text-blue-300">
+                <a
+                  href="#"
+                  className="rounded-2xl bg-zinc-800 p-2 text-blue-400 hover:text-blue-300"
+                >
+                  <i className="fa fa-list mx-1"></i>
                   Watchlist
                 </a>
               </div>
