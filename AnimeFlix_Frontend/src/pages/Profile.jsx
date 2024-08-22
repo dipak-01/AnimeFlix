@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchUserData } from "../redux/slice/userSlice";
+import { fetchUserData, updateUserData } from "../redux/slice/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 // Modal component for changing username
@@ -85,6 +85,7 @@ function ChangePasswordModal({ isOpen, onClose, onSubmit }) {
 export default function UserProfile() {
   const dispatch = useDispatch();
   const usersData = useSelector((state) => state.userData.data);
+  const updateUsersData = useSelector((state) => state.updateUserData);
   const [data, setData] = useState(null);
   const [banner, setBanner] = useState(localStorage.getItem("banner") || "");
   const [profileImage, setProfileImage] = useState(null);
