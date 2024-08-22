@@ -124,11 +124,11 @@ export default function UserProfile() {
   const handleProfileImageChange = (e) => {
     handleImageChange(e, setProfileImage);
     // Update profile image in the backend
-    dispatch(updateUserData({ profileImage: e.target.files[0] }));
+    dispatch(updateUserData({ avatarUrl: e.target.files[0] }));
   };
 
   const handleUsernameChange = (newUsername) => {
-    dispatch(updateUserData({ username: newUsername }));
+    dispatch(updateUserData({ userName: newUsername }));
     setIsUsernameModalOpen(false);
   };
 

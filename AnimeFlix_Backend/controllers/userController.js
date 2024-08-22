@@ -24,7 +24,9 @@ export const getUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
+  console.log("hgius");
   const { userName, oldPassword, newPassword, avatarUrl } = req.body;
+  console.log(userName);
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer")) {
     return res.status(401).send("No token provided");
