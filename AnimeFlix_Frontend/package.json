@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.13.0",
+    "@cloudinary/url-gen": "^1.20.0",
     "@eartho/one-client-react": "^2.0.12",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchUserData, updateUserData } from "../redux/slice/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import AnimeQuoteCard from "../components/AnimeQuoteCard";
 
 // Modal component for changing username
 function ChangeUsernameModal({ isOpen, onClose, onSubmit }) {
@@ -138,7 +139,7 @@ export default function UserProfile() {
     if (usersData) {
       setData(usersData);
     }
-  }, [usersData]);
+  }, [usersData, updateUserData]);
 
   useEffect(() => {
     localStorage.setItem("banner", banner);
@@ -230,7 +231,7 @@ export default function UserProfile() {
                   <h2 className="text-3xl font-bold">{data.username}</h2>
                   <p className="text-xl text-gray-400">{data.email}</p>
                   <p className="mt-1 text-sm text-gray-500">
-                    Joined: {data.createdAt.slice(0, 10)}
+                    Joined: {data.createdAt?.slice(0, 10)}
                   </p>
                 </div>
               </div>
@@ -257,7 +258,8 @@ export default function UserProfile() {
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
               </div>
-              <div className="mt-6 flex flex-col items-center space-y-4">
+
+              <div className="mt-6 flex   flex-col items-center space-y-4">
                 <button
                   onClick={() => setIsUsernameModalOpen(true)}
                   className="w-full max-w-xs rounded-full bg-blue-600 px-6 py-2 text-white transition duration-300 ease-in-out hover:bg-blue-700"

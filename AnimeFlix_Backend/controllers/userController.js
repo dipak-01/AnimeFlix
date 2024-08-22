@@ -24,7 +24,6 @@ export const getUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  console.log("hgius");
   const { userName, oldPassword, newPassword, avatarUrl } = req.body;
 
   const authHeader = req.headers.authorization;
