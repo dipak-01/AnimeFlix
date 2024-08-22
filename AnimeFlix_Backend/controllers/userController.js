@@ -26,8 +26,7 @@ export const getUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   console.log("hgius");
   const { userName, oldPassword, newPassword, avatarUrl } = req.body;
-  console.log(oldPassword);
-  console.log(newPassword);
+
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer")) {
     return res.status(401).send("No token provided");
@@ -42,7 +41,12 @@ export const updateUser = async (req, res) => {
     }
     if (userName) user.username = userName;
 
-    if (oldPassword && newPassword) {
+    if (
+      oldPassword &&
+      newPassword &&
+      !oldPassword === "" &&
+      !newPassword === ""
+    ) {
       try {
         const isPasswordCorrect = await bcrypt.compare(
           oldPassword,
