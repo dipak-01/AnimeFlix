@@ -41,16 +41,24 @@ export const updateUser = async (req, res) => {
     }
     if (userName) user.username = userName;
 
-    if (oldPassword || newPassword) {
-      const isPasswordCorrect = await bcrypt.compare(
-        oldPassword,
-        user.password
-      );
-      if (!isPasswordCorrect) {
-        return res.status(401).send("Check your Password and Try again");
+    if (oldPassword && newPassword) {
+      try {
+        const isPasswordCorrect = await bcrypt.compare(
+          oldPassword,
+          user.password
+        );
+        if (!isPasswordCorrect) {
+          return res.status(401).send("Check your Password and Try again");
+        }
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(newPassword, salt);
+        await user.save(); // Assuming user.save() is the method to save the user
+        res.status(200).send("Password updated successfully");
+      } catch (error) {
+        res.status(500).send("An error occurred while updating the password");
       }
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(newPassword, salt);
+    } else {
+      res.status(400).send("Old password and new password are required");
     }
     if (req.file) {
       const fieldName = req.file.fieldname;
