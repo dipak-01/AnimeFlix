@@ -40,6 +40,37 @@ function ChangeUsernameModal({ isOpen, onClose, onSubmit }) {
 
 // Modal component for changing password
 function ChangePasswordModal({ isOpen, onClose, onSubmit }) {
+  const [validationMessage, setValidationMessage] = useState("");
+
+  const validatePassword = (password) => {
+    const requirements = [
+      {
+        test: (pw) => pw.length >= 8,
+        message: "Password must be at least 8 characters long.",
+      },
+      {
+        test: (pw) => /[A-Z]/.test(pw),
+        message: "Password must include at least one uppercase letter.",
+      },
+      {
+        test: (pw) => /[a-z]/.test(pw),
+        message: "Password must include at least one lowercase letter.",
+      },
+      {
+        test: (pw) => /\d/.test(pw),
+        message: "Password must include at least one number.",
+      },
+      {
+        test: (pw) => /[!@#$%^&*]/.test(pw),
+        message:
+          "Password must include at least one special character (!@#$%^&*).",
+      },
+    ];
+
+    const failingRequirement = requirements.find((req) => !req.test(password));
+    setValidationMessage(failingRequirement ? failingRequirement.message : "");
+  };
+
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
@@ -59,10 +90,17 @@ function ChangePasswordModal({ isOpen, onClose, onSubmit }) {
         <input
           type="password"
           value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
+          onChange={(e) => {
+            const newValue = e.target.value;
+            setNewPassword(newValue);
+            validatePassword(newValue);
+          }}
           className="mb-4 w-full rounded bg-gray-700 p-2 text-white"
           placeholder="New password"
         />
+        {validationMessage && (
+          <p className="mb-3 text-sm text-red-500">{validationMessage}</p>
+        )}
         <div className="flex justify-end">
           <button
             onClick={onClose}

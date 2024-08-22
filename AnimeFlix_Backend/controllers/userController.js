@@ -53,12 +53,14 @@ export const updateUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(newPassword, salt);
         await user.save(); // Assuming user.save() is the method to save the user
-        res.status(200).send("Password updated successfully");
+        return res.status(200).send("Password updated successfully");
       } catch (error) {
-        res.status(500).send("An error occurred while updating the password");
+        return res
+          .status(500)
+          .send("An error occurred while updating the password");
       }
     } else {
-      res.status(400).send("Old password and new password are required");
+      return res.status(400).send("Old password and new password are required");
     }
     if (req.file) {
       const fieldName = req.file.fieldname;
