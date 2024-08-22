@@ -127,19 +127,14 @@ export default function AnimeStream() {
     // navigate(`/anime/info?id=${encodeURIComponent(id)}`);
   };
   return (
-    
     <div className="mx-auto my-4 h-auto min-h-screen w-full max-w-[1420px] px-4 text-start  sm:px-4 lg:px-6 xl:px-0">
-       <div className="mx-auto my-auto flex w-full flex-col space-x-6 space-y-4 rounded-3xl lg:flex-row lg:space-y-0 lg:py-10">
+      <div className="mx-auto my-auto flex w-full flex-col space-x-6 space-y-4 rounded-3xl lg:flex-row lg:space-y-0 lg:py-10">
         <div className="flex flex-col-reverse lg:w-3/4 lg:flex-row">
           <div className="mostly-customized-scrollbar max-h-[550px] overflow-auto border-pink-500 text-slate-100 lg:w-1/4">
             <p className="border border-gray-900 py-2 pl-6 text-sm">
               List of Episodes
             </p>
-            {/* {isLoading && <div className="w-full h-full rounded-t-md bg-gray-900 flex items-center justify-center ">
-               
-               <span className="  animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-orange-500 ml-3"></span>
-             </div>}
-              */}
+
             {episodes &&
               episodes.map((epi, index) => (
                 <div
@@ -191,19 +186,7 @@ export default function AnimeStream() {
                     src={streamData.sources[0]?.url}
                     data={streamData}
                   ></VideoPlayer>
-                  {/* <Artplayer
-                    source={streamData.sources[0]?.url}
-                    data={streamData}
-                    style={{ width: "full", height: "100%", margin: "0" }}
-                    getInstance={(art) => {
-                      art.on("ready", () => setLoadingVideo(false));
-                      art.on("loadedmetadata", () => setLoadingVideo(false));
-                    }}
-                  /> */}
-                  {/* <VideoPlayer
-                    style={{ width: "full", height: "100%", margin: "0" }}
-                    src={streamData.sources[0]?.url}
-                  /> */}
+                 
                 </div>
               )}
             </div>

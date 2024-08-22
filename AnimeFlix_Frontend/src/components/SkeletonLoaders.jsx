@@ -45,14 +45,14 @@ export function HomePageSkeleton() {
 export default function AnimeInfoSkeletonLoader() {
   return (
     <div className="min-h-screen animate-pulse bg-gray-900 p-8 pt-24 text-gray-300">
-      <div className="max-w-8xl mx-auto flex gap-8 px-20">
+      <div className="lg:max-w-8xl mx-auto flex w-full flex-col gap-8 lg:flex-row lg:px-20">
         {/* Left side - Image skeleton */}
-        <div className="w-1/4">
+        <div className="w-full lg:w-1/4">
           <div className="h-[400px] w-full rounded-lg bg-gray-700"></div>
         </div>
 
         {/* Center - Details skeleton */}
-        <div className="w-1/2">
+        <div className="w-full lg:w-1/2">
           <div className="mb-4 h-10 w-3/4 rounded bg-gray-700"></div>
 
           <div className="mb-4 flex items-center gap-2">
@@ -75,7 +75,7 @@ export default function AnimeInfoSkeletonLoader() {
         </div>
 
         {/* Right side - Anime Info skeleton */}
-        <div className="w-1/4">
+        <div className="w-full lg:w-1/4">
           <div className="rounded-lg bg-gray-800 p-4">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 1, 1, 1, 1].map((i) => (
               <div key={i} className="mb-2 h-4 rounded bg-gray-700"></div>
@@ -88,25 +88,27 @@ export default function AnimeInfoSkeletonLoader() {
 }
 export function AnimeStreamSkeletonLoader() {
   return (
-    <div className="mt-10 flex h-screen bg-black px-20 ">
+    <div className="mt-10 flex h-auto flex-col  bg-black lg:flex-row lg:px-20 space-y-2">
       {/* Left Side: Episode List Skeleton */}
-      <div className="w-1/5 space-y-2  pr-4">
-        {[...Array(14)].map((_, index) => (
-          <div
-            key={index}
-            className="h-8 animate-pulse rounded bg-gray-700"
-          ></div>
-        ))}
-      </div>
+      <div className="lg:w-4/5 w-full flex lg:flex-row flex-col-reverse">
+        <div className="w-full space-y-2 lg:pr-4   lg:w-1/5">
+          {[...Array(14)].map((_, index) => (
+            <div
+              key={index}
+              className="h-7 animate-pulse rounded bg-gray-700"
+            ></div>
+          ))}
+        </div>
 
-      {/* Center: Video Player Skeleton */}
-      <div className="flex w-3/5 flex-col    ">
-        <div className="h-3/5 w-full animate-pulse  rounded bg-gray-700 p-4"></div>
-        <div className="mt-2 h-1/6 w-full animate-pulse rounded bg-gray-600"></div>
+        {/* Center: Video Player Skeleton */}
+        <div className="flex w-full flex-col lg:w-4/5 lg:h-auto  h-64 ">
+          <div className="w-full animate-pulse rounded h-3/4 bg-gray-700 p-4 lg:h-4/5"></div>
+          <div className="mt-2 h-1/6 w-full animate-pulse rounded bg-gray-600"></div>
+        </div>
       </div>
 
       {/* Right Side: Details Skeleton */}
-      <div className="w-1/5   space-y-2 pl-4">
+      <div className="w-full space-y-2   pl-4 lg:w-1/5">
         <div className="h-40 w-1/2 animate-pulse rounded bg-gray-700"></div>
         <div className="h-6 w-3/4 animate-pulse rounded bg-gray-600"></div>
         <div className="h-6 w-3/4 animate-pulse rounded bg-gray-600"></div>
