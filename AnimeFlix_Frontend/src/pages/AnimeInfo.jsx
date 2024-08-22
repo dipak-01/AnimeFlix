@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import TopUpcoming from "../components/TopUpcoming";
 import { addWatchListData } from "../services/userService";
 import { useLocation } from "react-router-dom";
-import { useAlert } from "../components/AlertContext";
-import { Loader } from "../components/Loading";
+ import { Loader } from "../components/Loading";
+import toast, { Toaster } from "react-hot-toast";
 export default function AnimeInfo() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -13,8 +13,7 @@ export default function AnimeInfo() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { showAlert } = useAlert();
-  const handleClick = (id) => {
+   const handleClick = (id) => {
     navigate(`/anime/info?id=${encodeURIComponent(id)}`);
     window.location.reload();
   };
@@ -42,7 +41,7 @@ export default function AnimeInfo() {
     const animeId = id;
 
     if (animeId) await addWatchListData(animeId);
-    showAlert("Added to your WatchList",'added');
+    toast("Added to your WatchList",{position: 'bottom-left'});
   };
   if (loading) {
     return <Loader />;
@@ -61,6 +60,7 @@ export default function AnimeInfo() {
   return (
     <>
       <div className="mx-auto my-4 min-h-screen h-auto w-full max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-0  ">
+        <Toaster/>
         <div className=" mx-auto my-auto flex h-3/4 flex-col items-center justify-evenly space-x-4 space-y-6 rounded-3xl bg-gradient-to-r py-20 lg:flex-row ">
           <div className="left h-full  lg:w-1/4 ">
             <div className=" mt-1 flex justify-center  ">

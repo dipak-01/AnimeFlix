@@ -1,173 +1,252 @@
-import "../styles/user.css";
 import { useEffect, useState } from "react";
-import { fetchUserData } from "../services/authService";
-// Ensure you have imported the correct Eartho SDK
+import { fetchUserData } from "../redux/slice/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function UserProfile() {
-  const [message, setMessage] = useState("");
-  const [toggleChangePass, setToggleChangePass] = useState(false);
-  const [profileImage, setProfileImage] = useState("default-profile.png"); // Placeholder image
+// Modal component for changing username
+function ChangeUsernameModal({ isOpen, onClose, onSubmit }) {
+  const [newUsername, setNewUsername] = useState("");
 
-  const [data, setData] = useState();
-
-  const handleChangePass = () => {
-    setToggleChangePass(!toggleChangePass);
-  };
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (!file) {
-      console.error("No file selected.");
-      return;
-    }
-
-    // Assuming you have a function to upload the image and get back the URL
-    uploadImage(file)
-      .then((imageUrl) => {
-        setProfileImage(imageUrl);
-      })
-      .catch((error) => {
-        console.error("Error uploading image:", error);
-      });
-  };
-  useEffect(() => {
-    const getData = async () => {
-      const results = await fetchUserData();
-      setData(results);
-    };
-    getData();
-  }, []);
-  const handleSubmit = async () => {};
-  const images = [
-    "https://media.discordapp.net/attachments/1142746103029174274/1256929488038527006/pro2.jpg?ex=66828e4e&is=66813cce&hm=064d79bdb5cc72a30b8a961b80007e35eff77f83edb7f62e91ee31b21f415f9b&=&format=webp&width=1440&height=390",
-    "https://cdn.discordapp.com/attachments/1142746103029174274/1256929487401254912/pro1.jpg?ex=66828e4e&is=66813cce&hm=579a6e1f6cb557adcda6135239b0bfec70ba825f9fbe0e1ea488c0e5dde2f915&",
-    "https://media.discordapp.net/attachments/1142746103029174274/1256929488546168912/pro3.jpg?ex=6685da0e&is=6684888e&hm=5853129dc815606558f5ad019dd259d2b40b13b30676c3841499c40b245aab62&=&format=webp&width=1440&height=476",
-  ];
+  if (!isOpen) return null;
 
   return (
-    <>
-      {data && (
-        <main className=" min-h-screen h-auto mx-auto my-4 w-full max-w-[1420px] px-2 text-white sm:px-4 lg:px-6 xl:px-0">
-          <div
-            style={{
-              backgroundImage: `url(${images[2]})`,
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center ",
-              objectFit: "cover",
-            }}
-            className="relative flex h-40 items-center bg-french-gray-100"
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="rounded-lg bg-gray-800 p-6">
+        <h2 className="mb-4 text-xl">Change Username</h2>
+        <input
+          type="text"
+          value={newUsername}
+          onChange={(e) => setNewUsername(e.target.value)}
+          className="mb-4 w-full rounded bg-gray-700 p-2 text-white"
+          placeholder="New username"
+        />
+        <div className="flex justify-end">
+          <button
+            onClick={onClose}
+            className="mr-2 rounded bg-gray-600 px-4 py-2"
           >
-            <div className="absolute z-10 h-full w-full bg-gray-700/75 blur-sm"></div>
-            <p className="z-20 m-auto text-4xl font-bold text-black">
-              Hi, {data.username}
-            </p>
-          </div>
+            Cancel
+          </button>
+          <button
+            onClick={() => onSubmit(newUsername)}
+            className="rounded bg-blue-600 px-4 py-2"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-          <div className="m-4   mx-auto flex w-2/4 justify-between border-b-2 border-gray-900 p-4">
-            <a href="">
-              <i className="fas fa-user"></i> Profile
-            </a>
-            <a href="">
-              <i className="fas fa-heart"></i> WatchList
-            </a>
-            <a href="">
-              <i className="fas fa-clock"></i> Continue Watching
-            </a>
-          </div>
+// Modal component for changing password
+function ChangePasswordModal({ isOpen, onClose, onSubmit }) {
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
-          <div className="mx-auto h-auto w-2/4  ">
-            <p className="py-4 text-start text-3xl">
-              <i className="fas fa-user"></i> Edit Profile
-            </p>
-            <div className="flex">
-              <form
-                onSubmit={handleSubmit}
-                className="inputclass w-2/3 space-y-6 border-2 border-gray-900 p-8 text-start uppercase"
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="rounded-lg bg-gray-800 p-6">
+        <h2 className="mb-4 text-xl">Change Password</h2>
+        <input
+          type="password"
+          value={oldPassword}
+          onChange={(e) => setOldPassword(e.target.value)}
+          className="mb-4 w-full rounded bg-gray-700 p-2 text-white"
+          placeholder="Current password"
+        />
+        <input
+          type="password"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+          className="mb-4 w-full rounded bg-gray-700 p-2 text-white"
+          placeholder="New password"
+        />
+        <div className="flex justify-end">
+          <button
+            onClick={onClose}
+            className="mr-2 rounded bg-gray-600 px-4 py-2"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => onSubmit(oldPassword, newPassword)}
+            className="rounded bg-blue-600 px-4 py-2"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function UserProfile() {
+  const dispatch = useDispatch();
+  const usersData = useSelector((state) => state.userData.data);
+  const [data, setData] = useState(null);
+  const [banner, setBanner] = useState(localStorage.getItem("banner") || "");
+  const [profileImage, setProfileImage] = useState(null);
+  const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchUserData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (usersData) {
+      setData(usersData);
+    }
+  }, [usersData]);
+
+  useEffect(() => {
+    localStorage.setItem("banner", banner);
+  }, [banner]);
+
+  const handleImageChange = (e, setImage) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleBannerChange = (e) => {
+    handleImageChange(e, setBanner);
+  };
+
+  const handleProfileImageChange = (e) => {
+    handleImageChange(e, setProfileImage);
+    // Update profile image in the backend
+    dispatch(updateUserData({ profileImage: e.target.files[0] }));
+  };
+
+  const handleUsernameChange = (newUsername) => {
+    dispatch(updateUserData({ username: newUsername }));
+    setIsUsernameModalOpen(false);
+  };
+
+  const handlePasswordChange = (oldPassword, newPassword) => {
+    dispatch(updateUserData({ oldPassword, newPassword }));
+    setIsPasswordModalOpen(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-950 text-white">
+      <main className="mx-auto max-w-[1420px] px-4 py-8">
+        {data && (
+          <div className="overflow-hidden rounded-lg bg-gray-900 shadow-lg">
+            <div
+              className="relative h-60 w-full bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${banner || "https://via.placeholder.com/1500x500"})`,
+              }}
+            >
+              <label
+                htmlFor="banner-upload"
+                className="absolute bottom-4 right-4 cursor-pointer rounded-md bg-black bg-opacity-50 px-4 py-2 text-white transition hover:bg-opacity-70"
               >
-                <div>
-                  <p>email address</p>
-                  <input
-                    className=""
-                    type="text"
-                    value={data.email}
-                    placeholder=""
-                    disabled
+                Change Banner
+                <input
+                  id="banner-upload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleBannerChange}
+                  className="hidden"
+                />
+              </label>
+            </div>
+            <div className="px-6 py-4">
+              <div className="-mt-20 mb-4 flex flex-col items-center md:flex-row md:items-end">
+                <div className="relative">
+                  <img
+                    src={
+                      profileImage ||
+                      data.profileImage ||
+                      "https://via.placeholder.com/150"
+                    }
+                    alt="Profile"
+                    className="h-40 w-40 rounded-full border-4 border-gray-800 object-cover shadow-lg"
                   />
+                  <label
+                    htmlFor="profile-upload"
+                    className="absolute bottom-2 right-2 cursor-pointer rounded-md bg-gray-800 px-2 py-1 text-sm text-white transition hover:bg-gray-700"
+                  >
+                    Edit
+                    <input
+                      id="profile-upload"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleProfileImageChange}
+                      className="hidden"
+                    />
+                  </label>
                 </div>
-                <div>
-                  <p>name</p>
-                  <input
-                    defaultValue={data.username}
-                    className=""
-                    type="text"
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <p>date joined</p>
-                  <input className="" type="date" />
-                </div>
-                <div>
-                  <p className="cursor-pointer" onClick={handleChangePass}>
-                    <i className="fas fa-key"></i> change password
+                <div className="mt-4 text-center md:ml-6 md:mt-0 md:text-left">
+                  <h2 className="text-3xl font-bold">{data.username}</h2>
+                  <p className="text-xl text-gray-400">{data.email}</p>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Joined: {new Date(data.joinedAt).toLocaleDateString()}
                   </p>
                 </div>
-                {toggleChangePass && (
-                  <div className="space-y-6">
-                    <div>
-                      <p>current password</p>
-                      <input
-                        className=""
-                        type="password"
-                        aria-label="password"
-                      />
-                    </div>
-                    <div>
-                      <p>new password</p>
-                      <input className="" type="password" />
-                    </div>
-                    <div>
-                      <p>confirm new password</p>
-                      <input className="" type="password" />
-                    </div>
-                  </div>
-                )}
+              </div>
+              <div className="mt-6 flex justify-center space-x-4">
+                <a href="#" className="text-blue-400 hover:text-blue-300">
+                  Continue Watching
+                </a>
+                <a href="#" className="text-blue-400 hover:text-blue-300">
+                  Watchlist
+                </a>
+              </div>
+              <div className="mt-4 border-t border-gray-800 pt-4">
+                <h3 className="mb-2 text-xl font-semibold">About Me</h3>
+                <p className="text-gray-400">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
+              <div className="mt-6 flex flex-col items-center space-y-4">
                 <button
-                  type="submit"
-                  className="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+                  onClick={() => setIsUsernameModalOpen(true)}
+                  className="w-full max-w-xs rounded-full bg-blue-600 px-6 py-2 text-white transition duration-300 ease-in-out hover:bg-blue-700"
                 >
-                  Update Username
+                  Change Username
                 </button>
-                {message && <p>{message}</p>}
-              </form>
-              <div className="flex   w-1/3  justify-center pt-16 ">
-                <div className="flex w-full  items-start justify-center ">
-                  <div className="relative">
-                    <img
-                      className="h-32 w-32 rounded-full bg-slate-200 "
-                      src={profileImage}
-                      alt="Profile"
-                    />
-                    <div className="absolute bottom-0 right-0">
-                      <label
-                        htmlFor="files"
-                        className="flex cursor-pointer items-center justify-center rounded-full bg-blue-500 p-2 text-white"
-                      >
-                        <i className="fas fa-pen"></i>
-                      </label>
-                      <input
-                        id="files"
-                        className="hidden"
-                        onChange={handleImageChange}
-                        type="file"
-                      />
-                    </div>
-                  </div>
-                </div>
+                <button
+                  onClick={() => setIsPasswordModalOpen(true)}
+                  className="w-full max-w-xs rounded-full bg-blue-600 px-6 py-2 text-white transition duration-300 ease-in-out hover:bg-blue-700"
+                >
+                  Change Password
+                </button>
+                <button
+                  onClick={() =>
+                    alert("Edit profile feature to be implemented")
+                  }
+                  className="w-full max-w-xs rounded-full bg-blue-600 px-6 py-2 text-white transition duration-300 ease-in-out hover:bg-blue-700"
+                >
+                  Edit Profile
+                </button>
               </div>
             </div>
           </div>
-        </main>
-      )}
-    </>
+        )}
+      </main>
+      <ChangeUsernameModal
+        isOpen={isUsernameModalOpen}
+        onClose={() => setIsUsernameModalOpen(false)}
+        onSubmit={handleUsernameChange}
+      />
+      <ChangePasswordModal
+        isOpen={isPasswordModalOpen}
+        onClose={() => setIsPasswordModalOpen(false)}
+        onSubmit={handlePasswordChange}
+      />
+    </div>
   );
 }
+// Joined: {data.createdAt.slice(0, 10)}

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useAlert } from "./AlertContext";
 import axios from "axios";
 import {
   deleteWatchHistory,
@@ -8,12 +7,12 @@ import {
 } from "../services/userService";
 import { Loader } from "./Loading";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 export default function CardsType4({ animeId, epiId, identifier }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
-  const { showAlert } = useAlert();
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -23,7 +22,7 @@ export default function CardsType4({ animeId, epiId, identifier }) {
     if (identifier === "watchhistory") {
       try {
         const response = await deleteWatchHistory(animeId);
-        showAlert("Deleted from your Watch History", "added");
+        toast("Deleted from your Watch History", { position: "bottom-left" });
         setIsVisible(false);
       } catch (error) {
         console.error("Error deleting watch history:", error);
@@ -32,7 +31,7 @@ export default function CardsType4({ animeId, epiId, identifier }) {
     if (identifier === "watchlist") {
       try {
         const response = await deleteWatchList(animeId);
-        showAlert("Deleted from your WatchList", "added");
+        toast("Deleted from your WatchList", { position: "bottom-left" });
         setIsVisible(false);
       } catch (error) {
         console.error("Error deleting watch history:", error);
@@ -68,6 +67,7 @@ export default function CardsType4({ animeId, epiId, identifier }) {
     <>
       {!loading && (
         <div className=" h-64 min-w-28   max-w-48 sm:h-96 ">
+          <Toaster />
           <div className=" h-4/5 w-full    ">
             {isLoading && (
               <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-t-md bg-gray-900 ">

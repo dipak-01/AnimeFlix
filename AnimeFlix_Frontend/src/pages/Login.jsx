@@ -22,12 +22,13 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await login(email, password);
-      console.log(response);
-      toast.success(response);
+      toast.success(response.message, {});
+      setTimeout(() => {
+        navigate("/home");
+      }, 3000);
       localStorage.setItem("token", response.token);
-      navigate("/home");
     } catch (error) {
-      toast.error(response, {
+      toast.error("Login Error", {
         duration: 4000,
         position: "top-center",
       });
@@ -56,7 +57,7 @@ const Login = () => {
                 Email address
               </label>
               <input
-              required
+                required
                 type="email"
                 id="email"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
@@ -73,7 +74,7 @@ const Login = () => {
                 Password
               </label>
               <input
-              required
+                required
                 type="password"
                 id="password"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
@@ -98,20 +99,27 @@ const Login = () => {
               </label>
             </div>
             <button
-              className="mb-2 me-2 rounded-lg bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 px-5 py-2.5 text-center text-sm font-semibold uppercase text-white shadow-lg hover:bg-gradient-to-br focus:outline-none"
+              className="mb-2 me-2 rounded-lg bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 px-5 py-2.5 text-center text-sm font-semibold uppercase active:scale-105 text-white shadow-lg hover:bg-gradient-to-br focus:outline-none"
               onClick={handleLogin}
             >
               Login
             </button>
             <div className="text-sm">
               Not registered?{" "}
-              <button onClick={() => navigate("/register")} className="text-orange-500">
+              <button
+                onClick={() => navigate("/register")}
+                className="text-orange-500"
+              >
                 Create an Account
               </button>
             </div>
           </div>
           <div className="hidden h-80 w-1/2 overflow-hidden lg:block">
-            <img className="w-full" src={loginImages[randomAsuka]} alt="Login Illustration" />
+            <img
+              className="w-full"
+              src={loginImages[randomAsuka]}
+              alt="Login Illustration"
+            />
           </div>
         </div>
       </div>

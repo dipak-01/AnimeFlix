@@ -1,39 +1,40 @@
 import Suggestions from "../services/Suggestions";
-// import { createClient } from "@supabase/supabase-js";
-// import { Auth } from "@supabase/auth-ui-react";
-// import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { fetchUserData } from "../services/authService";
-import { useAlert } from "./AlertContext";
-
+ 
+import { fetchUserData } from "../redux/slice/userSlice";
+ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
 import UserProfilePopover from "./BurgerPopover";
+import toast,{Toaster} from "react-hot-toast";
 
 function App() {
-  const { showAlert } = useAlert();
-  const [toggleUser, setToggleUser] = useState(false);
+  const dispatch = useDispatch();
+  const usersData = useSelector((state) => state.userData.data);
+   const [toggleUser, setToggleUser] = useState(false);
   const toggleRef = useRef(null);
   const [session, setSession] = useState(false);
   const searchBarRef = useRef(null);
   const [name, setName] = useState("");
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
-  const [userData, setUserData] = useState(null);
+  const [data, setData] = useState();
   const navigate = useNavigate("");
+
   useEffect(() => {
-    const getData = async () => {
-      const data = await fetchUserData();
-      setUserData(data);
-    };
-    getData();
-  }, []);
-  useEffect(() => {}, [userData]);
+    dispatch(fetchUserData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (usersData) {
+      setData(usersData);
+    }
+  }, [usersData]);
+
   const handleSearchOpen = () => {
     setSearchOpen(true);
   };
-
   const handleToggleUser = () => {
     setToggleUser(!toggleUser);
   };
@@ -77,6 +78,7 @@ function App() {
 
   return (
     <div className="App h-20  ">
+      <Toaster/>
       <div className="fixed z-50 w-full bg-black">
         <nav className="bg-slate-1000/75 p-4   lg:px-10 ">
           <div className="container mx-auto flex items-center justify-between">
@@ -115,11 +117,11 @@ function App() {
                 </button>
                 {toggleUser && (
                   <div className="absolute right-0 z-50 w-72 space-y-4 rounded-lg bg-gray-900 p-2 py-4 text-start text-slate-50">
-                    {userData ? (
+                    {data ? (
                       <div className="space-y-3">
-                        <p className="text-orange-400"> {userData.username}</p>
+                        <p className="text-orange-400"> {data.username}</p>
                         <p className="cursor-pointer rounded-2xl border-2 border-gray-700 bg-gray-800 p-2 hover:text-white">
-                          {userData.email}
+                          {data.email}
                         </p>
                         <p
                           onClick={() => navigate("/user/profile")}
@@ -144,7 +146,7 @@ function App() {
                             className="hover:text-orange-300"
                             onClick={() => {
                               localStorage.removeItem("token");
-                              showAlert("Logged Out", "success");
+                              toast.success("Logged Out ");
                               setTimeout(() => {
                                 window.location.reload();
                               }, 3000);
@@ -156,12 +158,6 @@ function App() {
                       </div>
                     ) : (
                       <>
-                        {/* {showAuth && (
-                        <Auth
-                          supabaseClient={supabase}
-                          appearance={{ theme: ThemeSupa }}
-                        />
-                      )} */}
                         <button
                           className="rounded-xl border-2 bg-orange-200 px-2 text-gray-800"
                           id="login"

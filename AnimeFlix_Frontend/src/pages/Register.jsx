@@ -64,10 +64,12 @@ const Register = () => {
 
     try {
       const response = await register(username, email, password);
-      toast.success("Registration successful!");
+      toast.success(response);
       navigate("/login");
     } catch (error) {
-      toast.error("Registration failed. Please try again.");
+      const errorMessage =
+        error.response?.data?.message || "Registration failed!";
+      toast.error(errorMessage);
     }
   };
 
@@ -78,6 +80,7 @@ const Register = () => {
 
   return (
     <main className="mx-auto my-4 flex h-auto min-h-screen w-full max-w-[1420px] items-center px-2 text-white sm:px-4 lg:px-6 xl:px-0">
+      <Toaster />
       <div className="mx-auto h-3/4 w-full">
         <div className="mx-auto my-10 flex h-3/4 max-h-none w-3/4 items-center space-x-4 rounded-3xl border-2 border-teal-500 bg-slate-950 shadow-lg lg:m-auto lg:w-2/4">
           <div className="logininp flex w-full flex-col p-4 text-start lg:w-1/2">
@@ -107,7 +110,7 @@ const Register = () => {
                 Email address
               </label>
               <input
-              required
+                required
                 type="email"
                 id="email"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
@@ -124,7 +127,7 @@ const Register = () => {
                 Password
               </label>
               <input
-              required
+                required
                 type="password"
                 id="password"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
@@ -152,7 +155,7 @@ const Register = () => {
               </label>
             </div>
             <button
-              className="mb-2 me-2 rounded-lg bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 px-5 py-2.5 text-center text-sm font-semibold uppercase text-white shadow-lg hover:bg-gradient-to-br focus:outline-none"
+              className="mb-2 me-2 rounded-lg bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 px-5 py-2.5 text-center text-sm font-semibold uppercase text-white shadow-lg hover:bg-gradient-to-br focus:outline-none active:scale-105"
               onClick={handleRegister}
             >
               Register
