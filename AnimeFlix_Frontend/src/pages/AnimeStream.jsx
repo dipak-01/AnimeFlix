@@ -16,6 +16,7 @@ import TopUpcoming from "../components/TopUpcoming";
 import VideoPlayer from "../services/VideoPlayer";
 import { watchData } from "../services/userService";
 import Stream from "../components/Svg";
+import { AnimeStreamSkeletonLoader } from "../components/SkeletonLoaders";
 
 export default function AnimeStream() {
   // const dispatch=useDispatch();
@@ -91,7 +92,7 @@ export default function AnimeStream() {
   };
 
   if (loading || loadingEpisodeData || loadingServer || loadingStreamData) {
-    return <Loader />;
+    return <AnimeStreamSkeletonLoader />;
   }
 
   if (error || errorFetchingEpisodeData || errorServer || errorStreamData) {
@@ -105,7 +106,7 @@ export default function AnimeStream() {
     !episodeData ||
     !episodeData.episodes
   ) {
-    return <Loader />;
+    return <AnimeStreamSkeletonLoader />;
   }
 
   const info = data.anime.info;
@@ -113,21 +114,22 @@ export default function AnimeStream() {
   const recommendedAnime = data.recommendedAnimes;
 
   const episodes = episodeData.episodes;
-  const handleWatchTogether = ( info) => {
-    if (!id&&info) {
+  const handleWatchTogether = (info) => {
+    if (!id && info) {
       console.error("Invalid ID provided");
       return;
     }
 
     console.log(id);
     navigate(`/watchtogether/create/${info.id}`, {
-      state: { data: info},
-    });;
+      state: { data: info },
+    });
     // navigate(`/anime/info?id=${encodeURIComponent(id)}`);
   };
   return (
+    
     <div className="mx-auto my-4 h-auto min-h-screen w-full max-w-[1420px] px-4 text-start  sm:px-4 lg:px-6 xl:px-0">
-      <div className="mx-auto my-auto flex w-full flex-col space-x-6 space-y-4 rounded-3xl lg:flex-row lg:space-y-0 lg:py-10">
+       <div className="mx-auto my-auto flex w-full flex-col space-x-6 space-y-4 rounded-3xl lg:flex-row lg:space-y-0 lg:py-10">
         <div className="flex flex-col-reverse lg:w-3/4 lg:flex-row">
           <div className="mostly-customized-scrollbar max-h-[550px] overflow-auto border-pink-500 text-slate-100 lg:w-1/4">
             <p className="border border-gray-900 py-2 pl-6 text-sm">

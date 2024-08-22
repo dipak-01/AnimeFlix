@@ -12,7 +12,7 @@ import { WatchData } from "./ContinueWatch";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHomePage } from "../redux/slice/homePageSlice";
-import HomePageSkeleton from "../components/HomePageSkeleton";
+import {HomePageSkeleton} from "../components/SkeletonLoaders";
 export default function HomePage() {
   const dispatch = useDispatch();
   const homePageData = useSelector((state) => state.homePage.data);
