@@ -20,8 +20,7 @@ const identifier="watchlist"
             Your WatchList
           </div>
           <div className="    grid w-full grid-cols-2 gap-8 py-8 text-slate-50 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-            {watchListData &&
-              watchListData.map((data,index) => (
+            {watchListData?.map((data,index) => (
                 <CardsType4 key={index} animeId={data.animeId} identifier={identifier} />
               ))}
           </div>
