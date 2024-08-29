@@ -14,9 +14,9 @@ AnimeFlix is a streaming website where you can watch your favorite anime series 
 - Ongoing anime schedule
 - Anime information
 - Anime search
-- Watch Together (upcoming feature)
-- Community (upcoming feature)
+- Community 
 - Sorted anime as top upcoming, trending, most popular
+- Watch Together (upcoming feature)
 
 ## Run Locally
 

@@ -135,8 +135,7 @@ export default function AnimeStream() {
               List of Episodes
             </p>
 
-            {episodes &&
-              episodes.map((epi, index) => (
+            {episodes?.map((epi, index) => (
                 <div
                   style={{ display: isLoading ? "none" : "flex" }}
                   onClick={() => setSelectedEpisodeId(epi.episodeId)}
