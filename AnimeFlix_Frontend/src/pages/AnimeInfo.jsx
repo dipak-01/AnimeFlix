@@ -82,11 +82,11 @@ export default function AnimeInfo() {
             handleWatchlist={handleWatchlist}
           />
 
-          <DetailCard moreinfo={moreinfo} />
+          <DetailCard moreinfo={moreinfo}  />
         </div>
 
         <div className="w-full justify-between gap-8 lg:flex">
-          <SeasonsSlider seasons={seasons} />
+          <SeasonsSlider seasons={seasons} handleClick={handleClick} />
           {relatedAnime && (
             <div
               onClick={() => handleClick(relatedAnime[0].id)}

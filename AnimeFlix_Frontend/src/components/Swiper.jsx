@@ -1,29 +1,41 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { Pagination } from "swiper/modules";
 
-import { useState, useEffect } from "react";
+import { useRef } from "react";
 import BannerSlides from "./BannerSlides";
 
 import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "swiper/css";
 
 function Swiperr({ banners }) {
+  const swiperRef = useRef(null);
+
+  const handlePrev = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev();
+    }
+  };
+
+  const handleNext = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext();
+    }
+  };
   return (
     <>
       <Swiper
+        ref={swiperRef}
+        modules={[Navigation, Pagination]}
         navigation
         pagination={{ dynamicBullets: true }}
-        modules={[Pagination, Autoplay]}
         loop={true}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
-        className="mySwiper  "
+        className="  "
         spaceBetween={50}
         slidesPerView={1}
       >
-        {banners.map((banner, index) => (
-          <SwiperSlide className="h-[600px]" key={index}>
+        {banners.map((banner) => (
+          <SwiperSlide className=" h-auto" key={banner.id}>
             <BannerSlides
               id={banner.id}
               poster={banner.poster}
@@ -35,6 +47,19 @@ function Swiperr({ banners }) {
             />
           </SwiperSlide>
         ))}
+
+        <button
+          className="custom-swiper-button custom-swiper-button-prev hidden "
+          onClick={handlePrev}
+        >
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button
+          className="custom-swiper-button custom-swiper-button-next"
+          onClick={handleNext}
+        >
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
       </Swiper>
     </>
   );

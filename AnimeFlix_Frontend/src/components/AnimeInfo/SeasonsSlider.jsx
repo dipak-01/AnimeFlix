@@ -1,4 +1,4 @@
-export default function SeasonsSlider({ seasons }) {
+export default function SeasonsSlider({ seasons,handleClick }) {
   return (
     <>
       <div className="lg:w-8/12">

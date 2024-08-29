@@ -186,7 +186,6 @@ export default function AnimeStream() {
                     src={streamData.sources[0]?.url}
                     data={streamData}
                   ></VideoPlayer>
-                 
                 </div>
               )}
             </div>

@@ -18,17 +18,17 @@ export default function ({
   };
   return (
     <>
-      <div className="relative h-full     w-full text-slate-50">
+      <div className="  relative   h-full  w-full text-slate-50">
         <div className="z-1    absolute    inset-y-0 right-0   ">
           <img className="h-full w-auto  object-cover " src={poster} alt="" />
           <div className="absolute inset-0 bg-gradient-to-r from-gunmetal-100   "></div>
           <div className="absolute inset-0 bg-gradient-to-l from-gunmetal-100/15  "></div>
         </div>
-        <div className="from-black to-black/5 relative my-auto flex h-full w-2/3 flex-col justify-center  gap-8 bg-gradient-to-r pt-20 text-left text-xl  font-thin lg:w-1/2 px-4">
-          <div className="lg:text3xl text-2xl text-hookers-green-700">
+        <div className="relative my-auto flex h-full w-3/4 flex-col justify-center gap-8 bg-gradient-to-r  from-black to-black/5 px-4 pb-5 pt-20  text-left text-xl font-thin lg:w-1/2">
+          <div className="lg:text3xl text-lg text-hookers-green-700">
             <p className="font-medium">#{rank} SpotLight</p>
           </div>
-          <div className="my-1 line-clamp-2 text-3xl lg:text-5xl">
+          <div className="my-1 line-clamp-3 text-2xl lg:text-5xl">
             <p className="font-semibold">{name}</p>
           </div>
           <div className="grid justify-start gap-4 text-nowrap  text-base lg:flex lg:gap-6">
@@ -67,8 +67,8 @@ export default function ({
               className="flex w-max items-center rounded-lg bg-orange-300 px-4 py-2 font-bold text-slate-900"
             >
               <button>
-                Watch Now{""}{" "}
-                <i className="fa-solid fa-arrow-right align-middle"></i>{" "}
+                Watch  
+               {" "}
               </button>
             </div>
             <div className="flex w-max items-center rounded-lg bg-hookers-green-800 px-4 py-2 font-bold text-slate-900">
@@ -76,7 +76,7 @@ export default function ({
                 Details{""} <i className="fa-solid fa-arrow align-middle"></i>{" "}
               </button>
             </div>
-          </div>
+          </div>{" "}
         </div>
       </div>
     </>

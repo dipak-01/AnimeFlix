@@ -35,7 +35,7 @@ export default function ({ data }) {
                 />
               </div>
               <div className="w-2/3 px-4 text-start text-xl ">
-                <p className="mb-2 line-clamp-1 w-3/4">{data2.name}</p>
+                <p className="mb-2 line-clamp-2 w-3/4">{data2.name}</p>
                 <span>
                   <div>
                     {data2.episodes && (
