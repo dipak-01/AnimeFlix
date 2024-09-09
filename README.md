@@ -31,8 +31,14 @@ Go to the project directory
 ```bash
 cd AnimeFlix/Animeflix_Frontend
 ```
+
 Add .env file and paste .env.example in it
 
+```bash
+VITE_ANIME_URL= 
+VITE_ANIME_URL_SECONDARY= 
+VITE_BACKEND_SERVER_PORT= 
+```
 
 Install dependencies
 
