@@ -31,6 +31,8 @@ Go to the project directory
 ```bash
 cd AnimeFlix/Animeflix_Frontend
 ```
+Add .env file and paste .env.example in it
+
 
 Install dependencies
 
