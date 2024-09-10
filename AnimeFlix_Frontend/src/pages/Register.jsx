@@ -10,6 +10,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [validationMessage, setValidationMessage] = useState("");
   const [randomRei, setRandomRei] = useState(0);
+  const [passwordVisible, setPasswordVisible] = useState(false); // New state for password visibility
   const navigate = useNavigate();
 
   const loginImages = [
@@ -126,15 +127,24 @@ const Register = () => {
               >
                 Password
               </label>
-              <input
-                required
-                type="password"
-                id="password"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                placeholder="•••••••••"
-                value={password}
-                onChange={handlePasswordChange}
-              />
+              <div className="relative">
+                <input
+                  required
+                  type={passwordVisible ? "text" : "password"} // Toggle input type
+                  id="password"
+                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                  placeholder="•••••••••"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 flex items-center px-2 text-sm text-gray-600"
+                  onClick={() => setPasswordVisible(!passwordVisible)}
+                >
+                  {passwordVisible ? "Hide" : "Show"}
+                </button>
+              </div>
             </div>
             {validationMessage && (
               <p className="mb-3 text-sm text-red-500">{validationMessage}</p>
