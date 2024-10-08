@@ -10,7 +10,10 @@ import forumRoutes from "../routes/forumRoutes.js";
 import express from "express";
 
 const io = new Server(httpServer, {
-  cors: { origin: "*", methods: ["GET", "POST"] },
+  cors: {
+    origin: ["http://localhost:4000", "https://anime-flix-two.vercel.app"],
+    methods: ["GET", "POST"],
+  },
 });
 
 app.use(express.json());
