@@ -129,8 +129,7 @@ export default function Chatbox(params) {
   };
 
   const addEmoji = (emoji) => {
-    console.log(emoji.emoji);
-    setMessage((previous) => previous + emoji.emoji);
+     setMessage((previous) => previous + emoji.emoji);
   };
   return (
     <div className="mb-4 w-full max-w-3xl rounded-lg bg-gray-800 shadow-md">

@@ -20,7 +20,7 @@ export function WatchData() {
   useEffect(() => {
     fetchWatchHistory().then((data) => {
       setWatchHistoryData(data);
-    });
+     });
   }, []);
   const identifier = "watchhistory";
   return (

@@ -4,10 +4,10 @@ import axios from "axios";
 export const fetchHomePage = createAsyncThunk("fetchHomePage", async () => {
   const response =
      
-    (await axios.get(`${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/home`, {
+    (await axios.get(`${import.meta.env.VITE_ANIME_URL_SECONDARY}/home`, {
       crossdomain: true,
     })) ||
-    (await axios.get(`${import.meta.env.VITE_ANIME_URL}/anime/home`, {
+    (await axios.get(`${import.meta.env.VITE_ANIME_URL}/home`, {
       crossdomain: true,
     }));
   return response;

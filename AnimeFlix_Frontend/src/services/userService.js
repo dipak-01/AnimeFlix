@@ -21,8 +21,7 @@ export const watchData = async (animeId, episodeId) => {
         },
       },
     );
-    console.log(response.data);
-    return response.data; // It's usually more useful to return just the data part of the response
+     return response.data; // It's usually more useful to return just the data part of the response
   } catch (error) {
     console.error("An error occurred:", error.response || error);
     throw error;
@@ -46,7 +45,7 @@ export const addWatchListData = async (animeId) => {
         },
       },
     );
-    console.log(response.data);
+  
     return response.data; // It's usually more useful to return just the data part of the response
   } catch (error) {
     console.error("An error occurred:", error.response || error);
@@ -67,6 +66,7 @@ export const fetchWatchList = async () => {
       },
     };
     const response = await axios.get(`${API_URL}/watchlist`, config);
+  
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -96,6 +96,7 @@ export const fetchWatchHistory = async () => {
       },
     };
     const response = await axios.get(`${API_URL}/watchhistory`, config);
+  
     return response.data;
   } catch (error) {
     if (error.response) {

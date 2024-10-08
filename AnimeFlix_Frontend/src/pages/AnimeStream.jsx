@@ -50,7 +50,7 @@ export default function AnimeStream() {
     if (epiId) {
       setSelectedEpisodeId(epiId);
       setIsLoading(false);
-    } else if (episodeData && episodeData.episodes.length > 0) {
+    } else if (episodeData && episodeData.episodes?.length > 0) {
       setSelectedEpisodeId(episodeData.episodes[0].episodeId);
       setIsLoading(false);
     }
@@ -96,7 +96,7 @@ export default function AnimeStream() {
   }
 
   if (error || errorFetchingEpisodeData || errorServer || errorStreamData) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error?.message}</div>;
   }
 
   if (
@@ -120,8 +120,7 @@ export default function AnimeStream() {
       return;
     }
 
-    console.log(id);
-    navigate(`/watchtogether/create/${info.id}`, {
+     navigate(`/watchtogether/create/${info.id}`, {
       state: { data: info },
     });
     // navigate(`/anime/info?id=${encodeURIComponent(id)}`);

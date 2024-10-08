@@ -20,8 +20,7 @@ const AnimeQuoteCard = () => {
       );
 
       const data = await response;
-      console.log(data);
-      setQuote({
+       setQuote({
         anime: data.anime,
         character: data.animeCharacter,
         quote: data.content,

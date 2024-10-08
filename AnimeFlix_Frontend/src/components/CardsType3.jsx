@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function ({ data }) {
-  const navigate = useNavigate();
+   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
 
   const handleClick = (id) => {

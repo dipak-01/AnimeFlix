@@ -11,12 +11,12 @@ export function useFetchData(id) {
       try {
         const res =
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/info?id=${id}`,
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/${id}`,
           )) ||
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL}/anime/info?id=${id}`,
+            `${import.meta.env.VITE_ANIME_URL}/anime/${id}`,
           ));
-        setData(res.data);
+        setData(res.data.data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -28,8 +28,7 @@ export function useFetchData(id) {
       fetchData();
     }
   }, [id]);
-
-  return { data, loading, error };
+   return { data, loading, error };
 }
 export function useFetchStreamData(episodeid) {
   const [streamData, setStreamData] = useState(null);
@@ -41,12 +40,12 @@ export function useFetchStreamData(episodeid) {
       try {
         const res =
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/episode-srcs?id=${episodeid}`,
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/episode/sources?animeEpisodeId=${episodeid}`,
           )) ||
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL}/anime/episode-srcs?id=${episodeid}`,
+            `${import.meta.env.VITE_ANIME_URL}/episode/sources?animeEpisodeId=${episodeid}`,
           ));
-        setStreamData(res.data);
+        setStreamData(res.data.data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -58,8 +57,7 @@ export function useFetchStreamData(episodeid) {
       getStreamData();
     }
   }, [episodeid]);
-
-  return { streamData, loading, error };
+   return { streamData, loading, error };
 }
 export function useAnimeEpisodeData(animeId) {
   const [episodeData, setEpisodeData] = useState(null);
@@ -71,12 +69,12 @@ export function useAnimeEpisodeData(animeId) {
       try {
         const res =
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/episodes/${animeId}`,
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/${animeId}/episodes`,
           )) ||
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL}/anime/episodes/${animeId}`,
+            `${import.meta.env.VITE_ANIME_URL}/anime/${animeId}/episodes`,
           ));
-        setEpisodeData(res.data);
+        setEpisodeData(res.data.data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -88,8 +86,7 @@ export function useAnimeEpisodeData(animeId) {
       getAnimeEpisodeData();
     }
   }, [animeId]);
-
-  return { episodeData, loading, error };
+   return { episodeData, loading, error };
 }
 // for server data
 export function useAnimeEpisodeServerData(episodeid) {
@@ -102,12 +99,12 @@ export function useAnimeEpisodeServerData(episodeid) {
       try {
         const res =
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/servers?episodeId=${episodeid}`,
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/episode/servers?animeEpisodeId=${episodeid}`,
           )) ||
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL}/anime/servers?episodeId=${episodeid}`,
+            `${import.meta.env.VITE_ANIME_URL}/episode/servers?animeEpisodeId=${episodeid}`,
           ));
-        setEpisodeServerData(res.data);
+        setEpisodeServerData(res.data.data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -119,6 +116,5 @@ export function useAnimeEpisodeServerData(episodeid) {
       getAnimeEpisodeServerData();
     }
   }, [episodeid]);
-
-  return { episodeServerData, loading, error };
+   return { episodeServerData, loading, error };
 }

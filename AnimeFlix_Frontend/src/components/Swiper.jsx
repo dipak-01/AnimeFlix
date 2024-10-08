@@ -52,13 +52,13 @@ function Swiperr({ banners }) {
           className="custom-swiper-button custom-swiper-button-prev hidden "
           onClick={handlePrev}
         >
-          <i class="fa-solid fa-chevron-left"></i>
+          <i className="fa-solid fa-chevron-left"></i>
         </button>
         <button
           className="custom-swiper-button custom-swiper-button-next"
           onClick={handleNext}
         >
-          <i class="fa-solid fa-chevron-right"></i>
+          <i className="fa-solid fa-chevron-right"></i>
         </button>
       </Swiper>
     </>

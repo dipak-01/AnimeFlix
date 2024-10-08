@@ -25,11 +25,11 @@ export default function AnimeInfo() {
     const getData = async (id) => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_ANIME_URL}/anime/info?id=${id}`,
+          `${import.meta.env.VITE_ANIME_URL}/anime/${id}`,
         );
 
-        setData(res.data);
-        setLoading(false);
+        setData(res.data.data);
+         setLoading(false);
       } catch (error) {
         console.error("Failed to fetch data:", error);
         setLoading(false);

@@ -4,8 +4,7 @@ export default function () {
   const { id } = useParams();
   const location = useLocation();
   const { data } = location.state || {};
-  console.log(id, data);
-  return (
+   return (
     <>{data.time === 0 && data.date === "" ? <div>hi</div> : <div>hii</div>}</>
   );
 }

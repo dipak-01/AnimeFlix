@@ -10,8 +10,7 @@ export const register = async (username, email, password) => {
       email,
       password,
     });
-    console.log(response.data);
-    return response.data;
+     return response.data;
   } catch (error) {
     if (error.response) {
      
@@ -32,8 +31,7 @@ export const register = async (username, email, password) => {
 export const login = async (email, password) => {
   try {
     const response = await axios.post(`${API_URL}/login`, { email, password });
-    console.log(response.data);
-    return response.data;
+     return response.data;
   } catch (error) {
     if (error.response) {
        

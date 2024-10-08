@@ -4,9 +4,9 @@ import axios from "axios";
 export const fetchAnimeInfo = createAsyncThunk("fetchAnimeInfo", async (id) => {
   const response =
     (await axios.get(
-      `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/info?id=${id}`,
+      `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/${id}`,
     )) ||
-    (await axios.get(`${import.meta.env.VITE_ANIME_URL}/anime/info?id=${id}`));
+    (await axios.get(`${import.meta.env.VITE_ANIME_URL}/anime/${id}`));
   return response;
 });
 

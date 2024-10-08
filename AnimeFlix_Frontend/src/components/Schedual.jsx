@@ -32,11 +32,11 @@ function formatDateToReadable(dateString) {
 }
 
 const getSchedual = async (date) => {
-  try {
-    const url = `${import.meta.env.VITE_ANIME_URL}/anime/schedule?date=${date}`;
+   try {
+    const url = `${import.meta.env.VITE_ANIME_URL}/schedule?date=${date}`;
     const response = await axios.get(url);
-    const results = response.data.scheduledAnimes;
-    return results;
+    const results = response.data.data.scheduledAnimes;
+     return results;
   } catch (error) {
     console.error("Error in fetching schedual:", error);
     return null;
