@@ -11,7 +11,7 @@ import express from "express";
 
 const io = new Server(httpServer, {
   cors: {
-    origin: ["http://localhost:4000", "https://anime-flix-two.vercel.app"],
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
