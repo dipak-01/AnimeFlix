@@ -5,7 +5,6 @@ AnimeFlix is a streaming website where you can watch your favorite anime series 
 ## Screenshots
 
 ![Screenshot 1](/assets/page1.png)
-
 ![Screenshot 2](/assets/page2.png)
 
 ## Features
