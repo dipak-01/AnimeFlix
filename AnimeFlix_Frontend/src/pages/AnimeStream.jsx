@@ -17,6 +17,7 @@ import VideoPlayer from "../services/VideoPlayer";
 import { watchData } from "../services/userService";
 import Stream from "../components/Svg";
 import { AnimeStreamSkeletonLoader } from "../components/SkeletonLoaders";
+import { fetchWithProxy } from "../services/proxy"; // Import the proxy service
 
 export default function AnimeStream() {
   // const dispatch=useDispatch();
