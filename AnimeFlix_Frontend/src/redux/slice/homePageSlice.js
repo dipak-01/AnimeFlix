@@ -2,14 +2,15 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchHomePage = createAsyncThunk("fetchHomePage", async () => {
-  const response =
-     
-    (await axios.get(`${import.meta.env.VITE_ANIME_URL_SECONDARY}/home`, {
-      crossdomain: true,
-    })) ||
-    (await axios.get(`${import.meta.env.VITE_ANIME_URL}/home`, {
-      crossdomain: true,
-    }));
+ const response =
+  (await axios.get(`${import.meta.env.VITE_ANIME_URL_SECONDARY}/home`, {
+    crossdomain: true,
+    withCredentials: true,
+  })) ||
+  (await axios.get(`${import.meta.env.VITE_ANIME_URL}/home`, {
+    crossdomain: true,
+    withCredentials: true,
+  }));
   return response;
 });
 
