@@ -35,13 +35,17 @@ const AnimeQuoteCard = () => {
   }, []);
 
   return (
-    <div className="m-4 mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
-      <div className="p-8">
-        <div className=" text-xl font-semibold uppercase tracking-wide text-indigo-500">
+    <div className="mx-auto my-6 w-full max-w-lg rounded-2xl bg-white shadow-lg ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-gray-700">
+      <div className="flex flex-col gap-2 p-8">
+        <div className="text-lg font-bold uppercase tracking-wide text-indigo-500 dark:text-indigo-300">
           {quote.anime}
         </div>
-        <p className="mt-2 text-gray-500">{quote.character}</p>
-        <p className="mt-2  text-gray-900">"{quote.quote}"</p>
+        <p className="text-base font-medium text-gray-600 dark:text-gray-300">
+          {quote.character}
+        </p>
+        <p className="mt-2 text-xl italic text-gray-900 dark:text-gray-100">
+          "{quote.quote}"
+        </p>
       </div>
     </div>
   );

@@ -5,14 +5,22 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 export default () => {
   return (
     <>
-      <div className=" bottom-0 mb-0 mt-auto   flex w-full items-center justify-center p-10 text-slate-300">
-        <p>
-          All right reservers to its corresponding developer <br />
-          
-          <a href="https://github.com/dipak-01/AnimeFlix" target='blank'><span  className="ml-1 text-red-600 font-medium">Github<FontAwesomeIcon icon={faGithub} className="ml-3 text-red-600" /></span>
+      <footer className="w-full bg-gray-950 py-6 text-center text-slate-400 shadow-inner">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-2 px-4">
+          <p className="text-sm">
+            All rights reserved to its corresponding developer
+          </p>
+          <a
+            href="https://github.com/dipak-01/AnimeFlix"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-red-500 hover:underline"
+          >
+            <span className="font-medium">Github</span>
+            <FontAwesomeIcon icon={faGithub} className="text-lg" />
           </a>
-        </p>
-      </div>
+        </div>
+      </footer>
     </>
   );
 };

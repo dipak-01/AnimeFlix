@@ -1,25 +1,21 @@
 export default function LandingPageInfo() {
   return (
     <>
-      <div className="scrollbar-hide  h-full overflow-y-scroll text-left text-sm">
-        <p>
-          <strong s>Like Death Note</strong>, do you have an Anime Note filled
+      <div className="scrollbar-hide h-full overflow-y-scroll text-left text-base leading-relaxed">
+        <p className="mb-6">
+          <strong>Like Death Note</strong>, do you have an Anime Note filled
           with all the titles you'd love to see, but the only missing piece is a
           free anime site that is free and safe?
         </p>
-
-        {/* Add more styling to other paragraphs */}
-        <p style={{ lineHeight: "1.5" }}>
+        <p className="mb-6">
           Take out the note, as you've found that site, here, at{" "}
           <strong>AnimeFlix</strong>! Welcome to our anime haven, where all your
           anime dreams come true, at no cost to you and with utmost safety. Just
           like the world of Sword Art Online, but without the fear of getting
           trapped!
         </p>
-
-        {/* Add more styling to other paragraphs */}
-        <p style={{ marginTop: "20px" }}>
-          <strong>AnimeFlix</strong> - Where Love for Anime Blooms AnimeFlix is
+        <p className="mb-6">
+          <strong>AnimeFlix</strong> - Where Love for Anime Blooms. AnimeFlix is
           where you can watch anime for free without ads, immersing yourself in
           the universe of your favorite shows uninterrupted &ndash; much like
           the fluid action scenes in Cowboy Bebop. What can be better than hours
@@ -27,21 +23,15 @@ export default function LandingPageInfo() {
           and no buffering? A seamless stream of anime goodness awaits you at
           AnimeFlix, where your anime-loving heart will surely bloom.
         </p>
-
-        {/* Add more styling to other paragraphs */}
-        <p style={{ marginTop: "20px" }}>
-          Thousands of Titles, All for Free Is AnimeFlix free? Absolutely!
-          Dozens of thousands of anime titles from classics like Neon Genesis
-          Evangelion to the latest hits are waiting ahead. No strings attached,
-          no sign-up, no hidden fees &ndash; all you'll find here is pure anime
-          bliss.
+        <p className="mb-6">
+          <strong>Thousands of Titles, All for Free</strong>. Is AnimeFlix free?
+          Absolutely! Dozens of thousands of anime titles from classics like
+          Neon Genesis Evangelion to the latest hits are waiting ahead. No
+          strings attached, no sign-up, no hidden fees &ndash; all you'll find
+          here is pure anime bliss.
         </p>
-
-        {/* Add more styling to other paragraphs */}
-        <p style={{ marginTop: "20px" }}>But, Safety First!</p>
-
-        {/* Add more styling to other paragraphs */}
-        <p style={{ marginTop: "20px" }}>
+        <p className="mb-6 font-semibold text-orange-600">But, Safety First!</p>
+        <p className="mb-6">
           Is AnimeFlix safe? You bet! Just like the impenetrable barrier spells
           in Blue Exorcist, we've got your safety covered. Is it legal? A sure
           set! Rest assured, our platform operates within the legal boundaries,
@@ -49,9 +39,7 @@ export default function LandingPageInfo() {
           relax, and let the vibrant world of AnimeFlix unfold before you, much
           like the opening scenes of your favorite anime.
         </p>
-
-        {/* Add more styling to other paragraphs */}
-        <p style={{ marginTop: "20px" }}>
+        <p className="mb-6">
           <strong className="text-blue-900">Unlike Your Crush</strong>, We Truly
           Care and We Show It Clear! Just as Inuyasha protects Kagome, we're
           here to shield you from the woes of poor anime streaming experiences

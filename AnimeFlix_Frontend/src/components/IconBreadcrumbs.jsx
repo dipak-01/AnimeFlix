@@ -10,31 +10,46 @@ function handleClick(event) {
 
 export default function IconBreadcrumbs() {
   return (
-    <div role="presentation" onClick={handleClick}>
-      <Breadcrumbs aria-label="breadcrumb">
+    <div
+      role="presentation"
+      onClick={handleClick}
+      className="flex w-full justify-center overflow-x-auto py-2"
+      style={{ WebkitOverflowScrolling: "touch" }}
+    >
+      <Breadcrumbs
+        aria-label="breadcrumb"
+        sx={{
+          width: "100%",
+          justifyContent: "center",
+          display: "flex",
+          flexWrap: "nowrap",
+          overflowX: "auto",
+          px: 1,
+        }}
+      >
         <Link
           underline="hover"
-          sx={{ display: "flex", alignItems: "center" }}
+          sx={{ display: "flex", alignItems: "center", minWidth: 0 }}
           color="inherit"
           href="/"
         >
-          <i className="fas fa-xmark  "></i>
+          <i className="fas fa-xmark mr-1"></i>
           MUI
         </Link>
         <Link
           underline="hover"
-          sx={{ display: "flex", alignItems: "center" }}
+          sx={{ display: "flex", alignItems: "center", minWidth: 0 }}
           color="inherit"
           href="/material-ui/getting-started/installation/"
         >
-          <i className="fas fa-xmark  "></i>
+          <i className="fas fa-xmark mr-1"></i>
           Core
         </Link>
         <Typography
-          sx={{ display: "flex", alignItems: "center" }}
+          sx={{ display: "flex", alignItems: "center", minWidth: 0 }}
           color="text.primary"
         >
-          <i className="fas fa-xmark  "></i>
+          <i className="fas fa-xmark mr-1"></i>
           Breadcrumb
         </Typography>
       </Breadcrumbs>

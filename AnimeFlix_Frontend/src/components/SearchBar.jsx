@@ -22,12 +22,15 @@ export default function () {
         {isMobileView === false && (
           <div className="self-end  px-8">
             <input
-              className="rounded-l-md  p-2 ps-2 outline-none  "
+              className="flex-1 rounded-l-md border border-gray-700 bg-gray-900 p-3 text-base text-slate-100 focus:border-orange-400 focus:ring-2 focus:ring-orange-200"
               type="text"
               placeholder="Search for Anime"
             />
-            <button onClick={handleSearchReasults} className="absolute  ">
-              <i className="fas fa-magnifying-glass    rounded-r-md bg-lavender-web-400 p-3 "></i>
+            <button
+              onClick={handleSearchReasults}
+              className="rounded-r-md bg-orange-500 px-4 py-3 text-base text-white transition-colors hover:bg-orange-600"
+            >
+              <FontAwesomeIcon icon={faSearch} />
             </button>
           </div>
         )}

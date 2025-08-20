@@ -178,18 +178,19 @@ export default function UserProfile() {
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
-      <main className="mx-auto max-w-[1420px] px-4 py-8">
+      <main className="mx-auto max-w-4xl px-4 py-10">
         {data && (
-          <div className="overflow-hidden rounded-lg bg-gray-900 shadow-lg">
+          <div className="overflow-hidden rounded-2xl bg-gray-900 shadow-2xl">
+            {/* Banner */}
             <div
-              className="relative h-60 w-full bg-cover bg-center"
+              className="relative h-64 w-full bg-cover bg-center"
               style={{
                 backgroundImage: `url(${banner || "https://via.placeholder.com/1500x500"})`,
               }}
             >
               <label
                 htmlFor="banner-upload"
-                className="absolute bottom-4 right-4 cursor-pointer rounded-md bg-black bg-opacity-50 px-4 py-2 text-white transition hover:bg-opacity-70"
+                className="absolute bottom-4 right-4 cursor-pointer rounded-lg bg-black bg-opacity-60 px-5 py-2 text-white shadow-lg transition hover:bg-opacity-80"
               >
                 Change Banner
                 <input
@@ -201,8 +202,9 @@ export default function UserProfile() {
                 />
               </label>
             </div>
-            <div className="px-6 py-4">
-              <div className="-mt-20 mb-4 flex flex-col items-center md:flex-row md:items-end">
+            {/* Profile Info */}
+            <div className="px-8 py-6">
+              <div className="-mt-24 mb-6 flex flex-col items-center gap-6 md:flex-row md:items-end md:gap-10">
                 <div className="relative">
                   <img
                     src={
@@ -211,11 +213,11 @@ export default function UserProfile() {
                       "https://via.placeholder.com/150"
                     }
                     alt="Profile"
-                    className="h-40 w-40 rounded-full border-4 border-gray-800 object-cover shadow-lg"
+                    className="h-44 w-44 rounded-full border-4 border-gray-800 object-cover shadow-xl"
                   />
                   <label
                     htmlFor="profile-upload"
-                    className="absolute bottom-2 right-2 cursor-pointer rounded-md bg-gray-800 px-2 py-1 text-sm text-white transition hover:bg-gray-700"
+                    className="absolute bottom-2 right-2 cursor-pointer rounded-md bg-gray-800 px-3 py-1 text-sm text-white shadow hover:bg-gray-700"
                   >
                     Edit
                     <input
@@ -227,48 +229,54 @@ export default function UserProfile() {
                     />
                   </label>
                 </div>
-                <div className="mt-4 text-center md:ml-6 md:mt-0 md:text-left">
-                  <h2 className="text-3xl font-bold">{data.username}</h2>
-                  <p className="text-xl text-gray-400">{data.email}</p>
+                <div className="mt-4 text-center md:ml-8 md:mt-0 md:text-left">
+                  <h2 className="text-4xl font-extrabold tracking-tight">
+                    {data.username}
+                  </h2>
+                  <p className="text-lg text-gray-400">{data.email}</p>
                   <p className="mt-1 text-sm text-gray-500">
                     Joined: {data.createdAt?.slice(0, 10)}
                   </p>
                 </div>
               </div>
-              <div className="mt-6 flex w-full flex-col items-center  justify-center space-x-4 space-y-4 lg:flex-row lg:space-y-0">
+              {/* Quick Links */}
+              <div className="mt-8 flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
                 <a
                   href="#"
-                  className="rounded-2xl bg-zinc-800 p-2 text-blue-400 hover:text-blue-300"
+                  className="flex items-center gap-2 rounded-2xl bg-zinc-800 px-5 py-2 text-blue-400 shadow transition hover:text-blue-300"
                 >
-                  <i className="fa fa-television mx-1"></i>
+                  <i className="fa fa-television"></i>
                   Continue Watching
                 </a>
                 <a
                   href="#"
-                  className="rounded-2xl bg-zinc-800 p-2 text-blue-400 hover:text-blue-300"
+                  className="flex items-center gap-2 rounded-2xl bg-zinc-800 px-5 py-2 text-blue-400 shadow transition hover:text-blue-300"
                 >
-                  <i className="fa fa-list mx-1"></i>
+                  <i className="fa fa-list"></i>
                   Watchlist
                 </a>
               </div>
-              <div className="mt-4 border-t border-gray-800 pt-4">
-                <h3 className="mb-2 text-xl font-semibold">About Me</h3>
-                <p className="text-gray-400">
+              {/* About Me */}
+              <div className="mt-8 border-t border-gray-800 pt-6">
+                <h3 className="mb-2 text-2xl font-semibold tracking-wide">
+                  About Me
+                </h3>
+                <p className="max-w-2xl leading-relaxed text-gray-400">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
               </div>
-
-              <div className="mt-6 flex   flex-col items-center space-y-4">
+              {/* Profile Actions */}
+              <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
                 <button
                   onClick={() => setIsUsernameModalOpen(true)}
-                  className="w-full max-w-xs rounded-full bg-blue-600 px-6 py-2 text-white transition duration-300 ease-in-out hover:bg-blue-700"
+                  className="rounded-full bg-blue-600 px-8 py-2 text-lg font-semibold text-white shadow transition duration-300 ease-in-out hover:bg-blue-700"
                 >
                   Change Username
                 </button>
                 <button
                   onClick={() => setIsPasswordModalOpen(true)}
-                  className="w-full max-w-xs rounded-full bg-blue-600 px-6 py-2 text-white transition duration-300 ease-in-out hover:bg-blue-700"
+                  className="rounded-full bg-blue-600 px-8 py-2 text-lg font-semibold text-white shadow transition duration-300 ease-in-out hover:bg-blue-700"
                 >
                   Change Password
                 </button>
@@ -276,7 +284,7 @@ export default function UserProfile() {
                   onClick={() =>
                     alert("Edit profile feature to be implemented")
                   }
-                  className="w-full max-w-xs rounded-full bg-blue-600 px-6 py-2 text-white transition duration-300 ease-in-out hover:bg-blue-700"
+                  className="rounded-full bg-blue-600 px-8 py-2 text-lg font-semibold text-white shadow transition duration-300 ease-in-out hover:bg-blue-700"
                 >
                   Edit Profile
                 </button>

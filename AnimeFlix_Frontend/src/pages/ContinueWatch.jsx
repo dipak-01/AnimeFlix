@@ -26,14 +26,15 @@ export function WatchData() {
   return (
     <>
       <div className=" ">
-        {watchHistoryData && watchHistoryData.length > 0  ? (
+        {watchHistoryData && watchHistoryData.length > 0 ? (
           <>
-            <div className="my-4 w-full whitespace-nowrap pb-4 text-start  text-xl lg:text-3xl text-lavender-web-500 ">
+            <div className="my-4 w-full whitespace-nowrap pb-4 text-start  text-xl text-lavender-web-500 lg:text-3xl ">
               Continue Watching
             </div>
             <div className=" grid w-full grid-cols-2 gap-8 py-8 text-slate-50 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 ">
               {watchHistoryData.map((data) => (
                 <CardsType4
+                  key={data.animeId + "-" + data.episodeId}
                   animeId={data.animeId}
                   epiId={data.episodeId}
                   identifier={identifier}

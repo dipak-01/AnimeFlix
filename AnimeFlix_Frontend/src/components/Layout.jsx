@@ -7,21 +7,20 @@ const Layout = ({ children }) => {
   const location = useLocation();
   if (location.pathname === "/") {
     return (
-      <div>
-        <main>{children}</main>
+      <div className="flex min-h-screen flex-col">
+        <main className="flex-1">{children}</main>
+        <Footer />
       </div>
     );
   }
   return (
-    <div>
+    <div className="flex min-h-screen flex-col">
       <Schedual />
       <nav>
         <Navbar />
       </nav>
-      <main>{children}</main>
-      <footer>
-        <Footer />
-      </footer>
+      <main className="flex-1">{children}</main>
+      <Footer />
     </div>
   );
 };
