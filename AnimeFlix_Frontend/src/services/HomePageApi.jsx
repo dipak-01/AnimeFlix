@@ -4,12 +4,12 @@ export default async () => {
     try {
       const response =
         (await axios.get(
-          `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/home`,
+          `${import.meta.env.VITE_ANIME_URL_SECONDARY}/home`,
           {
             crossdomain: true,
           },
         )) ||
-        (await axios.get(`${import.meta.env.VITE_ANIME_URL}/anime/home`, {
+        (await axios.get(`${import.meta.env.VITE_ANIME_URL}/home`, {
           crossdomain: true,
         }));
       const homeData = response.data;

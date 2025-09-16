@@ -15,11 +15,11 @@ const Suggestions = ({ query }) => {
       try {
         const response =
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/search/suggest?q=${query}`,
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/search/suggest?q=${query}`,
             { crossdomain: true },
           )) ||
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL}/anime/search/suggest?q=${query}`,
+            `${import.meta.env.VITE_ANIME_URL}/search/suggest?q=${query}`,
             { crossdomain: true },
           ));
 
