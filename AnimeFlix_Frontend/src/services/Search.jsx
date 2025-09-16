@@ -3,8 +3,8 @@ import axios from "axios";
 export default async function Search(query) {
   async function fetchAnimeData(query, page) {
     const url =
-      `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/search?q=${query}&page=${page}` ||
-      `${import.meta.env.VITE_ANIME_URL}/anime/search?q=${query}&page=${page}`;
+      `${import.meta.env.VITE_ANIME_URL_SECONDARY}/api/v2/hianime/search?q=${query}&page=${page}` ||
+      `${import.meta.env.VITE_ANIME_URL}/api/v2/hianime/search?q=${query}&page=${page}`;
     const response = await axios.get(url);
     return response.data;
   }
