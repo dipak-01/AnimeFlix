@@ -11,6 +11,7 @@ import {
 // Use backend proxy for m3u8 files
 const TEST_VIDEO = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
 const VideoPlayer = ({ src, data }) => {
+  console.log(data)
   let proxiedSrc = src;
   if (!src || src.includes("dotstream.buzz") || src.includes("403")) {
     proxiedSrc = TEST_VIDEO;

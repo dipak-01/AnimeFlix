@@ -6,7 +6,7 @@ export default async function Search(query) {
       `${import.meta.env.VITE_ANIME_URL_SECONDARY}/search?q=${query}&page=${page}` ||
       `${import.meta.env.VITE_ANIME_URL}/search?q=${query}&page=${page}`;
     const response = await axios.get(url);
-    return response.data;
+    return response.data.data;
   }
 
   async function fetchAllAnimeData(query) {

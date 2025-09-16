@@ -105,6 +105,7 @@ export function useAnimeEpisodeServerData(episodeid) {
             `${import.meta.env.VITE_ANIME_URL}/episode/servers?animeEpisodeId=${episodeid}`,
           ));
         setEpisodeServerData(res.data.data);
+        console.log(res.data.data);
         setLoading(false);
       } catch (error) {
         setError(error);
