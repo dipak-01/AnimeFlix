@@ -11,10 +11,10 @@ export function useFetchData(id) {
       try {
         const res =
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/${id}`,
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/${id}`,
           )) ||
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL}/${id}`,
+            `${import.meta.env.VITE_ANIME_URL}/anime/${id}`,
           ));
         setData(res.data.data);
         setLoading(false);
