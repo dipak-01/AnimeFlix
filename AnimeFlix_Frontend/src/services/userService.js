@@ -8,8 +8,7 @@ export const watchData = async (animeId, episodeId) => {
   const tokenn = getToken();
 
   if (!animeId || !episodeId || !tokenn) {
-    console.error("Invalid parameters: ", { animeId, episodeId, tokenn });
-    throw new Error("Invalid parameters");
+    return null;
   }
   try {
     const response = await axios.post(
@@ -32,8 +31,7 @@ export const addWatchListData = async (animeId) => {
   const tokenn = getToken();
 
   if (!animeId || !tokenn) {
-    console.error("Invalid parameters: ", { animeId,tokenn });
-    throw new Error("Invalid parameters");
+    return null;
   }
   try {
     const response = await axios.post(
