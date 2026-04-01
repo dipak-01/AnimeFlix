@@ -1,15 +1,16 @@
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useState } from "react";
-export default function () {
+export default function WatchTogether() {
   const location = useLocation();
   const { id } = useParams();
   const navigate = useNavigate();
   const { data } = location.state || {};
-  console.log(data);
   const [selectedOption, setSelectedOption] = useState("");
   const [roomName, setRoomName] = useState("");
   const [time, setTime] = useState(0);
   const [date, setDate] = useState("");
+
+  if (!data) return <div className="py-20 text-center text-2xl text-white">No data found.</div>;
 
   const handleSubmit = (id, time, date) => {
     console.log(id, time, date);
@@ -29,44 +30,44 @@ export default function () {
             <div className="     m-4 object-cover">
               <img
                 className="  h-auto w-40 rounded-lg"
-                src={data.poster}
+                src={data?.poster}
                 alt=""
               />
             </div>{" "}
             <div className="mx-4 text-xl font-medium text-orange-400">
-              {data.name}
+              {data?.name}
             </div>
             <div className="block   align-middle text-slate-900">
               <div className="data flex py-2 text-xs  font-semibold ">
                 <div className=" ml-4 flex text-start">
                   <p className="rounded-s-sm border border-slate-900 bg-orange-300 px-1">
-                    {data.stats.rating}
+                    {data?.stats?.rating || "N/A"}
                   </p>
                   <p className="border border-slate-900 bg-orange-100 px-1">
-                    <i className="far fa-clock"></i> {data.stats.duration}
+                    <i className="far fa-clock"></i> {data?.stats?.duration || "N/A"}
                   </p>
                   <p className="border border-slate-900 bg-orange-300 px-1">
-                    <i className="fas fa-tv"></i> {data.stats.type}
+                    <i className="fas fa-tv"></i> {data?.stats?.type || "N/A"}
                   </p>
                   <p className="rounded-e-sm border border-slate-900 bg-orange-100 px-1">
-                    {data.stats.quality}
+                    {data?.stats?.quality || "N/A"}
                   </p>
 
                   <p className="w-fit whitespace-normal text-nowrap rounded-s-sm border border-slate-900 bg-orange-300 px-1">
                     <i className="far fa-closed-captioning"></i>{" "}
-                    {data.stats.episodes.sub}
+                    {data?.stats?.episodes?.sub || "N/A"}
                   </p>
-                  {data.stats.episodes.dub && (
+                  {data?.stats?.episodes?.dub && (
                     <p className="w-fit rounded-e-sm border border-slate-900 bg-orange-100 px-1">
                       <i className="fas fa-microphone"></i>{" "}
-                      {data.stats.episodes.dub}
+                      {data?.stats?.episodes?.dub}
                     </p>
                   )}
                 </div>
               </div>
             </div>
             <div className="m-4  line-clamp-3 overflow-hidden text-balance ">
-              {data.description}{" "}
+              {data?.description}{" "}
             </div>
           </div>
           <div className="bg-slate-950 p-4 lg:w-1/3">
@@ -86,7 +87,7 @@ export default function () {
                   onChange={(e) => {
                     setRoomName(e.target.value);
                   }}
-                  defaultValue={data.name}
+                  defaultValue={data?.name}
                 />
               </div>
               <p>You can change the room name or leave it as default</p>
@@ -141,7 +142,7 @@ export default function () {
             )}
             {selectedOption === "schedual" ? (
               <div>
-                <form onSubmit={() => handleSubmit(data.id, time, date)}>
+                <form onSubmit={(e) => { e.preventDefault(); handleSubmit(data.id, time, date); }}>
                   <div className="relative my-8 max-w-sm">
                     <label
                       htmlFor="time"
@@ -205,7 +206,8 @@ export default function () {
                       Create Room
                     </button>
                     <button
-                      type="submit"
+                      onClick={() => navigate(-1)}
+                      type="button"
                       className="mb-2 me-2 w-1/3 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                     >
                       Cancel
@@ -222,6 +224,7 @@ export default function () {
                   Create Room
                 </button>
                 <button
+                  onClick={() => navigate(-1)}
                   type="button"
                   className="mb-2 me-2 w-1/3 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                 >

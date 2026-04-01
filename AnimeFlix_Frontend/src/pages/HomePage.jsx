@@ -62,8 +62,7 @@ export default function HomePage() {
           <HomePageSkeleton />
         </div>
       ) : (
-        data.length > 0 ||
-        (data && (
+        Object.keys(data || {}).length > 0 && (
           <div className="mx-auto my-4 h-auto min-h-screen w-full max-w-[1420px] px-2 text-slate-50 sm:px-4 lg:px-6 xl:px-2  ">
              <Swiper banners={data?.spotlightAnimes} />
             <div className="  h-full  gap-4">
@@ -172,7 +171,7 @@ export default function HomePage() {
               <TopUpcoming topUpcoming={data?.topUpcomingAnimes} />
             </div>
           </div>
-        ))
+        )
       )}
     </>
   );

@@ -106,12 +106,12 @@ export default function () {
                       {" "}
                       <img
                         className="h-10 w-10 rounded-full border-slate-900"
-                        src={post.userId.avatarUrl}
-                        alt={post.userId.username}
+                        src={post?.userId?.avatarUrl || "/vite.svg"}
+                        alt={post?.userId?.username || "Unknown"}
                       />
                       <span className="px-4 italic text-teal-100">
                         {" "}
-                        {post.userId.username}
+                        {post?.userId?.username || "Unknown User"}
                       </span>
                       <span className="text-sm ">
                         {" "}
@@ -160,13 +160,13 @@ export default function () {
                             <div className="flex items-center rounded-md border border-slate-900 bg-slate-400/40 backdrop-blur-lg shadow-lg ring-1 ring-black/5 py-3">
                               <img
                                 className="mx-5 h-8 w-8 rounded-full "
-                                src={reply.userId.avatarUrl}
-                                alt={reply.userId.username}
+                                src={reply?.userId?.avatarUrl || "/vite.svg"}
+                                alt={reply?.userId?.username || "Unknown"}
                               />
 
                               <div className="">
                                 <p className="text-xs italic">
-                                  {reply.userId.username} 
+                                  {reply?.userId?.username || "Unknown User"} 
                                   <span className="text-orange-300">{" "}
                                   {timeDifference(reply.createdAt)}{" "}</span>
                                 </p>

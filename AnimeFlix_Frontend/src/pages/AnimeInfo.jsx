@@ -19,7 +19,6 @@ export default function AnimeInfo() {
   const navigate = useNavigate();
   const handleClick = (id) => {
     navigate(`/anime/info?id=${encodeURIComponent(id)}`);
-    window.location.reload();
   };
   useEffect(() => {
     const getData = async (id) => {
@@ -50,6 +49,10 @@ export default function AnimeInfo() {
   if (loading) {
     return <AnimeInfoSkeletonLoader />;
   }
+
+  if (!data || !data.anime || !data.anime.info || !data.anime.moreInfo)
+    return <div>No data found</div>;
+
   const handleWatchClick = (id) => {
     navigate(`/watch/${id}`);
   };
@@ -58,9 +61,6 @@ export default function AnimeInfo() {
   const seasons = data.seasons || "";
   const recommendedAnime = data.recommendedAnimes;
   const relatedAnime = data.relatedAnimes;
-
-  if (!data || !data.anime || !info || !moreinfo)
-    return <div>No data found</div>;
   return (
     <>
      
@@ -71,7 +71,7 @@ export default function AnimeInfo() {
             <div className=" mt-1 flex justify-center  ">
               <img
                 className="w-60 rounded-lg shadow-2xl shadow-blue-500/20"
-                src={info.poster}
+                src={info?.poster}
                 alt="Anime Poster"
               />
             </div>
@@ -87,9 +87,9 @@ export default function AnimeInfo() {
 
         <div className="w-full justify-between gap-8 lg:flex">
           <SeasonsSlider seasons={seasons} handleClick={handleClick} />
-          {relatedAnime && (
+          {relatedAnime?.length > 0 && (
             <div
-              onClick={() => handleClick(relatedAnime[0].id)}
+              onClick={() => handleClick(relatedAnime[0]?.id)}
               className="pt-8 lg:w-3/12  "
             >
               <p className="text-start text-3xl text-slate-50">Related Anime</p>
@@ -97,24 +97,24 @@ export default function AnimeInfo() {
                 <div className=" h-full w-fit">
                   <img
                     className=" h-full rounded "
-                    src={relatedAnime[0].poster}
+                    src={relatedAnime[0]?.poster}
                     alt="relatedAnime poster"
                   />
                 </div>
                 <div className="text-slate-50">
                   <p className="line-clamp-2   text-start">
-                    {relatedAnime[0].name}
+                    {relatedAnime[0]?.name}
                   </p>
                   <div className="flex gap-4">
-                    <p>{relatedAnime[0].type} </p>
+                    <p>{relatedAnime[0]?.type} </p>
                     <div className="flex text-slate-900">
                       <p className="h-fit whitespace-normal text-nowrap rounded-s-lg border border-slate-900 bg-orange-300 px-1">
                         <i className="far fa-closed-captioning "> </i>{" "}
-                        {relatedAnime[0].episodes.dub}{" "}
+                        {relatedAnime[0]?.episodes?.dub || "N/A"}{" "}
                       </p>
                       <p className="h-fit rounded-e-lg border border-slate-900 bg-orange-100  px-1">
                         <i className="fas fa-microphone"></i>{" "}
-                        {relatedAnime[0].episodes.sub}{" "}
+                        {relatedAnime[0]?.episodes?.sub || "N/A"}{" "}
                       </p>
                     </div>
                   </div>

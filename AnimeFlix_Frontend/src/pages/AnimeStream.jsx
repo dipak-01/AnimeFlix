@@ -182,7 +182,7 @@ export default function AnimeStream() {
               {streamData && (
                 <div className="">
                   <VideoPlayer
-                    src={streamData.sources[0]?.url}
+                    src={streamData?.sources?.[0]?.url}
                     data={streamData}
                   ></VideoPlayer>
                 </div>
@@ -222,14 +222,14 @@ export default function AnimeStream() {
                     <i className="fas fa-closed-captioning"></i> SUB:
                   </span>
                   <span className="space-x-2 uppercase">
-                    {episodeServerData?.sub[0]?.serverName && (
+                    {episodeServerData?.sub?.[0]?.serverName && (
                       <span className="rounded-sm bg-orange-200 px-1">
-                        {episodeServerData.sub[0].serverName}
+                        {episodeServerData?.sub?.[0]?.serverName}
                       </span>
                     )}
-                    {episodeServerData?.sub[1]?.serverName && (
+                    {episodeServerData?.sub?.[1]?.serverName && (
                       <span className="rounded-sm bg-orange-200 px-1">
-                        {episodeServerData.sub[1].serverName}
+                        {episodeServerData?.sub?.[1]?.serverName}
                       </span>
                     )}
                   </span>
@@ -239,14 +239,14 @@ export default function AnimeStream() {
                     <i className="fas fa-microphone"></i> DUB:
                   </span>
                   <span className="space-x-2 uppercase">
-                    {episodeServerData?.dub[0]?.serverName && (
+                    {episodeServerData?.dub?.[0]?.serverName && (
                       <span className="rounded-sm bg-orange-200 px-1">
-                        {episodeServerData.dub[0]?.serverName}
+                        {episodeServerData?.dub?.[0]?.serverName}
                       </span>
                     )}
-                    {episodeServerData?.dub[1]?.serverName && (
+                    {episodeServerData?.dub?.[1]?.serverName && (
                       <span className="rounded-sm bg-orange-200 px-1">
-                        {episodeServerData.dub[1].serverName}
+                        {episodeServerData?.dub?.[1]?.serverName}
                       </span>
                     )}
                   </span>
@@ -271,27 +271,27 @@ export default function AnimeStream() {
               <div className="info py-2 text-xs font-semibold lg:flex">
                 <div className="flex text-start">
                   <p className="rounded-s-sm border border-slate-900 bg-orange-300 px-1">
-                    {info.stats.rating}
+                    {info?.stats?.rating || "N/A"}
                   </p>
                   <p className="border border-slate-900 bg-orange-100 px-1">
-                    <i className="far fa-clock"></i> {info.stats.duration}
+                    <i className="far fa-clock"></i> {info?.stats?.duration || "N/A"}
                   </p>
                   <p className="border border-slate-900 bg-orange-300 px-1">
-                    <i className="fas fa-tv"></i> {info.stats.type}
+                    <i className="fas fa-tv"></i> {info?.stats?.type || "N/A"}
                   </p>
                   <p className="rounded-e-sm border border-slate-900 bg-orange-100 px-1">
-                    {info.stats.quality}
+                    {info?.stats?.quality || "N/A"}
                   </p>
                 </div>
                 <div className="flex px-2 text-start text-slate-900">
                   <div className="whitespace-normal text-nowrap rounded-s-sm border border-slate-900 bg-orange-300 px-1">
                     <i className="far fa-closed-captioning"></i>{" "}
-                    {info.stats.episodes.sub}
+                    {info?.stats?.episodes?.sub || "N/A"}
                   </div>
-                  {info.stats.episodes.dub && (
+                  {info?.stats?.episodes?.dub && (
                     <div className="rounded-e-sm border border-slate-900 bg-orange-100 px-1">
                       <i className="fas fa-microphone"></i>{" "}
-                      {info.stats.episodes.dub}
+                      {info?.stats?.episodes?.dub}
                     </div>
                   )}
                 </div>
@@ -316,9 +316,9 @@ export default function AnimeStream() {
           </div>
         </div>
       </div>
-      {relatedAnime && (
+      {relatedAnime?.length > 0 && (
         <div
-          onClick={() => handleClick(relatedAnime[0].id)}
+          onClick={() => handleClick(relatedAnime[0]?.id)}
           className="pt-8 lg:w-3/12  "
         >
           <p className="text-start text-3xl text-slate-50">Related Anime</p>
@@ -326,24 +326,24 @@ export default function AnimeStream() {
             <div className=" h-full w-fit">
               <img
                 className=" h-full rounded "
-                src={relatedAnime[0].poster}
+                src={relatedAnime[0]?.poster}
                 alt="relatedAnime poster"
               />
             </div>
             <div className="text-slate-50">
               <p className="line-clamp-2   text-start">
-                {relatedAnime[0].name}
+                {relatedAnime[0]?.name}
               </p>
               <div className="flex gap-4">
-                <p>{relatedAnime[0].type} </p>
+                <p>{relatedAnime[0]?.type} </p>
                 <div className="flex text-slate-900">
                   <p className="whitespace-normal text-nowrap rounded-s-lg border  border-slate-100 bg-orange-300 px-1">
                     <i className="far fa-closed-captioning "> </i>{" "}
-                    {relatedAnime[0].episodes.dub}{" "}
+                    {relatedAnime[0]?.episodes?.dub || "N/A"}{" "}
                   </p>
                   <p className="order-slate-100 rounded-e-lg border  bg-orange-100  px-1">
                     <i className="fas fa-microphone"></i>{" "}
-                    {relatedAnime[0].episodes.sub}{" "}
+                    {relatedAnime[0]?.episodes?.sub || "N/A"}{" "}
                   </p>
                 </div>
               </div>
