@@ -89,7 +89,15 @@ export default function ({ trendingAnimes }) {
           <div
             key={index}
             onClick={() => handleClick(trends.id)}
-            className="relative w-full transform cursor-pointer items-center gap-2 rounded-lg border border-slate-800 bg-slate-600/50 p-4 shadow-lg transition-transform hover:scale-105 hover:bg-slate-700"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleClick(trends.id);
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            className="relative w-full transform cursor-pointer items-center gap-2 rounded-lg border border-slate-800 bg-slate-600/50 p-4 shadow-lg transition-transform hover:scale-105 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <div
               className="absolute inset-0 rounded-lg bg-cover bg-center opacity-20"

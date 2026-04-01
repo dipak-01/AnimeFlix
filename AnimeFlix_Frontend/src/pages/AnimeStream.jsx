@@ -131,16 +131,23 @@ export default function AnimeStream() {
             </p>
 
             {episodes?.map((epi, index) => (
-                <div
+                <button
                   style={{ display: isLoading ? "none" : "flex" }}
                   onClick={() => setSelectedEpisodeId(epi.episodeId)}
-                  className={`flex w-full border ${
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setSelectedEpisodeId(epi.episodeId);
+                    }
+                  }}
+                  aria-label={`Select episode ${epi.number}`}
+                  className={`flex w-full border text-left ${
                     epi.episodeId === selectedEpisodeId
                       ? "font-semibold text-orange-500"
                       : "" || epi.number % 2 !== 0
                         ? "bg-gray-800"
                         : "bg-gray-900"
-                  } border-gray-900 py-3 text-xs`}
+                  } border-gray-900 py-3 text-xs focus:ring-2 focus:ring-blue-500`}
                   key={index}
                 >
                   <div className="w-1/6 text-center">{epi.number}</div>
@@ -163,7 +170,7 @@ export default function AnimeStream() {
                       </span>
                     )}
                   </div>
-                </div>
+                </button>
               ))}
           </div>
           <div className="lg:w-4/5">
@@ -197,6 +204,7 @@ export default function AnimeStream() {
                 Next
               </button>
               <button
+                aria-label="Watch Together"
                 onClick={() => handleWatchTogether(info)}
                 className="rounded-sm pr-4  text-center"
               >
@@ -314,7 +322,15 @@ export default function AnimeStream() {
       {relatedAnime?.length > 0 && (
         <div
           onClick={() => handleClick(relatedAnime[0]?.id)}
-          className="pt-8 lg:w-3/12  "
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleClick(relatedAnime[0]?.id);
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          className="pt-8 lg:w-3/12 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg"
         >
           <p className="text-start text-3xl text-slate-50">Related Anime</p>
           <div className="mt-4 flex h-24 space-x-3 rounded-lg border border-slate-600 p-2 shadow">

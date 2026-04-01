@@ -16,7 +16,15 @@ export default function ({ data }) {
           <div
             key={index}
             onClick={() => handleClick(data2.id)}
-            className="py-1 pr-1"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleClick(data2.id);
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            className="py-1 pr-1 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg"
           >
             <div className="flex h-36 p-2 ">
               <div className=" w-1/3 rounded-lg ">

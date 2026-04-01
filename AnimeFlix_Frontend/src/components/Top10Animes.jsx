@@ -41,7 +41,15 @@ function TemplateCard({ animeData }) {
         <div
           key={index}
           onClick={() => handleClick(top10anime.id)}
-          className="relative flex items-center space-x-4 rounded-lg bg-slate-900 px-2 py-4 shadow-lg transition-colors hover:bg-slate-800 cursor-pointer"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleClick(top10anime.id);
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          className="relative flex items-center space-x-4 rounded-lg bg-slate-900 px-2 py-4 shadow-lg transition-colors hover:bg-slate-800 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <div
             className="absolute inset-0 bg-cover bg-center opacity-20"

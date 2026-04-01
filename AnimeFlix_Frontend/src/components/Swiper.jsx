@@ -51,12 +51,14 @@ function Swiperr({ banners }) {
         <button
           className="custom-swiper-button custom-swiper-button-prev hidden "
           onClick={handlePrev}
+          aria-label="Previous Slide"
         >
           <i className="fa-solid fa-chevron-left"></i>
         </button>
         <button
           className="custom-swiper-button custom-swiper-button-next"
           onClick={handleNext}
+          aria-label="Next Slide"
         >
           <i className="fa-solid fa-chevron-right"></i>
         </button>

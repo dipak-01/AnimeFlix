@@ -104,13 +104,14 @@ function App() {
               </a>
             </div>
             <div className="flex items-center space-x-8">
-              <button onClick={handleSearchOpen} className="text-white">
+              <button onClick={handleSearchOpen} className="text-white" aria-label="Open Search">
                 <FontAwesomeIcon icon={faSearch} className="h-6 w-6" />
               </button>
               <div className="relative" ref={toggleRef}>
                 <button
                   type="button"
                   onClick={handleToggleUser}
+                  aria-label="User Menu"
                   className="text-white"
                 >
                   <FontAwesomeIcon icon={faUser} className="h-6 w-6" />
@@ -222,6 +223,7 @@ function App() {
                   />
                   <button
                     type="submit"
+                    aria-label="Submit Search"
                     className="absolute bottom-0 end-0 h-12 rounded-lg px-4 py-2 text-sm font-medium focus:outline-none"
                   >
                     <FontAwesomeIcon
@@ -234,6 +236,7 @@ function App() {
               </form>
               <button
                 onClick={handleSearchClose}
+                aria-label="Close Search"
                 className="absolute right-0 top-3 text-white"
               ></button>
             </div>

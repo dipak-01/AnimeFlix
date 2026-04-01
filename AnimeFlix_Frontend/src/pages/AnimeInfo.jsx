@@ -88,7 +88,15 @@ export default function AnimeInfo() {
           {relatedAnime?.length > 0 && (
             <div
               onClick={() => handleClick(relatedAnime[0]?.id)}
-              className="pt-8 lg:w-3/12  "
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleClick(relatedAnime[0]?.id);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              className="pt-8 lg:w-3/12 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg"
             >
               <p className="text-start text-3xl text-slate-50">Related Anime</p>
               <div className="mt-4 flex h-24 space-x-3 rounded-lg border border-slate-600 p-2 shadow">
