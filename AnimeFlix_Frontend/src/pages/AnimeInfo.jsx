@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import TopUpcoming from "../components/TopUpcoming";
 import { addWatchListData } from "../services/userService";
 import toast, { Toaster } from "react-hot-toast";
