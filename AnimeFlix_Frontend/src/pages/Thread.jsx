@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { WriteComments, WritePosts } from "../components/ForumForms";
 
-export default function () {
+export default function Thread() {
   const [thread, setThread] = useState({});
   const [posts, setPosts] = useState([]);
   const [replies, setReplies] = useState({});
@@ -148,9 +148,8 @@ export default function () {
                     />
                     {replies[post._id] && replies[post._id].length > 0 ? (
                       replies[post._id].map((reply) => (
-                        <div className="mb-2   mt-1  w-11/12 place-self-end rounded-md bg-transparent p-0">
+                        <div key={reply._id} className="mb-2   mt-1  w-11/12 place-self-end rounded-md bg-transparent p-0">
                           <div
-                            key={reply._id}
                             className="   p-2 text-start"
                             style={{
                               overflowWrap: "break-word",

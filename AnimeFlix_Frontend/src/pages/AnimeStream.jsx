@@ -5,19 +5,14 @@ import {
   useAnimeEpisodeData,
   useAnimeEpisodeServerData,
 } from "../services/AnimeWatch";
-import { fetchAnimeInfo } from "../redux/slice/animeInfoSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { PlayIcon } from "@vidstack/react/icons";
 // Base styles for media player and provider (~400B).
 import "@vidstack/react/player/styles/base.css";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { Loader } from "../components/Loading";
 import TopUpcoming from "../components/TopUpcoming";
 import VideoPlayer from "../services/VideoPlayer";
 import { watchData } from "../services/userService";
 import Stream from "../components/Svg";
 import { AnimeStreamSkeletonLoader } from "../components/SkeletonLoaders";
-import { fetchWithProxy } from "../services/proxy"; // Import the proxy service
 
 export default function AnimeStream() {
   // const dispatch=useDispatch();

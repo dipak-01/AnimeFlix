@@ -108,18 +108,20 @@ export default function WatchTogether() {
                   htmlFor="default-radio-1"
                   className="ms-2 text-lg font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Schedual Room
+                  Schedule Room
                 </label>
               </div>
               <div className="flex items-center">
                 <input
-                  defaultChecked
-                  id="default-radio-2"
-                  type="radio"
                   placeholder="start_now"
                   name="default-radio"
+                  id="default-radio-2"
+                  type="radio"
+                  defaultChecked=""
+                  onChange={() => {
+                    setSelectedOption("start_now");
+                  }}
                   className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                  onChange={(e) => setSelectedOption(e.target.placeholder)}
                 />
                 <label
                   htmlFor="default-radio-2"
@@ -130,9 +132,9 @@ export default function WatchTogether() {
               </div>
             </div>
             <div className="my-8 flex"></div>
-            {selectedOption === "schedual" ? (
+            {selectedOption === "schedule" ? (
               <p className="pt-8">
-                Room will automatically start at your schedualed time and date.
+                Room will automatically start at your scheduled time and date.
               </p>
             ) : (
               <p className="pt-8">
@@ -140,7 +142,7 @@ export default function WatchTogether() {
                 time.
               </p>
             )}
-            {selectedOption === "schedual" ? (
+            {selectedOption === "schedule" ? (
               <div>
                 <form onSubmit={(e) => { e.preventDefault(); handleSubmit(data.id, time, date); }}>
                   <div className="relative my-8 max-w-sm">

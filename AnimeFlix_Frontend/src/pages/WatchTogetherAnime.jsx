@@ -1,5 +1,5 @@
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
+
 export default function WatchTogetherAnime() {
   const { id } = useParams();
   const location = useLocation();

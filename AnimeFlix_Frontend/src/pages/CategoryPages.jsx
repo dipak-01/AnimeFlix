@@ -16,13 +16,13 @@ export default function CategoryPages() {
               {pageName}
             </div>
             <div className="    grid w-full grid-cols-2 gap-8 py-8 text-slate-50 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-              {data?.map((data, index) => (
+              {data?.map((anime, index) => (
                   <CardsType2
                     key={index}
-                    name={data.name}
-                    type={data.type}
-                    poster={data.poster}
-                    id={data.id}
+                    name={anime.name}
+                    type={anime.type}
+                    poster={anime.poster}
+                    id={anime.id}
                   />
                 ))}
             </div>

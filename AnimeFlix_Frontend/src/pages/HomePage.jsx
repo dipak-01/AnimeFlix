@@ -16,7 +16,7 @@ import {HomePageSkeleton} from "../components/SkeletonLoaders";
 export default function HomePage() {
   const dispatch = useDispatch();
   const homePageData = useSelector((state) => state.homePage.data);
-   const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -27,11 +27,9 @@ export default function HomePage() {
   useEffect(() => {
     if (homePageData) {
       setData(homePageData.data.data);
-  
       setLoading(false);
-       
     }
-  }, [homePageData,data]);
+  }, [homePageData]);
  
   const handleRedirectPage = (page, animeData) => {
      if (page === "mostPopularAnimes") {

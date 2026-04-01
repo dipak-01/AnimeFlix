@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TopUpcoming from "../components/TopUpcoming";
 import { addWatchListData } from "../services/userService";
-import { useLocation } from "react-router-dom";
-import { Loader } from "../components/Loading";
 import toast, { Toaster } from "react-hot-toast";
 import DetailCard from "../components/AnimeInfo/DetailCard";
 import SeasonsSlider from "../components/AnimeInfo/SeasonsSlider";

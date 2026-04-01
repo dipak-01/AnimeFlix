@@ -1,10 +1,10 @@
 import { fetchThreads } from "../services/forumService";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Chatbox from "../components/Chatbox";
 
-export default function () {
+export default function Community() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [threads, setThreads] = useState("");

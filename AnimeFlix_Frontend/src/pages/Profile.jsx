@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchUserData, updateUserData } from "../redux/slice/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import AnimeQuoteCard from "../components/AnimeQuoteCard";
 
 // Modal component for changing username
 function ChangeUsernameModal({ isOpen, onClose, onSubmit }) {
@@ -126,7 +125,7 @@ export default function UserProfile() {
   const usersData = useSelector((state) => state.userData.data);
   const updateUsersData = useSelector((state) => state.updateUserData);
   const [data, setData] = useState(null);
-  const [banner, setBanner] = useState(localStorage.getItem("banner") || "");
+  const [banner, setBanner] = useState("");
   const [profileImage, setProfileImage] = useState(null);
   const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
@@ -138,12 +137,18 @@ export default function UserProfile() {
   useEffect(() => {
     if (usersData) {
       setData(usersData);
+      const savedBanner = localStorage.getItem(`banner_${usersData.id}`);
+      if (savedBanner) {
+        setBanner(savedBanner);
+      }
     }
   }, [usersData, updateUserData]);
 
   useEffect(() => {
-    localStorage.setItem("banner", banner);
-  }, [banner]);
+    if (data?.id && banner) {
+      localStorage.setItem(`banner_${data.id}`, banner);
+    }
+  }, [banner, data]);
 
   const handleImageChange = (e, setImage) => {
     const file = e.target.files[0];
@@ -161,9 +166,15 @@ export default function UserProfile() {
   };
 
   const handleProfileImageChange = (e) => {
-    handleImageChange(e, setProfileImage);
-    // Update profile image in the backend
-    dispatch(updateUserData({ avatarUrl: e.target.files[0] }));
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result);
+        dispatch(updateUserData({ avatarUrl: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleUsernameChange = (newUsername) => {
