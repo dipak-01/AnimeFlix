@@ -12,7 +12,7 @@ export function useFetchData(id) {
         const res =
           (await axios.get(
             `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/${id}`,
-          )) ||
+          ).catch(() => null)) ||
           (await axios.get(
             `${import.meta.env.VITE_ANIME_URL}/anime/${id}`,
           ));
@@ -40,10 +40,10 @@ export function useFetchStreamData(episodeid) {
       try {
         const res =
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/episode/sources?animeEpisodeId=${encodeURIComponent(episodeid)}`,
-          )) ||
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/episode/sources?animeEpisodeId=${episodeid}`,
+          ).catch(() => null)) ||
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL}/episode/sources?animeEpisodeId=${encodeURIComponent(episodeid)}`,
+            `${import.meta.env.VITE_ANIME_URL}/episode/sources?animeEpisodeId=${episodeid}`,
           ));
         setStreamData(res.data.data);
         setLoading(false);
@@ -70,7 +70,7 @@ export function useAnimeEpisodeData(animeId) {
         const res =
           (await axios.get(
             `${import.meta.env.VITE_ANIME_URL_SECONDARY}/anime/${animeId}/episodes`,
-          )) ||
+          ).catch(() => null)) ||
           (await axios.get(
             `${import.meta.env.VITE_ANIME_URL}/anime/${animeId}/episodes`,
           ));
@@ -99,10 +99,10 @@ export function useAnimeEpisodeServerData(episodeid) {
       try {
         const res =
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/episode/servers?animeEpisodeId=${encodeURIComponent(episodeid)}`,
-          )) ||
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/episode/servers?animeEpisodeId=${episodeid}`,
+          ).catch(() => null)) ||
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL}/episode/servers?animeEpisodeId=${encodeURIComponent(episodeid)}`,
+            `${import.meta.env.VITE_ANIME_URL}/episode/servers?animeEpisodeId=${episodeid}`,
           ));
         setEpisodeServerData(res.data.data);
         console.log(res.data.data);
