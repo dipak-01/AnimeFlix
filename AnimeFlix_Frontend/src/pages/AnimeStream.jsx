@@ -91,8 +91,8 @@ export default function AnimeStream() {
     return <AnimeStreamSkeletonLoader />;
   }
 
-  if (error || errorFetchingEpisodeData || errorServer || errorStreamData) {
-    return <div>Error: {error?.message}</div>;
+  if (error || errorFetchingEpisodeData || errorServer) {
+    return <div>Error: {error?.message || "Failed to load"}</div>;
   }
 
   if (
@@ -181,11 +181,11 @@ export default function AnimeStream() {
                   <span className="  ml-3 h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-orange-500 ease-linear"></span>
                 </div>
               )}
-              {streamData && (
+              {!loadingStreamData && (
                 <div className="">
                   <VideoPlayer
                     src={streamData?.sources?.[0]?.url}
-                    data={streamData}
+                    data={streamData || {}}
                   ></VideoPlayer>
                 </div>
               )}
