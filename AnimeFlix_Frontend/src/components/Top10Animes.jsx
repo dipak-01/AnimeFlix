@@ -1,29 +1,29 @@
 import { useNavigate } from "react-router-dom";
 export default function Top10Animes(top10animes) {
 
-  const data = top10animes.top10animes;
+  const data = top10animes?.top10animes || {};
+  
+  const columns = [];
+  if (data?.today?.length > 0) columns.push({ title: "Today", items: data.today });
+  if (data?.week?.length > 0) columns.push({ title: "Week", items: data.week });
+  if (data?.month?.length > 0) columns.push({ title: "Month", items: data.month });
+
+  if (columns.length === 0) return null;
+
+  // Dynamically size columns so they expand beautifully if one or more are missing.
+  const widthClass = columns.length === 3 ? "lg:w-1/3" : columns.length === 2 ? "lg:w-1/2" : "w-full";
 
   return (
     <>
       <div className="flex lg:flex-row flex-col gap-4 text-start">
-        <div className="lg:w-1/3">
-          <div >
-            <p className="pb-2 lg:text-2xl font-semibold">Today</p>
-            <TemplateCard animeData={data.today} />
+        {columns.map((col, idx) => (
+          <div key={idx} className={widthClass}>
+            <div>
+              <p className="pb-2 lg:text-2xl font-semibold">{col.title}</p>
+              <TemplateCard animeData={col.items} />
+            </div>
           </div>
-        </div>
-        <div className="lg:w-1/3">
-          <div>
-            <p className="pb-2 lg:text-2xl font-semibold">Week</p>
-            <TemplateCard animeData={data.week} />
-          </div>
-        </div>
-        <div className="lg:w-1/3">
-          <div>
-            <p className="pb-2 lg:text-2xl font-semibold">Month</p>
-            <TemplateCard animeData={data.month} />
-          </div>
-        </div>
+        ))}
       </div>
     </>
   );
@@ -37,7 +37,7 @@ function TemplateCard({ animeData }) {
   };
   return (
     <div className="space-y-4">
-      {animeData.slice(0, 5).map((top10anime, index) => (
+      {animeData?.slice(0, 5).map((top10anime, index) => (
         <div
           key={index}
           onClick={() => handleClick(top10anime.id)}

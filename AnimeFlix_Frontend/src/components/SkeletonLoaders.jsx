@@ -58,15 +58,20 @@ export function HomePageSkeleton() {
            </div>
         </div>
 
-        {/* Rows of Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-           {[...Array(12)].map((_, i) => (
-             <div key={`card-${i}`} className="w-full h-60 bg-slate-800 rounded-lg animate-pulse flex flex-col">
-               <div className="flex-1 bg-slate-700 rounded-t-lg"></div>
-               <div className="h-16 p-2 space-y-2">
-                 <div className="h-4 bg-slate-600 rounded w-5/6"></div>
-                 <div className="h-3 bg-slate-600 rounded w-1/2"></div>
-               </div>
+        {/* Rows of Cards (4 columns of Lists) */}
+        <div className="grid sm:grid-cols-2 lg:flex lg:gap-4 mt-8">
+           {[...Array(4)].map((_, colIndex) => (
+             <div key={`col-${colIndex}`} className="sm:1/2 lg:w-1/4 space-y-4">
+               <div className="h-8 w-40 bg-slate-700 rounded mb-4 animate-pulse"></div>
+               {[...Array(5)].map((_, i) => (
+                 <div key={`list-item-${i}`} className="flex h-36 p-2 gap-4 animate-pulse">
+                   <div className="w-1/3 rounded-lg bg-slate-800"></div>
+                   <div className="w-2/3 space-y-2 py-4">
+                     <div className="h-4 bg-slate-700 rounded w-full"></div>
+                     <div className="h-3 bg-slate-700 rounded w-2/3"></div>
+                   </div>
+                 </div>
+               ))}
              </div>
            ))}
         </div>
@@ -125,60 +130,62 @@ export default function AnimeInfoSkeletonLoader() {
 
 export function AnimeStreamSkeletonLoader() {
   return (
-    <div className="flex min-h-[80vh] w-full max-w-[1420px] mx-auto flex-col gap-6 px-4 py-8 lg:flex-row lg:px-6">
-      
-      {/* Left + Center Area wrapper */}
-      <div className="flex w-full flex-col-reverse gap-4 lg:w-4/5 lg:flex-row">
+    <div className="mx-auto my-4 h-auto min-h-screen w-full max-w-[1420px] px-4 text-start sm:px-4 lg:px-6 xl:px-0">
+      <div className="mx-auto my-auto flex w-full flex-col space-x-6 space-y-4 rounded-3xl lg:flex-row lg:space-y-0 lg:py-10">
         
-        {/* Left Side: Episode List Skeleton */}
-        <div className="w-full flex-shrink-0 lg:w-1/4 space-y-2">
-          <div className="h-10 w-full bg-slate-800 animate-pulse rounded-md border border-slate-700"></div>
-          <div className="bg-slate-800/50 rounded-md p-2 space-y-2">
-            {[...Array(10)].map((_, index) => (
-              <div
-                key={index}
-                className="h-10 w-full animate-pulse rounded-sm bg-slate-700"
-              ></div>
-            ))}
+        {/* Left + Center Area wrapper */}
+        <div className="flex flex-col-reverse lg:w-3/4 lg:flex-row">
+          
+          {/* Left Side: Episode List Skeleton */}
+          <div className="max-h-[550px] lg:w-1/4 space-y-2 pr-0 lg:pr-4">
+            <div className="h-10 w-full bg-slate-800 animate-pulse rounded-md border border-slate-700"></div>
+            <div className="bg-slate-800/50 rounded-md p-2 space-y-2">
+              {[...Array(10)].map((_, index) => (
+                <div
+                  key={index}
+                  className="h-10 w-full animate-pulse rounded-sm bg-slate-700"
+                ></div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Center: Video Player Skeleton */}
-        <div className="flex w-full flex-col gap-2 lg:w-3/4">
-          <div className="w-full aspect-video animate-pulse rounded-xl bg-slate-800 shadow-xl"></div>
-          {/* Controls Bar */}
-          <div className="flex justify-end gap-2 h-8">
-             <div className="w-20 bg-slate-800 rounded animate-pulse"></div>
-             <div className="w-20 bg-slate-800 rounded animate-pulse"></div>
-             <div className="w-12 bg-slate-800 rounded animate-pulse"></div>
-          </div>
-          {/* Server status bars */}
-          <div className="flex gap-2 h-16 w-full">
-            <div className="w-1/3 bg-slate-800 rounded animate-pulse"></div>
-            <div className="w-2/3 bg-slate-800 rounded animate-pulse space-y-2 p-2">
-              <div className="h-4 bg-slate-700 rounded w-1/2"></div>
-              <div className="h-4 bg-slate-700 rounded w-1/3"></div>
+          {/* Center: Video Player Skeleton */}
+          <div className="flex w-full flex-col gap-2 lg:w-4/5 pt-4 lg:pt-0">
+            <div className="w-full aspect-video animate-pulse rounded-xl bg-slate-800 shadow-xl"></div>
+            {/* Controls Bar */}
+            <div className="flex w-full justify-end gap-2 h-8">
+               <div className="w-20 bg-slate-800 rounded animate-pulse"></div>
+               <div className="w-20 bg-slate-800 rounded animate-pulse"></div>
+               <div className="w-12 bg-slate-800 rounded animate-pulse"></div>
+            </div>
+            {/* Server status bars */}
+            <div className="flex gap-2 h-16 w-full">
+              <div className="w-1/4 bg-slate-800 rounded animate-pulse"></div>
+              <div className="w-3/4 bg-slate-800 rounded animate-pulse space-y-2 p-2">
+                <div className="h-4 bg-slate-700 rounded w-1/2"></div>
+                <div className="h-4 bg-slate-700 rounded w-1/3"></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Right Side: Small Poster & Details Skeleton */}
-      <div className="w-full lg:w-1/5 space-y-4">
-        <div className="h-40 w-28 animate-pulse rounded-md bg-slate-800 shadow-md"></div>
-        <div className="h-8 w-full animate-pulse rounded border border-slate-700 bg-slate-800"></div>
-        
-        <div className="flex gap-2">
-          <div className="h-6 w-1/4 bg-slate-800 rounded animate-pulse"></div>
-          <div className="h-6 w-1/4 bg-slate-800 rounded animate-pulse"></div>
-          <div className="h-6 w-1/4 bg-slate-800 rounded animate-pulse"></div>
-        </div>
+        {/* Right Side: Small Poster & Details Skeleton */}
+        <div className="p-0 lg:w-1/5 space-y-4">
+          <div className="h-40 w-32 animate-pulse rounded-sm bg-slate-800 shadow-2xl"></div>
+          <div className="h-8 w-full animate-pulse rounded border border-slate-700 bg-slate-800"></div>
+          
+          <div className="flex gap-2">
+            <div className="h-6 w-1/4 bg-slate-800 rounded animate-pulse"></div>
+            <div className="h-6 w-1/4 bg-slate-800 rounded animate-pulse"></div>
+            <div className="h-6 w-1/4 bg-slate-800 rounded animate-pulse"></div>
+          </div>
 
-        <div className="space-y-2 pt-4">
-           <div className="h-3 w-1/4 bg-slate-800 rounded animate-pulse"></div>
-           <div className="h-3 w-full bg-slate-800 rounded animate-pulse"></div>
-           <div className="h-3 w-full bg-slate-800 rounded animate-pulse"></div>
-           <div className="h-3 w-3/4 bg-slate-800 rounded animate-pulse"></div>
+          <div className="space-y-2 pt-4 flex flex-col">
+             <div className="h-3 w-1/4 bg-slate-800 rounded animate-pulse mb-2"></div>
+             <div className="h-3 w-full bg-slate-800 rounded animate-pulse"></div>
+             <div className="h-3 w-full bg-slate-800 rounded animate-pulse"></div>
+             <div className="h-3 w-3/4 bg-slate-800 rounded animate-pulse"></div>
+          </div>
         </div>
       </div>
     </div>
