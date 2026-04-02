@@ -40,10 +40,10 @@ export function useFetchStreamData(episodeid) {
       try {
         const res =
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/episode/sources?animeEpisodeId=${episodeid}`,
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/episode/sources?animeEpisodeId=${encodeURIComponent(episodeid)}`,
           )) ||
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL}/episode/sources?animeEpisodeId=${episodeid}`,
+            `${import.meta.env.VITE_ANIME_URL}/episode/sources?animeEpisodeId=${encodeURIComponent(episodeid)}`,
           ));
         setStreamData(res.data.data);
         setLoading(false);
@@ -99,10 +99,10 @@ export function useAnimeEpisodeServerData(episodeid) {
       try {
         const res =
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/episode/servers?animeEpisodeId=${episodeid}`,
+            `${import.meta.env.VITE_ANIME_URL_SECONDARY}/episode/servers?animeEpisodeId=${encodeURIComponent(episodeid)}`,
           )) ||
           (await axios.get(
-            `${import.meta.env.VITE_ANIME_URL}/episode/servers?animeEpisodeId=${episodeid}`,
+            `${import.meta.env.VITE_ANIME_URL}/episode/servers?animeEpisodeId=${encodeURIComponent(episodeid)}`,
           ));
         setEpisodeServerData(res.data.data);
         console.log(res.data.data);
